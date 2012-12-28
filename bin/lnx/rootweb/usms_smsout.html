@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Tabla smsout</title>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dijit/TitlePane",
+  "dojox/io/xhrScriptPlugin",
+  "dojo/data/ItemFileReadStore",
+  "gridx/Grid",
+  "gridx/core/model/cache/Async",
+  "dojox/data/CsvStore",
+  "dijit/form/Form",
+  "dijit/form/DateTextBox",
+  "dijit/form/NumberTextBox",
+  "dijit/form/Button",
+  "dojox/xml/DomParser",
+  "dijit/layout/ContentPane",
+  "dijit/MenuBar",
+  "dijit/PopupMenuBarItem",
+  "dijit/MenuItem",
+  "dijit/Menu"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
+</style>
+<script type="text/javascript" src="jsspire/functions.js"></script>
+<script type="text/javascript" src="usms_smsout.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+ <div id="idcontentAll" style="height: 100%; width: 100%; overflow: hidden;">
+<span data-dojo-type="dijit.TitlePane" id="idpaneFiltro" title="SMS - Bandeja de Salida" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="false" style="min-width: 1em; width: 100%; height: auto;"><div data-dojo-type="dijit.form.Form" id="idformFiltro" action="getsmsouttable" method="POST" style="min-width: 1em; min-height: 1em; width: 100%; height: auto; display: inline-block;">
+     <label>
+       Fecha inicio:</label>
+     <input type="text" data-dojo-type="dijit.form.DateTextBox" id="iddtbxstart" title="Seleccione fecha de inicio" name="dtbxstart" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+     <label>
+       Fecha fin:</label>
+     <input type="text" data-dojo-type="dijit.form.DateTextBox" id="dtbxend" title="Seleccione hasta que fecha" name="dtbxend" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+     <label>
+       Registros:</label>
+     <input type="text" data-dojo-type="dijit.form.NumberTextBox" id="idntbxrows" title="Cantidad de registros" name="ntbrows" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+     <input type="submit" data-dojo-type="dijit.form.Button" intermediateChanges="false" label="Obtener" iconClass="dijitNoIcon"></input>
+   </div>
+   </span>
+<div id="idConGridx" style="height: auto; width: 100%;">
+<span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_1" jsId="ItemFileReadStore_1" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;}]}"></span>
+ <table data-dojo-type="gridx.Grid" id="idsmsouttable" style="min-width: 1em; min-height: 1em; height: 100%; width: auto;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_1"></table>
+</div>
+</div>
+ </body>
+</html>

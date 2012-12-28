@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>PostgreSQL</title>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dijit/layout/ContentPane",
+  "dijit/form/TextBox",
+  "dijit/form/NumberTextBox",
+  "dijit/form/CheckBox",
+  "dijit/form/SimpleTextarea",
+  "dojox/xml/DomParser",
+  "dijit/form/Button",
+  "dijit/MenuBar",
+  "dijit/PopupMenuBarItem",
+  "dijit/MenuItem",
+  "dijit/Menu",
+  "dijit/Toolbar"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";
+</style>
+<script type="text/javascript" src="usms_postgres_conx.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="jsspire/functions.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+ <form id="FormPostgreSQLCnx" action="postpostgresconf" style="width: auto; height: auto; display: inline;">
+   <label for="tbxpgHost" style="display: inline-block; width: 75px;">
+     Host:</label>
+   <input type="text" data-dojo-type="dijit.form.TextBox" id="tbxpgHost" title="Host o IP" name="pgHost" value="localhost" intermediateChanges="false" trim="true" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+   <br></br>
+   <label style="display: inline-block; width: 75px;">
+     Puerto:</label>
+   <input type="text" data-dojo-type="dijit.form.NumberTextBox" id="tbxpgPort" title="Puerto / Socket" name="pgPort" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+   <br></br>
+   <label style="display: inline-block; width: 75px;">
+     Base de Datos:</label>
+   <input type="text" data-dojo-type="dijit.form.TextBox" id="tbxpgDataBase" title="Nombre de la base de datos" name="pgDataBase" value="usms" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+   <br></br>
+   <label style="display: inline-block; width: 75px;">
+     Usuario:</label>
+   <input type="text" data-dojo-type="dijit.form.TextBox" id="tbxpgUser" title="Usuario" name="pgUser" value="user" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+   <br></br>
+   <label style="width: 75px; display: inline-block;">
+     Password:</label>
+   <input type="password" data-dojo-type="dijit.form.TextBox" id="tbxpgPwd" title="Clave de acceso" name="pgPwd" value="1234" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+   <br></br>
+   <label style="width: 75px; display: inline-block;">
+     SSL:</label>
+   <input type="checkbox" data-dojo-type="dijit.form.CheckBox" id="cbxpgSSL" title="Conexion con SSL" name="pgSSL" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+   <br></br>
+   <label>
+     Nota:</label>
+   <br></br>
+   <textarea type="text" data-dojo-type="dijit.form.SimpleTextarea" id="stapgNote" title="Notas" name="pgNote" intermediateChanges="false" rows="10" cols="10" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: 30px; width: 237px;"></textarea>
+   <br></br>
+   <div style="width: 239px; height: auto;" align="right">
+     <input type="button" data-dojo-type="dijit.form.Button" intermediateChanges="false" label="Obtener" iconClass="dijitNoIcon" onclick="loadFormPostgreSQLCnx"></input>
+     <input type="submit" data-dojo-type="dijit.form.Button" intermediateChanges="false" label="Guardar" iconClass="dijitNoIcon"></input>
+   </div>
+ </form>
+</body>
+</html>

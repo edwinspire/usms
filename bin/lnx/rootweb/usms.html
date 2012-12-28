@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>uSMS WebAdmin</title>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dijit/MenuBar",
+  "dijit/PopupMenuBarItem",
+  "dijit/MenuItem",
+  "dijit/Menu",
+  "dijit/layout/ContentPane",
+  "dijit/Dialog"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";
+</style>
+<script type="text/javascript" src="usms.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+ <div dvwidget="html.richtext" style="background-color: black; width: auto;" class="richText">
+ <div style="text-align: center;">
+     <b><font color="#ffa500" size="6">
+              uSMS</font>
+     </b>
+   </div>
+   <div style="text-align: center;">
+     <font color="#6495ed">
+       <b><i>
+                Micro Servidor de Mensajes SMS</i>
+       </b>
+     </font>
+   </div>
+ </div>
+<span data-dojo-type="dijit.MenuBar" tabIndex="0"><span data-dojo-type="dijit.PopupMenuBarItem" label="Sistema" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Opciones" onclick="DialogNoImplemented"></span><span data-dojo-type="dijit.MenuItem" label="PostgreSQL" onclick="dialog_postgres_cnx"></span><span data-dojo-type="dijit.MenuItem" label="Puertos" onclick="PagePorts"></span><span data-dojo-type="dijit.MenuItem" label="Status" onclick="PageStatus"></span>
+</span>
+</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Contactos" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Editar" onclick="PageContacts"></span>
+</span>
+</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Llamadas" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Entrantes" onclick="DialogNoImplemented"></span>
+</span>
+</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Localizaci&amp;oacute;n" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Editar" onclick="DialogNoImplemented"></span>
+</span>
+</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Proveedores" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Editar" onclick="DialogNoImplemented"></span>
+</span>
+</span><span data-dojo-type="dijit.PopupMenuBarItem" label="SMS" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Lista Blanca" onclick="DialogNoImplemented"></span><span data-dojo-type="dijit.MenuItem" label="Lista Negra" onclick="DialogNoImplemented"></span><span data-dojo-type="dijit.MenuItem" label="Entrantes" onclick="DialogNoImplemented"></span><span data-dojo-type="dijit.MenuItem" label="Salientes" onclick="PageSMSOut"></span><span data-dojo-type="dijit.MenuItem" label="Enviar" onclick="DialogNoImplemented"></span><span data-dojo-type="dijit.MenuItem" label="Enviar Masivo" onclick="DialogNoImplemented"></span>
+</span>
+</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Ayuda"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Acerca de" onclick="DialogAbout"></span>
+</span>
+</span>
+</span>
+<object id="MasterContent" data="usms_serialport.html" type="text/html;" style="width: 100%; overflow: auto; display: inline-block; clear: both; height: 80%;"></object>
+</body>
+</html>

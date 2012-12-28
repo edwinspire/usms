@@ -1,0 +1,125 @@
+body, ul, li, h1, h2, span{
+	margin:0;
+	padding:0;
+}
+ul{
+	list-style:none;
+}
+body{
+	background:#292929;
+
+}
+.slidingMenu {
+	position: absolute;
+	height:700px;
+	width: 410px;
+	top:40px;
+	overflow:hidden;
+	right:1px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.slidingMenu li {
+	display:block;
+	float:right;
+	clear:both;
+	position:relative;
+	overflow:hidden;
+}
+.slidingMenu li.move {
+	width: 9px;
+	height: 68px;
+	right:0px;
+	padding-right:10px;
+	margin-top:2px;
+	z-index: 8;
+	position: absolute;    
+	background: #2183c4;     
+	background: 
+		-webkit-gradient(
+			linear, 
+			left top, 
+			left bottom, 
+			from(#0771b8), 
+			to(#2183c4)
+		);     
+	background: 
+		-moz-linear-gradient(
+			top, 
+			#0771b8, 
+			#2183c4
+		);     
+	-moz-border-radius: 8px 0px 0px 8px;  
+	-webkit-border-top-left-radius: 8px;     	
+	-webkit-border-bottom-left-radius: 8px; 
+	border-top-left-radius: 8px;  
+	border-bottom-left-radius: 8px;        
+	-moz-box-shadow:1px 1px 5px #000;
+	-webkit-box-shadow:1px 1px 5px #000;
+	box-shadow:1px 1px 5px #000;	
+	}
+.slidingMenu li a {
+	font-size:66px;
+	text-transform:uppercase;
+	text-decoration: none;
+	color: #ddd;
+	outline: none;
+	text-indent:5px;
+	z-index: 10;
+	display: block;
+	float: right;
+	height: 66px;
+	line-height: 66px;
+	position: relative;
+	overflow: hidden;
+	padding-right:10px;
+}
+/* Descriptions */
+.slidingMenuDesc{
+	margin-top:40px;
+	position:relative;
+}
+.slidingMenuDesc div{
+	background: #2183c4;     
+	background: 
+		-webkit-gradient(
+			linear, 
+			left top, 
+			left bottom, 
+			from(#0771b8), 
+			to(#2183c4)
+		);     
+	background: 
+		-moz-linear-gradient(
+			top, 
+			#0771b8, 
+			#2183c4
+		);   	
+	height: 68px;
+	padding-right:5px;
+	left:-5px;
+	width:0px;
+	margin-top:2px;
+	overflow:hidden;
+	position:absolute;
+	-moz-box-shadow:1px 1px 5px #000;
+	-webkit-box-shadow:1px 1px 5px #000;
+	box-shadow:1px 1px 5px #000;
+	-moz-border-radius: 0px 8px 8px 0px;  
+	-webkit-border-top-right-radius: 8px;     	
+	-webkit-border-bottom-right-radius: 8px; 
+	border-top-right-radius: 8px;  
+	border-bottom-right-radius: 8px; 
+}
+.slidingMenuDesc div span {
+	font-size:36px;
+	color: #f0f0f0;
+	text-indent:5px;
+	z-index: 10;
+	display: block;
+	height: 66px;
+	line-height: 66px;
+	position:absolute;
+	right:10px;
+	margin-left:5px;
+	top:-3px;
+}

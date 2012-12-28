@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Untitled</title>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dijit/TitlePane",
+  "dojox/io/xhrScriptPlugin",
+  "dojo/data/ItemFileReadStore",
+  "gridx/Grid",
+  "gridx/core/model/cache/Async",
+  "dojox/data/CsvStore",
+  "dijit/Toolbar",
+  "dijit/form/Button",
+  "dijit/layout/TabContainer",
+  "dijit/layout/ContentPane",
+  "dijit/layout/BorderContainer",
+  "dijit/layout/AccordionContainer",
+  "clipart/Person",
+  "dijit/form/Form",
+  "dijit/MenuBar",
+  "dijit/PopupMenuBarItem",
+  "dijit/MenuItem",
+  "dijit/Menu",
+  "dijit/form/Textarea",
+  "dijit/form/NumberSpinner",
+  "dijit/form/CheckBox",
+  "dijit/form/TextBox",
+  "dijit/form/Select",
+  "dijit/form/DateTextBox",
+  "dijit/form/SimpleTextarea",
+  "dijit/form/NumberTextBox"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
+</style>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}">
+ <div style="width: 100%; height: 100%; display: inline-block; overflow: hidden;">
+  <div class="dijitTitlePaneTitle" style="display: inline-block; width: 100%;">
+<img data-dojo-type="clipart.Person" style="position: relative; top: 1px; bottom: 1px;"></img>
+   <label style="position: relative; bottom: 3px; top: 2px; width: 100%;">
+     Contactos</label>
+ </div>
+  <div style="width: 100%; height: 100%;">
+   <div data-dojo-type="dijit.layout.BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+     <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" doLayout="false" style="width: 30%;">
+      <div><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_2" jsId="ItemFileReadStore_2" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;}]}"></span>
+<table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_2"></table>
+</div>
+    </div>
+     <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
+      <div style="display: inline-block; width: 100%;" class="dijitTitlePaneTitle">
+        <img data-dojo-type="clipart.Person" style="position: relative; top: 1px; bottom: 1px;"></img>
+        <label id="idLabelContact" style="position: relative; bottom: 3px; top: 2px;">
+          Contactos</label>
+      </div>
+      <div>
+       <div data-dojo-type="dijit.form.Form" id="idformContact" action="postcontact" method="POST" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;"><span data-dojo-type="dijit.Toolbar">
+<input type="reset" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitEditorIcon dijitEditorIconNewPage"></input>
+<input type="submit" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitEditorIcon dijitEditorIconSave"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitEditorIcon dijitEditorIconDelete"></input>
+</span>
+<table border="0" style="margin: 2px; border-collapse: collapse; table-layout: auto; width: 100%; height: auto;">
+<colgroup>
+<col></col>
+<col></col>
+<col></col>
+<col></col>
+<col></col>
+<col></col>
+</colgroup>
+<tbody>
+<tr>
+<td>
+<label>
+Id:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.NumberSpinner" readOnly="readOnly" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." value="0"></input>
+</td>
+<td>
+<label>
+Activo:</label>
+</td>
+<td>
+<input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+</td>
+<td>
+<label>
+Saludo:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+</td>
+</tr>
+<tr>
+<td>
+<label>
+Apellido:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+</td>
+<td>
+<label>
+Nombre:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+</td>
+<td>
+<label>
+Género:</label>
+</td>
+<td>
+<select data-dojo-type="dijit.form.Select" type="text" value="No definido" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+<option value="No definido">
+No definido</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<label>
+Fecha Nacim:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+</td>
+<td>
+<label>
+C.I. / Pasaporte:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+</td>
+<td>
+<label>
+Tipo documento:</label>
+</td>
+<td>
+<select data-dojo-type="dijit.form.Select" type="text" value="Item 1" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+<option value="Item 1" selected="selected">
+Item 1</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<label>
+web:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+</td>
+<td>
+<label>
+email1:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+</td>
+<td>
+<label>
+email2:</label>
+</td>
+<td>
+<input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+</td>
+</tr>
+</tbody>
+</table>
+<label style="display: inline-block; width: 100%;">
+Notas:</label>
+<textarea type="text" data-dojo-type="dijit.form.Textarea" style="height: auto; display: inline-block; width: 100%;"></textarea>
+<br></br>
+</div>
+     </div>
+      <div style="display: inline-block; width: 100%; height: 70%;"><span data-dojo-type="dijit.layout.AccordionContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;">
+<div data-dojo-type="dijit.layout.ContentPane" title="Telefonos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="selected" closable="false" doLayout="false"><div><span data-dojo-type="dijit.TitlePane" title="Editar" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="true" style="min-width: 1em; width: 100%; height: auto;">
+<div data-dojo-type="dijit.form.Form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;"><span data-dojo-type="dijit.Toolbar">
+<input type="reset" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitEditorIcon dijitEditorIconNewPage"></input>
+<input type="submit" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitEditorIcon dijitEditorIconSave"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitEditorIcon dijitEditorIconDelete"></input>
+<input type="button" data-dojo-type="dijit.form.Button" label="Mapa"></input>
+</span>
+<div style="width: 100%; height: 100%; display: inline-block;">
+<span data-dojo-type="dijit.layout.TabContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 150px;" controllerWidget="dijit.layout.TabController">
+<div data-dojo-type="dijit.layout.ContentPane" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="selected" closable="false" doLayout="false">
+  <table border="0" style="border-collapse:collapse;table-layout:auto;width:100%;height:auto;">
+    <colgroup>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td>
+          <label>
+            Id:</label>
+        </td>
+        <td>
+          <input type="text" data-dojo-type="dijit.form.NumberSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." value="0"></input>
+        </td>
+        <td>
+          <label>
+            Activo:</label>
+        </td>
+        <td>
+          <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+        </td>
+        <td>
+          <label>
+            Tipo:</label>
+        </td>
+        <td>
+          <select data-dojo-type="dijit.form.Select" type="text" value="Item 1" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+            <option value="Item 1">
+              Item 1</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>
+            Proveedor:</label>
+        </td>
+        <td>
+          <select data-dojo-type="dijit.form.Select" type="text" value="Item 1" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+            <option value="Item 1">
+              Item 1</option>
+          </select>
+        </td>
+        <td>
+          <label>
+            Ubicación:</label>
+        </td>
+        <td>
+          <select data-dojo-type="dijit.form.Select" type="text" value="Item 1" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+            <option value="Item 1">
+              Item 1</option>
+          </select>
+        </td>
+        <td>
+          <label>
+            Número:</label>
+        </td>
+        <td>
+          <input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+        </td>
+      </tr>
+      <tr>
+      <td>
+          <label>
+            Extensión:</label>
+        </td>
+        <td>
+          <input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+        </td>
+        <td>
+          &nbsp;</td>
+        <td>
+          &nbsp;</td>
+        <td>
+          &nbsp;</td>
+        <td>
+          &nbsp;</td>
+      </tr>
+      </tbody>
+  </table>
+  <label style="width: 100%; display: inline-block; margin-top: 2px;">
+    Notas:</label>
+  <textarea type="text" data-dojo-type="dijit.form.Textarea" style="height: auto; width: 100%;"></textarea>
+</div>
+<div data-dojo-type="dijit.layout.ContentPane" title="Ubicacion" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="selected" closable="false" doLayout="false">
+ <div>
+<table style="border-collapse:collapse;table-layout:auto;width:100%;height:auto;" border="0">
+    <colgroup>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td>
+          &nbsp;<label>
+Pa&iacute;s:</label>
+</td>
+        <td>
+          &nbsp;<select data-dojo-type="dijit.form.Select" type="text" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+<option value="Ecuador">
+Ecuador</option>
+</select>
+</td>
+        <td>
+          &nbsp;<label>
+Estado:</label>
+</td>
+        <td>
+          &nbsp;<select data-dojo-type="dijit.form.Select" type="text" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+<option value="Pichincha">
+Pichincha</option>
+</select>
+</td>
+        <td>
+          &nbsp;<label>
+Ciudad:</label>
+</td>
+        <td>
+          &nbsp;<select data-dojo-type="dijit.form.Select" type="text" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+<option value="Quito">
+Quito</option>
+</select>
+</td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;<label>
+Sector:</label>
+</td>
+        <td>
+          &nbsp;<select data-dojo-type="dijit.form.Select" type="text" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+<option value="Cumbaya">
+Cumbaya</option>
+</select>
+</td>
+        <td>
+          &nbsp;<label>
+Subsector:</label>
+</td>
+        <td>
+          &nbsp;<select data-dojo-type="dijit.form.Select" type="text" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+<option value="Centro">
+Centro</option>
+</select>
+</td>
+        <td>
+          &nbsp;</td>
+        <td>
+          &nbsp;</td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;<label>
+GeoX:</label>
+</td>
+        <td>
+          &nbsp;<input type="text" data-dojo-type="dijit.form.NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+</td>
+        <td>
+          &nbsp;<label>
+GeoY:</label>
+</td>
+        <td>
+          &nbsp;<input type="text" data-dojo-type="dijit.form.NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+</td>
+        <td>
+          &nbsp;</td>
+        <td>
+          &nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ <label style="width: 100%; display: inline-block;">
+   Direcci&oacute;n:</label>
+ <textarea type="text" data-dojo-type="dijit.form.Textarea" style="height: auto; width: 100%;"></textarea>
+ </div>
+</span>
+</div>
+</div>
+</span></div>
+<div><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_4" jsId="ItemFileReadStore_4" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;}]}"></span>
+<table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_4"></table>
+</div>
+</div>
+<div data-dojo-type="dijit.layout.ContentPane" title="SMS Recibidos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="selected" closable="false" doLayout="false">
+ <div style="width: 100%; height: 100%;"><span data-dojo-type="dijit.TitlePane" title="Filtro" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="true" style="min-width: 1em; width: 100%; height: auto;">
+<div data-dojo-type="dijit.form.Form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+<label>
+Inicio:</label>
+<input type="text" data-dojo-type="dijit.form.DateTextBox"></input>
+<label>
+Fin:</label>
+<input type="text" data-dojo-type="dijit.form.DateTextBox"></input>
+<input type="button" data-dojo-type="dijit.form.Button" intermediateChanges="false" label="Obtener" iconClass="dijitNoIcon"></input>
+</div>
+</span>
+<div></div>
+</div>
+</div>
+<div data-dojo-type="dijit.layout.ContentPane" title="SMS Enviados">
+ <div style="width: 100%; height: 100%;">
+   <span data-dojo-type="dijit.TitlePane" title="Filtro" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="true" style="min-width: 1em; width: 100%; height: auto;"><div data-dojo-type="dijit.form.Form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+     <label>
+       Inicio:</label>
+     <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+     <label>
+       Fin:</label>
+     <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+     <input type="button" data-dojo-type="dijit.form.Button" intermediateChanges="false" label="Obtener" iconClass="dijitNoIcon"></input>
+   </div>
+   </span>
+   <div></div>
+ </div>
+</div>
+<div data-dojo-type="dijit.layout.ContentPane" title="Llamadas Recibidas">
+ <div style="width: 100%; height: 100%;">
+   <span data-dojo-type="dijit.TitlePane" title="Filtro" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="true" style="min-width: 1em; width: 100%; height: auto;"><div data-dojo-type="dijit.form.Form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+     <label>
+       Inicio:</label>
+     <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+     <label>
+       Fin:</label>
+     <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+     <input type="button" data-dojo-type="dijit.form.Button" intermediateChanges="false" label="Obtener" iconClass="dijitNoIcon"></input>
+   </div>
+   </span>
+   <div></div>
+ </div>
+</div>
+</span></div>
+      </div>
+   </div>
+ </div>
+</div>
+</body>
+</html>
