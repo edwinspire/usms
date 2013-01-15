@@ -1,9 +1,0 @@
-/** { margin: 0; padding: 0; }*/
-body { font: 13px "Trebuchet MS", Verdana, Helvetica, sans-serif; color: #666; }
-
-/* ================ DOCK ================ */
-#dockspirevala { position: fixed; bottom: 5px; width: 100%; z-index: 10;}
-.dock-container { position: relative; top: 0px; height: 50px; padding-left: 0px; }
-a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-align: center; text-decoration: none; color: #333; z-index: 11;}
-.dock-item span { display: none; padding-left: 20px; }
-.dock-item img { border: 0; margin: 5px 10px 0px; width: 100%; }

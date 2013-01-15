@@ -1,0 +1,13 @@
+* { margin: 0; padding: 0; }
+#objectontainer {
+width: 100%; 
+/*height: 850;*/
+}
+
+#information_container {
+/*margin - top : 225 px ;*/
+ width: 100%; 
+height: 100%;
+}
+
+

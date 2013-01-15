@@ -1,0 +1,4 @@
+# Ignores
+*.*~
+bin/lnx/proyects
+bin/win/proyects

@@ -1,0 +1,292 @@
+// 
+//  main.vala
+//  
+//  Author:
+//       Edwin De La Cruz <edwinspire@gmail.com>
+//  
+//  Copyright (c) 2011 edwinspire
+// 
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Lesser General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+// 
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU Lesser General Public License for more details.
+// 
+//  You should have received a copy of the GNU Lesser General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using GLib;
+using edwinspire.uSMS;
+using edwinspire.GSM.MODEM;
+using edwinspire.PDU;
+using Gee;
+using edwinspire.UiWeb.Server;
+using edwinspire.uHttp;
+//using GnuTLS;
+
+public class RunuSMS: GLib.Object {
+
+
+
+	public static int main (string[] args) {
+		stdout.printf ("run usmsd!\n");
+//print(GnuTLS.VERSION);
+/*
+Environment.set_variable ("uiweb", "ClassDataTable", false);
+
+foreach(var T in Environment.list_variables ()){
+print("var = %s\n", T);
+}
+*/
+//print("varName = %s\n", Environment.get_application_name ());
+
+RunuSMSd smsServer = new RunuSMSd();
+//smsServer.ResetAndLoadDevices();
+smsServer.Run();
+
+print("El servidor muere...");
+		return 0;
+	}
+
+
+
+
+}
+
+public class RunuSMSd:GLib.Object{
+
+private uiServer S = new uiServer ();
+
+private bool EscribiendoBaseDatos = false;
+
+private ArrayList<Device> Dispositivos = new ArrayList<Device>();
+private  HashSet<string> PuertosUnicos = new HashSet<string>();
+private bool Procesando = false;
+
+public RunuSMSd(){
+//S.RequestVirtualUrl.connect(CapturaEventoRequest);
+//S.VirtualUrl["indexHomeusms"] = "/";
+//S.VirtualUrl["TablausmsdControl"] = "/usmscontrol";
+//S.VirtualUrl["TablausmsdControlProcess"] = "/ctlprocess";
+S.VirtualUrl["usmsdbservices"] = "/usmsdbservices";
+
+S.addValaCompiledPage(new Home());
+S.addValaCompiledPage(new TableControl());
+S.addValaCompiledPage(new ProccessTableControl());
+
+/*
+foreach(var U in S.VirtualUrl.entries){
+print("%s ==>> %s\n", U.key, U.value);
+}
+*/
+
+S.RequestVCPage.connect(RequestVirtualPageHandler);
+}
+
+private void Escribiendo(){
+lock(EscribiendoBaseDatos){
+EscribiendoBaseDatos = true;
+}
+}
+private void Libre(){
+lock(EscribiendoBaseDatos){
+EscribiendoBaseDatos = false;
+}
+}
+
+public void RequestVirtualPageHandler(uiServer server, Request request, DataOutputStream dos, Type typeClass){
+
+    Response response = new Response();
+
+while(true){
+
+if(request.Path == "/usmsdbservices"){
+// Procesamos los datos solicitados para la base de datos
+
+    server.serve_response(ResponseTodbusms(request), dos);
+
+}else{
+
+if(typeClass == typeof(Home)){
+//print("Clase home de uiwebadmin\n");
+//    Response response = new Response();
+// Pagina de administracion y configuracion del servidor
+Home PagUiWeb = new Home();
+        response.Header.Status = StatusCode.OK;
+    response.Data =  PagUiWeb.HtmlCode().data;
+    server.serve_response( response, dos );
+break;
+}
+
+if(typeClass == typeof(TableControl)){
+//print("Clase home de uiwebadmin\n");
+//    Response response = new Response();
+// Pagina de administracion y configuracion del servidor
+TableControl PagUiWebc = new TableControl();
+        response.Header.Status = StatusCode.OK;
+    response.Data =  PagUiWebc.HtmlCode().data;
+    server.serve_response( response, dos );
+break;
+}
+
+if(typeClass == typeof(ProccessTableControl)){
+//print("Clase home de uiwebadmin\n");
+//    Response response = new Response();
+ ProccessTableControl TablaConfigprocc = new ProccessTableControl();
+//TablaConfigprocc.RequestFromWeb(server, request, dos);
+    server.serve_response(TablaConfigprocc.RequestToAction(request), dos);
+
+  //  server.serve_response( response, dos );
+break;
+}
+
+}
+
+break;
+}
+
+}
+
+private Response ResponseTodbusms(Request request){
+Response Retorno = new Response();
+
+print(EscribiendoBaseDatos.to_string());
+
+return Retorno;
+}
+
+
+
+// Usar unicamente cuando se inicia el servidor o cuando se lo reinicia.
+private void ResetAndLoadDevices(){
+print("Loading devices...\n");
+// Mata los procesos de dispositivos si hay alguno actualmente corriendo
+this.KillDevs();
+// Vuelve a cargar la lista, se evita el duplicado de puertos
+
+foreach(var u in TableSerialPort.Enables()){
+
+if(!PuertosUnicos.contains(u.Port)){
+PuertosUnicos.add(u.Port);
+stdout.printf ("Usar Modem en %s\n", u.Port);
+Device de = new Device();
+de.SetPort(u);
+Dispositivos.add(de);
+}
+
+}
+
+}
+// Inicia y corre el servidor asincronicamente
+public void Run(){
+if(!Procesando){
+try{
+ResetAndLoadDevices();
+Thread.create<void>(this.Proceso, false);
+}
+catch(ThreadError e){
+print(e.message);
+}
+}
+//this.ResetAndLoadDevices();
+    S.Start();
+}
+
+private void KillDevs(){
+print("Kill process");
+
+if(Dispositivos.size>0){
+
+// Mata los procesos de modem que esten actualmente corriendo, vacia la lista y la vuelve a cargar.
+foreach(var Dev in Dispositivos){
+Dev.Kill();
+}
+bool AunAlgunoEstaCorriendo = false;
+// Espera hasta 20 segundos a que terminen de morir los procesos
+uint i = 0;
+while(i<20){
+print(".");
+foreach(var Dev in Dispositivos){
+if(Dev.Ctrl != ProcessCtrl.Killed){
+AunAlgunoEstaCorriendo = true;
+Dev.Ctrl = ProcessCtrl.Kill;
+}
+}
+if(!AunAlgunoEstaCorriendo){
+break;
+}
+// Esperamos a que se reseteen
+Thread.usleep(1000*1000);
+i++;
+}
+
+}
+Dispositivos.clear();
+PuertosUnicos.clear();
+print("Killed\n");
+}
+
+
+
+// Metodo proceso principal
+private void Proceso(){
+Procesando = true;
+
+var control = TableProcessControl.Last();
+
+while(control.Ctrl != ProcessCtrl.Kill || control.Ctrl != ProcessCtrl.Killed){
+print("Server [%s]\n", control.Ctrl.to_string());
+
+switch(control.Ctrl){
+
+case ProcessCtrl.Kill:
+this.KillDevs();
+TableProcessControl.Insert(new ProcessControldb(0, ProcessCtrl.Killed));
+break;
+
+case ProcessCtrl.Sleep:
+foreach(var Dev in Dispositivos){
+Dev.Ctrl = ProcessCtrl.Sleep;
+}
+TableProcessControl.Insert(new ProcessControldb(0, ProcessCtrl.Sleeping));
+break;
+
+case ProcessCtrl.Run:
+foreach(var Dev in Dispositivos){
+Dev.Ctrl = ProcessCtrl.Run;
+}
+TableProcessControl.Insert(new ProcessControldb(0, ProcessCtrl.Running));
+break;
+
+case ProcessCtrl.Restart:
+TableProcessControl.Insert(new ProcessControldb(0, ProcessCtrl.Restarting));
+this.ResetAndLoadDevices();
+//this.Run();
+TableProcessControl.Insert(new ProcessControldb(0, ProcessCtrl.Run));
+break;
+
+default:
+Thread.usleep(5000000);
+break;
+
+}
+
+if(control.Ctrl == ProcessCtrl.Kill || control.Ctrl == ProcessCtrl.Killed){
+TableProcessControl.Insert(new ProcessControldb(0, ProcessCtrl.Killed));
+break;
+}
+Thread.usleep(5000000);
+control = TableProcessControl.Last();
+}
+print("usmsd server is killed\n");
+Procesando = false;
+}
+
+
+
+}
+
+

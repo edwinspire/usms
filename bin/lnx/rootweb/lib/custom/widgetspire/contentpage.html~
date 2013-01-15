@@ -1,0 +1,4 @@
+<div id="edwinspire.contentpage.divmaster" style="position: relative; padding-bottom: 0%; padding-top: 10px; height: 0;	overflow: hidden;">
+   <div id="edwinspire.contentpage.divloading" class="dijitIconLoading" style="position: absolute; z-index: 900; left: 50%; top: 50%;"></div>
+   <object id="edwinspire.contentpage.objectcontent" data="http://maqetta.org/samples/embed.html" type="text/html"></object>
+ </div>
