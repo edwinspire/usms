@@ -5,21 +5,9 @@ require(["dojo/ready"], function(ready){
   var formpg = dojo.byId("idformFiltro");
   dojo.connect(formpg, "onsubmit", 'GetSMSOutTable');
 
-//	var myGridX = dijit.byId("idsmsouttable");
-//myGridX.vScroller.buffSize = 2;
-//myGridX.autoHeight = true;
-//myGridX.column(1).sort(true);
-//myGridX.sort.sort([{ colId: 'idsmsout', descending: true }, { colId: 'idphone', descending: false }]);
 	var myGridX = dijit.byId("idsmsouttable");
 	if (myGridX) {
 
-/*
-dojo.connect(myGridX, 'onCellClick', function(evt){
-     var cell = myGridX.cell(evt.rowId, evt.columnId, true); //get cell by row id and column id
-     var cellData = cell.data();
-alert(evt.rowId+': '+evt);
-});
-*/
 
 		// Optionally change column structure on the grid
 		myGridX.setColumns([
@@ -59,8 +47,7 @@ myGridX.startup();
 
 
 }
-
-SizeContent();
+//SizeContent();
 
      });
 });

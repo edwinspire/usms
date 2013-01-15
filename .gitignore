@@ -1,14 +1,7 @@
 # Ignores
-*.c~
-*.vala~
+*~
 *.sh
 *.bat
-*.sh~
-*.bat~
-*.md~
-*.sj~
-*.html~
-*.dia~
-*.css~
+*.log
 bin/lnx/proyects
 bin/win/proyects

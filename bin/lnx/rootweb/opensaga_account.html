@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Untitled</title>
+<script type="text/javascript" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]" src="lib/dojo/dojo/dojo.js"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dijit/form/Select",
+  "dijit/Toolbar",
+  "dijit/form/Button",
+  "dijit/layout/TabContainer",
+  "dijit/layout/ContentPane",
+  "dijit/TitlePane",
+  "dijit/form/Form",
+  "dijit/form/CheckBox",
+  "dijit/form/NumberTextBox",
+  "dijit/form/TextBox",
+  "dijit/form/NumberSpinner",
+  "dijit/form/Textarea",
+  "dijit/layout/BorderContainer",
+  "dojox/io/xhrScriptPlugin",
+  "dojo/data/ItemFileReadStore",
+  "gridx/Grid",
+  "gridx/core/model/cache/Async",
+  "dojox/data/CsvStore",
+  "dojo/data/ItemFileWriteStore",
+  "dijit/form/FilteringSelect",
+  "dijit/form/ComboBox",
+  "dijit/form/ComboButton",
+  "dijit/Menu",
+  "dijit/MenuItem",
+  "dojox/form/TimeSpinner",
+  "dijit/form/DateTextBox",
+  "dijit/form/SimpleTextarea",
+  "dijit/form/ValidationTextBox"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
+</style>
+<script type="text/javascript" src="opensaga_account.js"></script>
+<script type="text/javascript" src="jsspire/functions.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}">
+ <div id="opensaga.account.divmaster" style="width: 100%; height: 100%;">
+   <div>
+     <div class="dijitTitlePaneTitle">
+       <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+         ABONADO</label>
+     </div>
+   </div><span data-dojo-type="dijit.layout.TabContainer" tabStrip="false" persist="false" controllerWidget="dijit.layout.TabController" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;"><div data-dojo-type="dijit.layout.ContentPane" title="Principal" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="selected" closable="false">
+     <span data-dojo-type="dijit.Toolbar"><input type="button" data-dojo-type="dijit.form.Button" id="account.basic.newaccount" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitNoIcon"></input>
+     <input type="button" data-dojo-type="dijit.form.Button" id="account.basic.saveaccount" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
+     <input type="button" data-dojo-type="dijit.form.Button" id="account.basic.deleteaccount" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
+     <input type="button" data-dojo-type="dijit.form.Button" id="account.basic.geolocation" tabIndex="-1" intermediateChanges="false" label="Geolocalizaci&amp;oacute;n" iconClass="dijitNoIcon"></input>
+     </span>
+     <form id="os.account.form.basic" style="width: 100%; height: auto;">
+       <input type="text" data-dojo-type="dijit.form.NumberTextBox" id="account.basic.id" title="Id de la cuenta" name="idaccount" readOnly="readOnly" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 20px; display: none;"></input>
+       <input type="checkbox" data-dojo-type="dijit.form.CheckBox" id="account.basic.enable" title="Habilitado" name="enable" intermediateChanges="false" iconClass="dijitNoIcon" style="margin-right: 10px; margin-left: 10px;"></input>
+       <label>
+         Nombre:</label>
+       <select data-dojo-type="dijit.form.FilteringSelect" id="account.basic.accountselect" title="Seleccione el abonado" name="name" value="0" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="required" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" style="margin: 2px; width: 50%;">
+         <option value="0">
+           No seleccionado</option>
+       </select>
+       <br></br>
+       <label style="padding-right: 3px; padding-left: 10px;">
+         Abonado:</label>
+       <input type="text" data-dojo-type="dijit.form.TextBox" id="account.basic.accountnum" title="Numero de abonado" name="account" value="0000" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+       <label style="padding-right: 3px; padding-left: 10px;">
+         Grupo:</label>
+       <select data-dojo-type="dijit.form.FilteringSelect" id="account.basic.group" title="Grupo" name="idgroup" value="Ninguno" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="required" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
+         <option value="Ninguno">
+           Ninguno</option>
+       </select>
+       <label style="padding-right: 3px; padding-left: 10px;">
+         Particion:</label>
+       <input type="text" data-dojo-type="dijit.form.NumberSpinner" id="account.basic.partition" title="Partici&amp;oacute;n" name="partition" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 40px;"></input>
+       <label style="padding-right: 3px; padding-left: 10px;">
+         Tipo:</label>
+       <select data-dojo-type="dijit.form.Select" id="account.basic.accountType" title="Tipo de cuenta" type="text" name="type" value="0" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
+         <option value="0" selected="selected">
+           
+          
+          
+
+       
+        
+          
+          
+       Unknown</option>
+       </select>
+       <label style="display: inline-block; width: 100%;">
+         Nota:</label>
+       <textarea type="text" data-dojo-type="dijit.form.Textarea" id="account.basic.note" title="Notas" name="note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
+       <div></div>
+     </form>
+     <div>
+       <div class="dijitTitlePaneTitle">
+         <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+           Ubicación</label>
+       </div>
+       <div>
+         Localizacion<div data-dojo-type="dijit.form.Form" id="account.location.form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+           <div style="width: 100%;">
+             <label>
+               Coordenada X:</label>
+             <input type="text" data-dojo-type="dijit.form.NumberTextBox" id="account.location.geox" name="geox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" maxLength="20" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+           </div>
+           <div style="width: 100%;">
+             <label>
+               Coordenada Y:</label>
+             <input type="text" data-dojo-type="dijit.form.NumberTextBox" id="account.location.geoy" name="geoy" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+           </div>
+           <label style="width: 100%; display: block;">
+             Dirección:</label>
+           <textarea type="text" data-dojo-type="dijit.form.Textarea" id="account.location.address" name="address" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
+           <label style="display: block;">
+             Nota:</label>
+           <textarea type="text" data-dojo-type="dijit.form.Textarea" id="account.location.note" name="note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div data-dojo-type="dijit.layout.ContentPane" title="Tiempos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="selected" closable="false">
+     <div style="height: 100%; width: 100%;">
+       <div></div>
+       <div data-dojo-type="dijit.form.Form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+         <div class="dijitTitlePaneTitle">
+           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" id="account.times.timeworkenable" name="enable" intermediateChanges="false" iconClass="dijitNoIcon" style="top: 2px; bottom: 2px; position: relative;"></input>
+           <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+             Horario de Trabajo</label>
+         </div>
+         <div>
+           <table border="0" style="border-collapse: collapse; table-layout: fixed; width: 100%; height: auto;">
+             <colgroup>
+               <col></col>
+               <col></col>
+               <col></col>
+               <col></col>
+               <col></col>
+               <col></col>
+               <col></col>
+               <col></col>
+               <col></col>
+             </colgroup>
+             <tbody>
+               <tr>
+                 <td></td>
+                 <td class="dijitTitlePaneTitle">
+                   Lunes</td>
+                 <td class="dijitTitlePaneTitle">
+                   Martes</td>
+                 <td class="dijitTitlePaneTitle">
+                   Miercoles</td>
+                 <td class="dijitTitlePaneTitle">
+                   Jueves</td>
+                 <td class="dijitTitlePaneTitle">
+                   Viernes</td>
+                 <td class="dijitTitlePaneTitle">
+                   Sábado</td>
+                 <td class="dijitTitlePaneTitle">
+                   Domingo</td>
+                 <td class="dijitTitlePaneTitle">
+                   Feriados</td>
+               </tr>
+               <tr>
+                 <td class="dijitTitlePaneTitle">
+                   Entrada</td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+               </tr>
+               <tr>
+                 <td class="dijitTitlePaneTitle">
+                   Salida</td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+                 <td>
+                   <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+       </div>
+       <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+       <label>
+         Entrada normal en pantalla</label>
+       <br></br>
+       <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+       <label>
+         Salida normal en pantalla</label>
+       <br></br>
+       <label>
+         Toleracia de entrada:</label>
+       <input type="text" data-dojo-type="dijit.form.NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 30px;"></input>
+       <label>
+         minutos</label>
+       <br></br>
+       <label>
+         Tolarencia de salida:</label>
+       <input type="text" data-dojo-type="dijit.form.NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 30px;"></input>
+       <label>
+         minutos</label>
+       <br></br>
+       <div style="margin-bottom: 5px;" class="dijitTitlePaneTitle">
+         <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+           Tiempos varios</label>
+       </div>
+       <div data-dojo-type="dijit.form.Form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+         <table border="0" style="border-collapse: collapse; table-layout: fixed; height: auto; width: auto;">
+           <colgroup>
+             <col></col>
+             <col></col>
+             <col></col>
+             <col></col>
+             <col></col>
+             <col></col>
+           </colgroup>
+           <tbody>
+             <tr>
+               <td>
+                 <label>
+                   Reporte semanal:</label>
+               </td>
+               <td>
+                 <select data-dojo-type="dijit.form.Select" type="text" value="Domingo" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true" style="margin-right: 5px; margin-left: 3px;">
+                   <option value="Lunes">
+                     
+                    
+                    
+                  
+                  
+Lunes</option>
+                   <option value="Martes">
+                     
+                    
+                    
+                  
+                  
+Martes</option>
+                   <option value="Miercoles">
+                     
+                    
+                    
+                  
+                  
+Miercoles</option>
+                   <option value="Jueves">
+                     
+                    
+                    
+                  
+                  
+Jueves</option>
+                   <option value="Viernes">
+                     
+                    
+                    
+                  
+                  
+Viernes</option>
+                   <option value="S&amp;amp;aacute;bado">
+                     
+                    
+                    
+                  
+                  
+S&amp;aacute;bado</option>
+                   <option value="Domingo">
+                     
+                    
+                    
+                  
+                  
+Domingo</option>
+                 </select>
+               </td>
+               <td>
+                 <label>
+                   Hora:</label>
+               </td>
+               <td>
+                 <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto; margin-right: 5px; margin-left: 3px;"></input>
+               </td>
+               <td>
+                 <label>
+                   Enviar reporte:</label>
+               </td>
+               <td>
+                 <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon" checked="checked"></input>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </div>
+       <label>
+         Mensaje:</label>
+       <input style="margin-right: 5px; margin-left: 3px; margin-bottom: 10px; margin-top: 5px;"></input>
+       <div data-dojo-type="dijit.form.Form" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+         <label>
+           Reporte panel de control cada</label>
+         <input type="text" data-dojo-type="dijit.form.NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 30px; margin-right: 3px; margin-left: 3px;"></input>
+         <label>
+           minutos.</label>
+         <br></br>
+         <label>
+           Ignorar alarmas repetidas dentro de</label>
+         <input type="text" data-dojo-type="dijit.form.NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 30px; margin-right: 3px; margin-left: 3px;"></input>
+         <label>
+           segundos.</label>
+       </div>
+     </div>
+   </div>
+   <div data-dojo-type="dijit.layout.ContentPane" title="Contactos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+     <div style="width: 100%; height: 100%;">
+      <div data-dojo-type="dijit.layout.BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+        <div data-dojo-type="dijit.layout.ContentPane" id="opensaga.account.contacts.contentpanegridx" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" region="left" splitter="true" maxSize="Infinity" style="width: 215px;">
+          <div style="width: 100%; height: 100%;">
+            <span data-dojo-type="dojo.data.ItemFileWriteStore" jsId="opensaga_account_contactsStore" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+            <div class="dijitTitlePaneTitle">
+              <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                
+                   Contactos</label>
+            </div>
+            <table data-dojo-type="gridx.Grid" id="opensaga.account.contacts.gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'s',field:'s'},{width:'auto',name:'*',field:'*'},{width:'auto',name:'IdAccount',field:'idaccount'},{width:'auto',name:'IdContact',field:'idcontact'},{width:'auto',name:'Nombre',field:'nombre'},{width:'auto',name:'Designación',field:'designación'}],store:opensaga_account_contactsStore"></table>
+          </div>
+        </div>
+        <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" region="center" splitter="false" maxSize="Infinity">
+          <div style="width: 100%; height: 100%; overflow: hidden;">
+            <span data-dojo-type="dijit.Toolbar"><input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.new" title="Agregar nuevo usuario desde la lista de contactos" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitIconNewTask"></input>
+            <input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.save" title="Guardar datos de usuario" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
+            <input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.del" title="Eliminar usuario actual" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
+            <input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.contactdata" title="Ver detalle del contacto" tabIndex="-1" intermediateChanges="false" label="Datos" iconClass="dijitIconUsers"></input>
+            </span>
+            <div style="width: 100%; height: 100%;">
+              <span data-dojo-type="dijit.layout.TabContainer" tabStrip="false" persist="false" controllerWidget="dijit.layout.TabController" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;"><div data-dojo-type="dijit.layout.ContentPane" title="Contacto" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="selected" closable="false">
+                <div style="height: 100%; width: 100%; overflow: hidden;">
+                  <form id="opensaga.account.contacts.form" style="width: 100%; height: 100%;">
+                    <select data-dojo-type="dijit.form.FilteringSelect" id="opensaga.account.contacts.id" title="Seleccione el usuario" name="idcontact" value="Contacto" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="required" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" style="display: block; width: auto; margin-bottom: 5px;">
+                      <option value="Contacto">
+                        
+                           Contacto</option>
+                    </select>
+                    <label style="padding-right: 3px; padding-left: 10px;">
+                      
+                         Habilitado:</label>
+                    <input type="checkbox" data-dojo-type="dijit.form.CheckBox" id="opensaga.account.contacts.enable" title="Habilitado como usuario" name="enable" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                    <label style="padding-left: 10px; padding-right: 3px;">
+                      
+                         Prioridad:</label>
+                    <input type="text" data-dojo-type="dijit.form.NumberSpinner" id="opensaga.account.contacts.priority" title="Numero de usuario en el sistema de alarma" name="priority" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 40px;"></input>
+                    <label style="padding-left: 10px; padding-right: 3px;">
+                      
+                         Designación:</label>
+                    <select data-dojo-type="dijit.form.ComboBox" id="opensaga.account.contacts.appointment" title="Designaci&amp;oacute;n / Cargo / Puesto" name="appointment" value="Propietario" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
+                      <option value="Propietario">
+                        
+                           Propietario</option>
+                      <option value="Administrador">
+                        
+                           Administrador</option>
+                      <option value="Empleado">
+                        
+                           Empleado</option>
+                      <option value="Vecino">
+                        
+                           Vecino</option>
+                      <option value="Guardia">
+                        
+                           Guardia</option>
+                      <option value="Gerente">
+                        
+                           Gerente</option>
+                    </select>
+                    <label style="display: block;">
+                      
+                         Nota:</label>
+                    <textarea type="text" data-dojo-type="dijit.form.Textarea" id="opensaga.account.contacts.note" name="note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
+                    <input type="hidden" data-dojo-type="dijit.form.TextBox" id="opensaga.account.contacts.ts" readOnly="readOnly" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+                  </form>
+                </div>
+              </div>
+              <div data-dojo-type="dijit.layout.ContentPane" title="Tel&amp;eacute;fonos - Notificaciones" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="selected" closable="false">
+                <div style="width: 100%; height: 100%;">
+                  <div data-dojo-type="dijit.layout.BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+                    <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 40%;">
+                      <div style="width: 100%; height: 100%;">
+                        <div class="dijitTitlePaneTitle">
+                          <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                            
+                               Teléfonos</label>
+                        </div>
+                        <div style="width: 100%; height: 90%;">
+                          <span data-dojo-type="dojo.data.ItemFileWriteStore" id="opensaga_account_contact_notifphonesStore_" jsId="opensaga_account_contact_notifphonesStore" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;}]}"></span>
+                          <table data-dojo-type="gridx.Grid" id="opensaga.account.contacts.notifphonesgridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}], modules:['gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget'], store:opensaga_account_contact_notifphonesStore"></table>
+                        </div>
+                      </div>
+                    </div>
+                    <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity">
+                      <div style="width: 100%; height: 100%;">
+                        <div title="Tipos de eventos para los cuales se debe enviar notifiaciones" class="dijitTitlePaneTitle">
+                          <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                            
+                               Tipo de Eventos</label>
+                        </div><span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.notifdefaulttypes" tabIndex="-1" intermediateChanges="false" label="Default" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.notifalltypes" tabIndex="-1" intermediateChanges="false" label="Todos" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.notifnonetype" tabIndex="-1" intermediateChanges="false" label="Ninguno" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.contacts.notifinvertselectiontype" tabIndex="-1" intermediateChanges="false" label="Invertir selecci&amp;oacute;n" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Copiar a tel&amp;eacute;fonos" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" label="Copiar a contactos"></input>
+</span>
+                        <div style="width: 100%; height: 90%;">
+                          <span data-dojo-type="dojo.data.ItemFileWriteStore" id="ItemFileReadStore_7" jsId="opensaga_account_contact_notifeventtypeStore" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+                          <table data-dojo-type="gridx.Grid" id="opensaga.account.contacts.notifeventtypegridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:opensaga_account_contact_notifeventtypeStore"></table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     </div>
+   <div data-dojo-type="dijit.layout.ContentPane" id="account.contentpane.users" title="Usuarios" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="selected" closable="false">
+     <div style="height: 100%; width: 100%;">
+       <div data-dojo-type="dijit.layout.BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+         <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" region="left" splitter="true" maxSize="Infinity" style="width: 30%;">
+           <div class="dijitTitlePaneTitle">
+             <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+               Usuarios</label>
+           </div>
+           <div style="width: 100%; height: 100%;">
+             <span data-dojo-type="dojo.data.ItemFileWriteStore" jsId="opensaga_account_users_ItemFileWriteStoreUsers" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+             <table data-dojo-type="gridx.Grid" id="opensaga.account.users.gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%; display: block;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'*',field:'*'},{width:'auto',name:'#',field:'#'},{width:'auto',name:'Nombre',field:'nombre'},{width:'auto',name:'Designación',field:'designación'}],store:opensaga_account_users_ItemFileWriteStoreUsers"></table>
+           </div>
+         </div>
+         <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" region="center" splitter="false" maxSize="Infinity" style="width: 80%; height: 100%;">
+           <div style="width: 100%; height: 100%; overflow: hidden;">
+             <span data-dojo-type="dijit.Toolbar"><input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.user.button.new" title="Agregar nuevo usuario desde la lista de contactos" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitIconNewTask"></input>
+             <input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.user.button.save" title="Guardar datos de usuario" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
+             <input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.user.button.del" title="Eliminar usuario actual" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
+             <input type="button" data-dojo-type="dijit.form.Button" id="opensaga.account.user.button.contactdata" title="Ver detalle del contacto" tabIndex="-1" intermediateChanges="false" label="Datos" iconClass="dijitIconUsers"></input>
+             </span>
+             <div style="width: 100%; height: 100%;">
+               <span data-dojo-type="dijit.layout.TabContainer" tabStrip="false" persist="false" controllerWidget="dijit.layout.TabController" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;"><div data-dojo-type="dijit.layout.ContentPane" title="Usuario" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+                 <div style="height: 100%; width: 100%; overflow: hidden;">
+                   <form id="opensaga.account.users.form" style="width: 100%; height: 100%;">
+                     <select data-dojo-type="dijit.form.FilteringSelect" id="opensaga.account.users.form.idcontact" title="Seleccione el usuario" name="idcontact" value="Contacto" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="required" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" style="display: block; width: auto; margin-bottom: 5px;">
+                       <option value="Contacto">
+                         Contacto</option>
+                     </select>
+                     <label style="padding-right: 3px; padding-left: 10px;">
+                       Habilitado:</label>
+                     <input type="checkbox" data-dojo-type="dijit.form.CheckBox" id="opensaga.account.users.form.enable" title="Habilitado como usuario" name="enable" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                     <label style="padding-left: 10px; padding-right: 3px;">
+                       Num. Usuario:</label>
+                     <input type="text" data-dojo-type="dijit.form.NumberSpinner" id="opensaga.account.users.form.numuser" title="Numero de usuario en el sistema de alarma" name="numuser" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 40px;"></input>
+                     <label style="padding-left: 10px; padding-right: 3px;">
+                       Designación:</label>
+                     <select data-dojo-type="dijit.form.ComboBox" id="opensaga.account.users.form.appointment" title="Designaci&amp;oacute;n / Cargo / Puesto" name="appointment" value="Propietario" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
+                       <option value="Propietario">
+                         Propietario</option>
+                       <option value="Administrador">
+                         Administrador</option>
+                       <option value="Empleado">
+                         Empleado</option>
+                       <option value="Vecino">
+                         Vecino</option>
+                       <option value="Guardia">
+                         Guardia</option>
+                       <option value="Gerente">
+                         Gerente</option>
+                     </select>
+                     <label style="padding-left: 10px; padding-right: 3px;">
+                       Palabra Clave:</label>
+                     <input type="text" data-dojo-type="dijit.form.TextBox" id="opensaga.account.users.form.keyword" title="Palabra clave para identificar al usuario" name="keyword" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false" placeHolder="keyword"></input>
+                     <label style="padding-left: 10px; padding-right: 3px;">
+                       Password:</label>
+                     <input type="password" data-dojo-type="dijit.form.TextBox" id="opensaga.account.users.form.pwd" title="Clave de acceso en el sistema de alarma" name="pwd" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+                     <label style="display: block;">
+                       Nota:</label>
+                     <textarea type="text" data-dojo-type="dijit.form.Textarea" id="opensaga.account.users.form.note" name="note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
+                   </form>
+                 </div>
+               </div>
+               <div data-dojo-type="dijit.layout.ContentPane" title="Control de Alarma" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="selected" closable="false">
+                 <div style="height: 100%; width: 100%;">
+                   <span data-dojo-type="dojo.data.ItemFileWriteStore" jsId="opensaga_account_users_ItemFileWriteStoreTriggerAlarm" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+                   <table data-dojo-type="gridx.Grid" id="opensaga.account.phonestrigger.gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'*',field:'*'},{width:'auto',name:'IdAccount',field:'idaccount'},{width:'auto',name:'IdPhone',field:'idphone'},{width:'auto',name:'Ll',field:'ll'},{width:'auto',name:'SMS',field:'sms'},{width:'auto',name:'Teléfono',field:'teléfono'},{width:'auto',name:'Dirección',field:'dirección'},{width:'auto',name:'Nota',field:'nota'}],store:opensaga_account_users_ItemFileWriteStoreTriggerAlarm,  modules:['gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget'],store:opensaga_account_users_ItemFileWriteStoreTriggerAlarm"></table>
+                 </div>
+               </div>
+               <div data-dojo-type="dijit.layout.ContentPane" title="Horarios" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+                 <div style="width: 100%; height: 100%;">
+                   <div class="dijitTitlePaneTitle">
+                     <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                       Dias autorizados de ingreso</label>
+                   </div>
+                   <table border="0" style="border-collapse: collapse; table-layout: fixed; width: 100%; height: auto;">
+                     <colgroup>
+                       <col></col>
+                       <col></col>
+                       <col></col>
+                       <col></col>
+                       <col></col>
+                     </colgroup>
+                     <tbody>
+                       <tr>
+                         <th>
+                           <div class="dijitTitlePaneTitle">
+                             <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                               Dia</label>
+                           </div>
+                         </th>
+                         <th>
+                           <div class="dijitTitlePaneTitle">
+                             <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                               Horas</label>
+                           </div>
+                         </th>
+                         <th>
+                           <div class="dijitTitlePaneTitle">
+                             <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                               Horas</label>
+                           </div>
+                         </th>
+                         <th>
+                           <div class="dijitTitlePaneTitle">
+                             <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                               Horas</label>
+                           </div>
+                         </th>
+                         <th>
+                           <div class="dijitTitlePaneTitle">
+                             <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                               Horas</label>
+                           </div>
+                         </th>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Lunes</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Martes</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Miercoles</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Jueves</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Viernes</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Sábado</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Domingo</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                       <tr>
+                         <td>
+                           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+                           <label>
+                             Feriados</label>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                         <td>
+                           <input data-dojo-type="dojox.form.TimeSpinner" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." defaultTimeout="500" scrollOnFocus="true" style="width: auto;"></input>
+                         </td>
+                       </tr>
+                     </tbody>
+                   </table>
+                   <div style="margin-top: 10px;" class="dijitTitlePaneTitle">
+                     <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                       Dias autorizados de ingreso</label>
+                   </div>
+                   <label>
+                     Inicio:</label>
+                   <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: auto; margin-right: 10px; margin-left: 5px;"></input>
+                   <label>
+                     Fin:</label>
+                   <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: auto; margin-right: 10px; margin-left: 5px;"></input>
+                 </div>
+                 <div class="dijitTitlePaneTitle">
+                   <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+                     Vacaciones</label>
+                 </div>
+                 <label style="margin-left: 5px; margin-right: 3px;">
+                   Inicio:</label>
+                 <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: auto;"></input>
+                 <label style="margin-left: 5px; margin-right: 3px;">
+                   Fin:</label>
+                 <input type="text" data-dojo-type="dijit.form.DateTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: auto;"></input>
+               </div>
+               </span>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div data-dojo-type="dijit.layout.ContentPane" title="Notificaciones por grupo" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+     <div style="width: 100%; height: 100%;">
+       <span data-dojo-type="dijit.TitlePane" title="Tipos de eventos para notificar a grupo" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="true" style="min-width: 1em; width: 100%; height: auto;"><input type="button" data-dojo-type="dijit.form.Button" intermediateChanges="false" label="Valores predeterminados" iconClass="dijitNoIcon"></input>
+       </span><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_6" jsId="ItemFileReadStore_6" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+       <table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 300px;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'IdAccount',field:'idaccount'},{width:'auto',name:'IdEventType',field:'ideventtype'},{width:'auto',name:'Evento',field:'evento'}],store:ItemFileReadStore_6"></table>
+     </div>
+   </div>
+   <div data-dojo-type="dijit.layout.ContentPane" title="Eventos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+     <span data-dojo-type="dijit.TitlePane" title="Eventos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="true" style="min-width: 1em; width: 100%; height: auto;"></span>
+   </div>
+   <div data-dojo-type="dijit.layout.ContentPane" title="Datos instalaci&amp;oacute;n" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false"></div>
+   <div data-dojo-type="dijit.layout.ContentPane" title="Mantenimiento" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false"></div>
+   </span>
+ </div>
+</body>
+</html>

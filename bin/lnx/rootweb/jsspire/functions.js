@@ -145,7 +145,6 @@ Base64: {
 	}
  
 },
-//alert(Base64.decode(xmldata[0].getElementsByTagName('outpgmsg').item(0).firstChild.data));
 Xml :{
 GetData: function(xmldatarow, tagname){
 return xmldatarow.getElementsByTagName(tagname).item(0).firstChild.data;
@@ -160,7 +159,126 @@ return store.getValue(item, tagname)
 },
 GetValueFromBase64: function(store, item, tagname){
 return jsspire.Base64.decode(this.GetValue(store, item, tagname));
+},
+GetNumber:function(store, item, tagname){
+return Number(this.GetValue(store, item, tagname));
+}, 
+GetBoolean:function(store, item, tagname){
+return StringToBool(this.GetValue(store, item, tagname));
+}, 
+GetString:function(store, item, tagname){
+return String(this.GetValue(store, item, tagname));
 }
+}
+
+}
+
+// Objeto que representa una tabla de datos (filas y columnas) en formato xml obtenido desde dojo.xhrPost o dojo.xhrGet (handleAs: 'xml')
+var jspireTableXmlDoc = function (xmldoc, getElementsByTagName){
+this.xml = xmldoc,
+this.ElementsByTagName = getElementsByTagName,
+this.rows = this.xml.getElementsByTagName(this.ElementsByTagName),
+this.length = this.rows.length,
+this.getValue = function(i, field){
+return this.rows[i].getElementsByTagName(field).item(0).firstChild.data;
+},
+this.getBool = function(i, field){
+return jsspire.StringToBool(this.getValue(i, field));
+},
+this.getNumber = function(i, field){
+return Number(this.getValue(i, field));
+},
+this.getInt = function(i, field){
+return parseInt(this.getValue(i, field));
+},
+this.getFloat = function(i, field){
+return parseFloat(this.getValue(i, field));
+},
+this.getString = function(i, field){
+return String(this.getValue(i, field));
+},
+this.getDate = function(i, field){
+return new Date(this.getString(i, field));
+},
+this.getStringB64 = function(i, field){
+return jsspire.Base64.decode(this.getValue(i, field));
+}
+}
+
+// Objeto que representa una tabla de datos (filas y columnas) en formato xml obtenido desde un dojox.data.XmlStore
+var jspireTableXmlStore = function (xmlstore, xmlitems){
+this.store = xmlstore,
+this.items = xmlitems,
+this.lengthItems = this.items.length,
+this.getValue = function(i, field){
+return this.store.getValue(this.items[i], field);
+},
+this.getBool = function(i, field){
+return jsspire.StringToBool(this.getValue(i, field));
+},
+this.getNumber = function(i, field){
+return Number(this.getValue(i, field));
+},
+this.getInt = function(i, field){
+return parseInt(this.getValue(i, field));
+},
+this.getFloat = function(i, field){
+return parseFloat(this.getValue(i, field));
+},
+this.getString = function(i, field){
+return String(this.getValue(i, field));
+},
+this.getDate = function(i, field){
+return new Date(this.getString(i, field));
+},
+this.getStringB64 = function(i, field){
+return jsspire.Base64.decode(this.getValue(i, field));
+}
+}
+
+
+var jspireLoadFilteringSelectFromTableXmlStore = function(dijit_FilteringSelect, sq, urlxml, ri, lid, lname){
+this.Url = urlxml,
+this.SendQuery = sq,
+this.RootItem = ri,
+this.FilteringSelect = dijit_FilteringSelect,
+this.Query = {},
+this.TagId = lid,
+this.TagName = lname,
+
+this.Load = function(){
+var Objeto = this;
+var store = new dojox.data.XmlStore({url: this.Url, sendQuery: this.SendQuery, rootItem: this.RootItem});
+
+var request = store.fetch({query: this.Query, onComplete: function(itemsrow, r){
+
+var dataxml = new jspireTableXmlStore(store, itemsrow);
+
+numrows = itemsrow.length;
+
+var myData = {identifier: "unique_id", items: []};
+myData.identifier = "unique_id";
+
+if(numrows > 0){
+var Items = [];
+
+var i = 0;
+while(i<numrows){
+Items[i] =    {name: dataxml.getStringB64(i, Objeto.TagName), id: dataxml.getString(i, Objeto.TagId)};
+i++;
+}
+//on.emit(Objeto.MasterDiv, "onListIdContactNameLoaded", {data: new Memory({data: Items})});
+Objeto.FilteringSelect.store = null;
+Objeto.FilteringSelect.store = new dojo.store.Memory({data: Items});
+Objeto.FilteringSelect.startup();
+}
+
+},
+onError: function(e){
+alert(e);
+}
+});
+return Objeto;
 }
 
 }
