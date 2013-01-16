@@ -1,9 +1,0 @@
-define("clipart/Home", [
-    	"dojo/_base/declare",
-    	"clipart/_clipart"
-], function(declare, _clipart){
-	
-	return declare("clipart.Home", [_clipart], {
-		
-	});
-});
