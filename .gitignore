@@ -1,0 +1,7 @@
+# Ignores
+*~
+*.sh
+*.bat
+*.log
+bin/lnx/proyects
+bin/win/proyects
