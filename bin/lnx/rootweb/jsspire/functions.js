@@ -198,7 +198,11 @@ this.getString = function(i, field){
 return String(this.getValue(i, field));
 },
 this.getDate = function(i, field){
-return new Date(this.getString(i, field));
+
+// Se tuvo un problema al parsear las fechas ya que siempre devolvia un dia menos, con esto se soluciona
+var f = new Date(this.getString(i, field));
+f.setDate(f.getDate()+1); 
+return f;
 },
 this.getStringB64 = function(i, field){
 return jsspire.Base64.decode(this.getValue(i, field));
@@ -229,24 +233,35 @@ this.getString = function(i, field){
 return String(this.getValue(i, field));
 },
 this.getDate = function(i, field){
-return new Date(this.getString(i, field));
+
+// Se tuvo un problema al parsear las fechas ya que siempre devolvia un dia menos, con esto se soluciona
+var f = new Date(this.getString(i, field));
+f.setDate(f.getDate()+1); 
+return f;
 },
 this.getStringB64 = function(i, field){
 return jsspire.Base64.decode(this.getValue(i, field));
 }
 }
 
-
-var jspireLoadFilteringSelectFromTableXmlStore = function(dijit_FilteringSelect, sq, urlxml, ri, lid, lname){
+// Carga una matriz de datos (Items) con campos id y value desde una tabla xml usando dojox.data.XmlStore
+// Requiere tambien de dojo.store.Memory
+var jspireMemoryIdValueFromXmlStore = function(sq, urlxml, ri, lid, lvalue){
 this.Url = urlxml,
 this.SendQuery = sq,
 this.RootItem = ri,
-this.FilteringSelect = dijit_FilteringSelect,
 this.Query = {},
 this.TagId = lid,
-this.TagName = lname,
-
+this.TagValue = lvalue,
+this.Items = [],
+this.isLoaded = false,
+this.Memory = function(){
+return new dojo.store.Memory({data: this.Items});
+},
+// La carga es asincrona por lo que existe la propiedad isLoaded que se pone en true cuando los datos estan cargados
 this.Load = function(){
+this.isLoaded = false;
+this.Items = [];
 var Objeto = this;
 var store = new dojox.data.XmlStore({url: this.Url, sendQuery: this.SendQuery, rootItem: this.RootItem});
 
@@ -256,29 +271,65 @@ var dataxml = new jspireTableXmlStore(store, itemsrow);
 
 numrows = itemsrow.length;
 
-var myData = {identifier: "unique_id", items: []};
-myData.identifier = "unique_id";
-
 if(numrows > 0){
-var Items = [];
+var i = 0;
+while(i<numrows){
+Objeto.Items[i] =    {value: dataxml.getStringB64(i, Objeto.TagValue), id: dataxml.getString(i, Objeto.TagId)};
+i++;
+}
+}
+Objeto.isLoaded = true;
+},
+onError: function(e){
+Objeto.isLoaded = true;
+alert(e);
+}
+});
 
+return this;
+}
+
+}
+
+// Carga un FilteringSelect con datos desde una tabla xml usando dojox.data.XmlStore
+var jspireLoadFilteringSelectFromTableXmlStore = function(dijit_FilteringSelect, sq, urlxml, ri, lid, lname){
+this.Url = urlxml,
+this.SendQuery = sq,
+this.RootItem = ri,
+this.FilteringSelect = dijit_FilteringSelect,
+this.Query = {},
+this.TagId = lid,
+this.TagName = lname,
+
+// Carga Asincronamente los datos y setea el FilteringSelect
+this.Load = function(){
+
+var Objeto = this;
+var store = new dojox.data.XmlStore({url: this.Url, sendQuery: this.SendQuery, rootItem: this.RootItem});
+var request = store.fetch({query: this.Query, onComplete: function(itemsrow, r){
+var dataxml = new jspireTableXmlStore(store, itemsrow);
+numrows = itemsrow.length;
+Items = [];
+if(numrows > 0){
 var i = 0;
 while(i<numrows){
 Items[i] =    {name: dataxml.getStringB64(i, Objeto.TagName), id: dataxml.getString(i, Objeto.TagId)};
 i++;
 }
-//on.emit(Objeto.MasterDiv, "onListIdContactNameLoaded", {data: new Memory({data: Items})});
+}
+
 Objeto.FilteringSelect.store = null;
 Objeto.FilteringSelect.store = new dojo.store.Memory({data: Items});
 Objeto.FilteringSelect.startup();
-}
 
 },
 onError: function(e){
+Objeto.isLoaded = true;
 alert(e);
 }
 });
-return Objeto;
+
+return this;
 }
 
 }

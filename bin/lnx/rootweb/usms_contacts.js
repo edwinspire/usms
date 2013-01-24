@@ -54,48 +54,6 @@ dijit: {
 Grid: dijit.byId("usms.contacts.gridx")
 },
 
-LoadContactSelected: function(){
-
-if(GlobalObject.IdContact > 0){
-var store = new dojox.data.XmlStore({url: "usms_getcontactbyid_xml", sendQuery: true, rootItem: 'row'});
-
-var request = store.fetch({query: {idcontact: GlobalObject.IdContact}, onComplete: function(itemsrow, r){
-
-var dataxml = new jspireTableXmlStore(store, itemsrow);
-
-numrows = itemsrow.length;
-if(numrows > 0){
-var i = 0;
-
-FormContact.dijit.Enable.set('checked', dataxml.getBool(i, "enable"));
-FormContact.dijit.Firstname.set('value', dataxml.getStringB64(i, "firstname"));
-FormContact.dijit.Lastname.set('value', dataxml.getStringB64(i, "lastname"));
-FormContact.dijit.Title.set('value', dataxml.getStringB64(i, "title"));
-FormContact.dijit.Birthday.set('value', new Date(dataxml.getString(i, "birthday")));
-FormContact.dijit.Gender.set('value', dataxml.getNumber(i, "gender"));
-FormContact.dijit.IdentificationType.set('value', dataxml.getNumber(i, "typeofid"));
-FormContact.dijit.Identification.set('value', dataxml.getStringB64(i, "identification"));
-FormContact.dijit.Web.set('value', dataxml.getStringB64(i, "web"));
-FormContact.dijit.email1.set('value', dataxml.getStringB64(i, "email1"));
-FormContact.dijit.email2.set('value', dataxml.getStringB64(i, "email2"));
-FormContact.dijit.Note.set('value', dataxml.getStringB64(i, "note"));
-FormContact.ts = dataxml.getStringB64(i, "ts");
-}else{
-GlobalObject.IdContact = 0;
-FormContact.dojo.Form.reset();
-}
-CP.LoadGrid();
-
-},
-onError: function(e){
-GlobalObject.IdContact = 0;
-FormContact.dojo.Form.reset();
-alert(e);
-}
-});
-}
-},
-
 LoadGrid: function(){
 
 var store = new dojox.data.XmlStore({url: "usms_getcontactslistidcontactname_xml", sendQuery: true, rootItem: 'row'});
@@ -140,7 +98,7 @@ alert(e);
 // Captura el evento cuando se hace click en una fila
 dojo.connect(GlobalObject.dijit.Grid, 'onRowClick', function(event){
 GlobalObject.IdContact = this.cell(event.rowId, 1, true).data();
-GlobalObject.LoadContactSelected();
+FormContact.LoadContactSelected();
 });
 		// Optionally change column structure on the grid
 		GlobalObject.dijit.Grid.setColumns([
@@ -172,6 +130,49 @@ email1: dijit.byId('usms.contact.email1'),
 email2: dijit.byId('usms.contact.email2'),
 Note: dijit.byId('usms.contact.note')
 },
+LoadContactSelected: function(){
+
+if(GlobalObject.IdContact > 0){
+var store = new dojox.data.XmlStore({url: "usms_getcontactbyid_xml", sendQuery: true, rootItem: 'row'});
+
+var request = store.fetch({query: {idcontact: GlobalObject.IdContact}, onComplete: function(itemsrow, r){
+
+var dataxml = new jspireTableXmlStore(store, itemsrow);
+
+numrows = itemsrow.length;
+if(numrows > 0){
+var i = 0;
+
+FormContact.dijit.Enable.set('checked', dataxml.getBool(i, "enable"));
+FormContact.dijit.Firstname.set('value', dataxml.getStringB64(i, "firstname"));
+FormContact.dijit.Lastname.set('value', dataxml.getStringB64(i, "lastname"));
+FormContact.dijit.Title.set('value', dataxml.getStringB64(i, "title"));
+FormContact.dijit.Birthday.set('value', dataxml.getDate(i, "birthday"));
+FormContact.dijit.Gender.set('value', dataxml.getNumber(i, "gender"));
+FormContact.dijit.IdentificationType.set('value', dataxml.getNumber(i, "typeofid"));
+FormContact.dijit.Identification.set('value', dataxml.getStringB64(i, "identification"));
+FormContact.dijit.Web.set('value', dataxml.getStringB64(i, "web"));
+FormContact.dijit.email1.set('value', dataxml.getStringB64(i, "email1"));
+FormContact.dijit.email2.set('value', dataxml.getStringB64(i, "email2"));
+FormContact.dijit.Note.set('value', dataxml.getStringB64(i, "note"));
+FormContact.ts = dataxml.getStringB64(i, "ts");
+}else{
+GlobalObject.IdContact = 0;
+FormContact.dojo.Form.reset();
+}
+CP.LoadGrid();
+
+},
+onError: function(e){
+GlobalObject.IdContact = 0;
+FormContact.dojo.Form.reset();
+alert(e);
+}
+});
+}else{
+FormContact.dojo.Form.reset();
+}
+},
 SaveForm: function(){
 
 var Objeto = this;
@@ -186,15 +187,14 @@ var xmld = new jspireTableXmlDoc(datass, 'row');
 
 if(xmld.length > 0){
 
-if(xmld.getInt(0, 'outreturn') > 0){
-//alert('pasa');
+GlobalObject.IdContact = xmld.getInt(0, 'outreturn');
 alert(xmld.getStringB64(0, 'outpgmsg'));
+
 }else{
-//Objeto.ResetOnSelectContact();
+GlobalObject.IdContact = 0;
 }
 
-}
-
+Objeto.LoadContactSelected();
 GlobalObject.LoadGrid();
     },
 
@@ -323,6 +323,8 @@ CP.dijit.Note.set('value', dataxml.getStringB64(i, "note"));
 CP.dijit.Address.set('value', dataxml.getStringB64(i, "address"));
 CP.dijit.GeoX.set('value', dataxml.getFloat(i, "geox"));
 CP.dijit.GeoY.set('value', dataxml.getFloat(i, "geoy"));
+}else{
+this.resetForm();
 }
 
 

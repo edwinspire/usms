@@ -67,7 +67,9 @@ myGridX.startup();
 
 }
 // Carga la tabla junto con la pagina
-LoadTableSerialPort();
+// Requiere de este timeout para esperar a que la pagina este totamnete cargada y muestre los datos en ella.
+setTimeout(LoadTableSerialPort, 4000);
+
 
 
      });
