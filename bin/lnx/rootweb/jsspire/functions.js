@@ -334,7 +334,47 @@ return this;
 
 }
 
+var jspireGetDateFromDijitDateTextBox = function(DTB){
+this.DateTextBox= DTB,
+this.datePattern= "yyyy-MM-dd", 
+this.selector= "date"
+this.getDate = function(){
+return dojo.date.locale.format(this.DateTextBox.get('value'), {datePattern: this.datePattern, selector: this.selector});
+} 
+}
 
+var jspireEditorArgsToGridxCellBoolean = {
+props: 'value: true',
+				fromEditor: function (d){
+		return Boolean(d);
+	},
+toEditor: function(storeData, gridData){
+r = true;
+if(gridData == "false"){
+r = false;
+}else{
+r = Boolean(gridData);
+}
+		return r;
+				}
+			}
+
+
+var jspireEditorArgsToGridxCellBooleanDisabled = {
+props: 'value: true, disabled: "true"',
+				fromEditor: function (d){
+		return Boolean(d);
+	},
+toEditor: function(storeData, gridData){
+r = true;
+if(gridData == "false"){
+r = false;
+}else{
+r = Boolean(gridData);
+}
+		return r;
+				}
+			}
 
 function StringToBool(value){
 //alert(value);

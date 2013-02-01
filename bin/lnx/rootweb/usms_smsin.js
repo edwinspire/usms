@@ -40,33 +40,20 @@ RowSeleted: 0
 		// Optionally change column structure on the grid
 		myGridX.setColumns([
 
-			{field:"idsmsout", name: "id"},
+			{field:"idsmsin", name: "id"},
 			{field:"dateload", name: "dateload", width: "5%"},
 			{field:"idprovider", name: "idprovider"},
-			{field:"idsmstype", name: "idsmstype"},
 			{field:"idphone", name: "idphone"},
 			{field:"phone", name: "phone"},
-			{field:"datetosend", name: "datetosend", width: "5%"},
+			{field:"datesms", name: "datesms", width: "5%"},
 			{field:"message", name: "message", width: "15%"},
-			{field:"dateprocess", name: "dateprocess", width: "5%"},
-			{field:"process", name: "process"},
-			{field:"priority", name: "priority"},
-			{field:"attempts", name: "attempts"},
-			{field:"idprovidersent", name: "idprovidersent"},
-			{field:"slices", name: "slices"},
-			{field:"slicessent", name: "slicessent"},
-			{field:"messageclass", name: "messageclass"},
-			{field:"report", name: "report"},
-			{field:"maxslices", name: "maxslices"},
-			{field:"enablemessageclass", name: "enablemessageclass"},
 			{field:"idport", name: "idport"},
+			{field:"status", name: "status"},
 			{field:"flag1", name: "flag1"},
 			{field:"flag2", name: "flag2"},
 			{field:"flag3", name: "flag3"},
 			{field:"flag4", name: "flag4"},
 			{field:"flag5", name: "flag5"},
-			{field:"retryonfail", name: "retryonfail"},
-			{field:"maxtimelive", name: "maxtimelive"},
 			{field:"note", name: "note", width: "10%"}
 		]);
 
@@ -78,7 +65,7 @@ myGridX.startup();
 
 function LoadGrid(){
 
-var store = new dojox.data.XmlStore({url: "usms_smsoutviewtablefilter", sendQuery: true, rootItem: 'row'});
+var store = new dojox.data.XmlStore({url: "usms_smsinviewtablefilter", sendQuery: true, rootItem: 'row'});
 
 var request = store.fetch({query: {fstart: getdate('fstart'), fend: getdate('fend'), nrows: dijit.byId('nrows').get('value')}, onComplete: function(itemsrow, r){
 
@@ -93,33 +80,20 @@ while(i<numrows){
 
 myData.items[i] = {
 unique_id:i, 
-idsmsout: dataxml.getNumber(i, "idsmsout"), 
+idsmsin: dataxml.getNumber(i, "idsmsin"), 
 dateload: dataxml.getDate(i, "dateload"),
 idprovider: dataxml.getNumber(i, "idprovider"),
-idsmstype: dataxml.getNumber(i, "idsmstype"),
 idphone: dataxml.getNumber(i, "idphone"),
 phone: dataxml.getStringB64(i, "phone"),
-datetosend: dataxml.getDate(i, "datetosend"),
+datesms: dataxml.getDate(i, "datesms"),
 message: dataxml.getStringB64(i, "message"),
-dateprocess: dataxml.getDate(i, "dateprocess"),
-process: dataxml.getNumber(i, "process"),
-priority: dataxml.getNumber(i, "priority"),
-attempts: dataxml.getNumber(i, "attempts"),
-idprovidersent: dataxml.getNumber(i, "idprovidersent"),
-slices: dataxml.getNumber(i, "slices"),
-slicessent: dataxml.getNumber(i, "slicessent"),
-messageclass: dataxml.getNumber(i, "messageclass"),
-report: dataxml.getBool(i, "report"),
-maxslices: dataxml.getNumber(i, "maxslices"),
-enablemessageclass: dataxml.getBool(i, "enablemessageclass"),
 idport: dataxml.getNumber(i, "idport"),
+status: dataxml.getNumber(i, "status"),
 flag1: dataxml.getNumber(i, "flag1"),
 flag2: dataxml.getNumber(i, "flag2"),
 flag3: dataxml.getNumber(i, "flag3"),
 flag4: dataxml.getNumber(i, "flag4"),
 flag5: dataxml.getNumber(i, "flag5"),
-retryonfail: dataxml.getNumber(i, "retryonfail"),
-maxtimelive: dataxml.getNumber(i, "maxtimelive"),
 note: dataxml.getStringB64(i, "note")
 };
 i++;

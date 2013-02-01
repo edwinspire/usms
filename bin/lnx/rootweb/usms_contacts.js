@@ -103,7 +103,7 @@ FormContact.LoadContactSelected();
 		// Optionally change column structure on the grid
 		GlobalObject.dijit.Grid.setColumns([
 			{field:"idcontact", name: "id", width: '0px'},
-			{field:"enable", name: "*", width: '20px'},
+			{field:"enable", name: "*", width: '20px', editable: true, editor: "dijit.form.CheckBox", editorArgs: jspireEditorArgsToGridxCellBooleanDisabled, alwaysEditing: true},
 			{field:"name", name: "Nombre"},
 		]);
 GlobalObject.dijit.Grid.startup();
@@ -390,7 +390,7 @@ CP.LoadPhone();
 		CP.Gridx.setColumns([
 			{field:"idcontact", name: "idc", width: '0px'},
 			{field:"idphone", name: "idp", width: '0px'},
-			{field:"enable", name: "*", width: '20px'},
+			{field:"enable", name: "*", width: '20px', editable: true, editor: "dijit.form.CheckBox", editorArgs: jspireEditorArgsToGridxCellBooleanDisabled, alwaysEditing: true},
 			{field:"phone", name: "Teléfono"},
 		]);
 CP.Gridx.startup();

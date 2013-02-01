@@ -51,7 +51,7 @@ require([
       <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
           Lista</label>
       </div>
-       <div style="width: 100%; height: 90%;"><span data-dojo-type="dojo.data.ItemFileWriteStore" id="ItemFileReadStore_2" jsId="usms_contacts_ItemFileReadStore" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span><table data-dojo-type="gridx.Grid" id="usms.contacts.gridx" title="Lista de todos los contactos registrados" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'enable',field:'enable'},{width:'auto',name:'title',field:'title'},{width:'auto',name:'name',field:'name'},{width:'auto',name:'note',field:'note'}],store:usms_contacts_ItemFileReadStore"></table>
+       <div style="width: 100%; height: 90%;"><span data-dojo-type="dojo.data.ItemFileWriteStore" id="ItemFileReadStore_2" jsId="usms_contacts_ItemFileReadStore" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span><table data-dojo-type="gridx.Grid" id="usms.contacts.gridx" title="Lista de todos los contactos registrados" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'enable',field:'enable'},{width:'auto',name:'title',field:'title'},{width:'auto',name:'name',field:'name'},{width:'auto',name:'note',field:'note'}], modules:['gridx/modules/Edit', 'gridx/modules/CellWidget'], store:usms_contacts_ItemFileReadStore"></table>
 </div>
      </div>
     </div>
@@ -237,7 +237,7 @@ require([
      <div data-dojo-type="dijit.layout.BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
        <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" doLayout="false" style="width:116px;">
          <div style="width: 100%; height: 100%;">
-           <span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_3" jsId="ItemFileReadStore_contactphones" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span><table data-dojo-type="gridx.Grid" id="usms.contact.phone.grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'}],store:ItemFileReadStore_contactphones"></table>
+           <span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_3" jsId="ItemFileReadStore_contactphones" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span><table data-dojo-type="gridx.Grid" id="usms.contact.phone.grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'}], modules:['gridx/modules/Edit', 'gridx/modules/CellWidget'],store:ItemFileReadStore_contactphones"></table>
          </div>
        </div>
        <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
