@@ -1,0 +1,1 @@
+{"name":"custom","longName":"Custom Widgets","version":"1.0","localPath":true,"categories":{"custom":{"name":"User Widgets","description":"User Widgets","widgetClass":"dijit"}},"widgets":[{"name":"wlocation","description":"Custom user widget wlocation","type":"usms.wlocation","category":"custom","iconLocal":true,"icon":"app/davinci/img/maqetta.png"}]}
