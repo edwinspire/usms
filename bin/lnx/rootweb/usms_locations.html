@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Localización</title>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[], mblLoadCompatPattern: /\/opensaga\/themes\/.*\.css$/"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dijit/Toolbar",
+  "dijit/form/Button",
+  "dojox/io/xhrScriptPlugin",
+  "dojo/data/ItemFileReadStore",
+  "gridx/Grid",
+  "gridx/core/model/cache/Async",
+  "dojox/data/CsvStore"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
+</style>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-comptype="desktop" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+ <div style="width: 100%; height: 100%;">
+  <div style="margin-bottom: 5px;" class="dijitTitlePaneTitle">
+   <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
+     Localizaci&oacute;n</label>
+ </div>
+  <table border="0" style="border-collapse: collapse; table-layout: fixed; width: 100%; height: 80%;">
+    <colgroup>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+      <col></col>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="dijitTitlePaneTitle" style="height: 20px;">
+          País</td>
+        <td class="dijitTitlePaneTitle">
+          Estado / Provincia</td>
+        <td class="dijitTitlePaneTitle">
+          Ciudad</td>
+        <td class="dijitTitlePaneTitle">
+          Sector</td>
+        <td class="dijitTitlePaneTitle">
+          Subsector</td>
+      </tr>
+      <tr>
+        <td style="height: 30px;">
+          <span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 1" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 2" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 3" iconClass="dijitNoIcon"></input>
+</span></td>
+        <td>
+          <span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 1" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 2" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 3" iconClass="dijitNoIcon"></input>
+</span></td>
+        <td>
+          <span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 1" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 2" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 3" iconClass="dijitNoIcon"></input>
+</span></td>
+        <td>
+          <span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 1" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 2" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 3" iconClass="dijitNoIcon"></input>
+</span></td>
+        <td>
+          <span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 1" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 2" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Button 3" iconClass="dijitNoIcon"></input>
+</span></td>
+      </tr>
+      <tr>
+        <td>
+         <div style="width: 100%; height: 100%;"><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_1" jsId="ItemFileReadStore_1" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+<table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_1"></table>
+</div>
+       </td>
+        <td>
+          <div style="width: 100%; height: 100%;"><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_2" jsId="ItemFileReadStore_2" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+<table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_2"></table>
+</div>
+</td>
+        <td>
+          <div style="width: 100%; height: 100%;"><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_3" jsId="ItemFileReadStore_3" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+<table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_3"></table>
+</div>
+</td>
+        <td>
+          <div style="width: 100%; height: 100%;"><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_4" jsId="ItemFileReadStore_4" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+<table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_4"></table>
+</div>
+</td>
+        <td>
+          <div style="width: 100%; height: 100%;"><span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_5" jsId="ItemFileReadStore_5" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+<table data-dojo-type="gridx.Grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_5"></table>
+</div>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+

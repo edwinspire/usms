@@ -40,6 +40,10 @@ dojo.connect(dojo.byId('menu_providers'), 'onclick', function(){
 ContentPage.url('usms_providers.html');
 });
 
+dojo.connect(dojo.byId('menu_locations'), 'onclick', function(){
+ContentPage.url('usms_locations.html');
+});
+
 dojo.connect(dojo.global, 'onresize', function(){
 AdjustheightContentPage();
 });

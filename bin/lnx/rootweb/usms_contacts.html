@@ -32,17 +32,18 @@ require([
   "dijit/form/NumberTextBox",
   "dijit/form/FilteringSelect",
   "widgets/usms/wlocation",
-  "widgets/usms/waddress"
+  "widgets/usms/waddress",
+  "widgets/widgetspire/tooltipdialogconfirmation",
+"edwinspire/functions"
 ]);
 </script>
 <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
 </style>
-<script type="text/javascript" src="jsspire/functions.js"></script>
 <script type="text/javascript" src="usms_contacts.js"></script>
 </head>
 <body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-comptype="desktop" data-maq-appstates="{}" id="myapp">
  <div style="width: 100%; height: 100%;">
-  <div class="dijitTitlePaneTitle">
+<div class="dijitTitlePaneTitle">
    <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
      CONTACTOS</label>
  </div>
@@ -60,7 +61,7 @@ require([
     </div>
      <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
       <div style="width: 100%; height: 100%;"><div style="width: 100%; height: 98%;"><span data-dojo-type="dijit.layout.TabContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" controllerWidget="dijit.layout.TabController">
-<div data-dojo-type="dijit.layout.ContentPane" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" closable="false">
+<div data-dojo-type="dijit.layout.ContentPane" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false">
    <div style="width: 100%; height: 100%;">
      <span data-dojo-type="dijit.Toolbar"><input type="button" data-dojo-type="dijit.form.Button" id="usms.contact.new" title="Limpia todos los campos para agregar nuevo contacto" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitIconNewTask"></input>
      <input type="button" data-dojo-type="dijit.form.Button" id="usms.contact.save" title="Guardar datos del contacto" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
@@ -194,11 +195,11 @@ require([
      </form>
    </div>
  </div>
- <div data-dojo-type="dijit.layout.ContentPane" title="Direccion" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false">
+ <div data-dojo-type="dijit.layout.ContentPane" title="Direccion" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" closable="false">
    <div style="width: 100%; height: 100%;">
      <span data-dojo-type="dijit.Toolbar">
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.address" title="Limpia todos los campos para agregar nuevo contacto" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.delete.contact.address" title="Guardar datos del contacto" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
+<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.address" title="Guarda la direccion del contacto" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
+<input type="button" data-dojo-type="dijit.form.Button" id="usms.delete.contact.address" title="Elimina la dirección del contact" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
 <input type="button" data-dojo-type="dijit.form.Button" id="usms.map.contact.address" tabIndex="-1" intermediateChanges="false" label="Mapa" iconClass="dijitNoIcon"></input>
 </span>
 <div data-dojo-type="usms.wlocation" id="idwlocationcontact"></div>
@@ -317,6 +318,10 @@ require([
    </div>
  </div>
 </div>
+ <div id="dialogconfirmdeletecontact" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
+ <div id="dialogconfirmdeletecontactaddress" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
+ <div id="dialogconfirmdeletecontactphone" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
+ <div id="dialogconfirmdeletecontactaddressphone" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
 </body>
 </html>
 
