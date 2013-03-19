@@ -1,4 +1,3 @@
-
 jspire.dijit = {
 
 gridx: {
@@ -11,15 +10,6 @@ d1 = d+'';
 		return d1.to_boolean();
 	},
 toEditor: function(storeData, gridData){
-/*
-r = true;
-if(gridData == "false"){
-r = false;
-}else{
-r = Boolean(gridData);
-}
-		return r;
-*/
 r = gridData+'';
 return r.to_boolean();
 
@@ -34,15 +24,6 @@ d1 = d+'';
 		return d1.to_boolean();
 	},
 toEditor: function(storeData, gridData){
-/*
-r = true;
-if(gridData == "false"){
-r = false;
-}else{
-r = Boolean(gridData);
-}
-*/
-//		return r;
 r = gridData+'';
 return r.to_boolean();
 				}
@@ -80,31 +61,16 @@ this.TagName = lname,
 
 // Carga Asincronamente los datos y setea el FilteringSelect
 this.Load = function(){
+/*
+if(dojo.request){
+console.log('Require: dojo.request');
+}
 
+if(dojo.store.Memory){
+console.log('Require: dojo.store.Memory');
+}
+*/
 var Objeto = this;
-var store = new dojox.data.XmlStore({url: this.Url, sendQuery: this.SendQuery, rootItem: this.RootItem});
-var request = store.fetch({query: this.Query, onComplete: function(itemsrow, r){
-var dataxml = new jspireTableXmlStore(store, itemsrow);
-numrows = itemsrow.length;
-Items = [];
-if(numrows > 0){
-var i = 0;
-while(i<numrows){
-Items[i] =    {name: dataxml.getStringB64(i, Objeto.TagName), id: dataxml.getString(i, Objeto.TagId)};
-i++;
-}
-}
-
-Objeto.FilteringSelect.store = null;
-Objeto.FilteringSelect.store = new dojo.store.Memory({data: Items});
-Objeto.FilteringSelect.startup();
-
-},
-onError: function(e){
-Objeto.isLoaded = true;
-alert(e);
-}
-});
 
 return this;
 }

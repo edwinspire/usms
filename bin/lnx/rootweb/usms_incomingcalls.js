@@ -84,7 +84,7 @@ while(i<numrows){
 myData.items[i] = {
 unique_id:i,
 idincall: dataxml.getNumber(i, "idincall"),
-datecall: dataxml.getDate(i, "datecall"),
+datecall: dataxml.getString(i, "datecall"),
 idport: dataxml.getNumber(i, "idport"),
 idphone: dataxml.getNumber(i, "idphone"),
 idmodem: dataxml.getNumber(i, "idmodem"),

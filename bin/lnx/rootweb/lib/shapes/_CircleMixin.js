@@ -12,22 +12,33 @@
 */
 
 //>>built
-define("shapes/_CircleMixin",["dojo/_base/declare",],function(_1){
-return _1("shapes._CircleMixin",[],{buildRendering:function(){
-this.inherited(arguments);
-this._rx=(this.rx?this.rx:this.defaultRx)-0;
-this._ry=(this.ry?this.ry:this.defaultRy)-0;
+define("shapes/_CircleMixin",["dojo/_base/declare","dojo/dom-style"],function(_1,_2){
+return _1("shapes._CircleMixin",[],{postCreate:function(){
+this._updateBorderRadius();
 },resize:function(){
-this._resize();
-},createGraphics:function(){
-var rx=(typeof this._rx!="undefined")?this._rx:this._r;
-var ry=(typeof this._ry!="undefined")?this._ry:this._r;
-var _2="<ellipse"+" rx=\""+rx+"\""+" ry=\""+ry+"\"/>";
-this.domNode.innerHTML=this._header+_2+this._footer;
-this._shape=dojo.query("ellipse",this.domNode)[0];
-this._g=dojo.query("g.shapeg",this.domNode)[0];
-this._svgroot=dojo.query("svg",this.domNode)[0];
-this._svgroot.style.verticalAlign="top";
-this._svgroot.style.overflow="visible";
+this._updateBorderRadius();
+},_updateBorderRadius:function(){
+var _3=this.domNode;
+var bw,rx,ry;
+var _4=_2.get(_3,"borderWidth");
+if(_4){
+bw=parseFloat(_4);
+}
+var w=_3.offsetWidth;
+var h=_3.offsetHeight;
+if(isNaN(bw)||bw<0||w<=0||h<=0){
+_3.style.borderTopLeftRadius="";
+_3.style.borderTopRightRadius="";
+_3.style.borderBottomLeftRadius="";
+_3.style.borderBottomRightRadius="";
+}else{
+var rx=(w/2+bw)+"px";
+var ry=(h/2+bw)+"px";
+var _5=rx+" "+ry;
+_3.style.borderTopLeftRadius=_5;
+_3.style.borderTopRightRadius=_5;
+_3.style.borderBottomLeftRadius=_5;
+_3.style.borderBottomRightRadius=_5;
+}
 }});
 });

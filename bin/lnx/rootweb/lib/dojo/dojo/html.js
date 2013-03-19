@@ -83,7 +83,7 @@ w.destroy();
 });
 delete this.parseResults;
 }
-_8._emptyNode(this.node);
+_6.empty(this.node);
 },onBegin:function(){
 var _14=this.content;
 if(_2.isString(_14)){

@@ -99,6 +99,9 @@ return _32;
 },_isBookmarkable:function(_33){
 return _33.moveTo&&(_2["mblForceBookmarkable"]||_33.moveTo.charAt(0)==="#")&&!_33.hashchange;
 },performTransition:function(_34,_35,_36,_37,_38){
+if(this._detail){
+return;
+}
 var _39,_3a;
 if(_34&&typeof (_34)==="object"){
 _39=_34;
@@ -310,9 +313,7 @@ _d.set(this.domNode,"webkitTransformStyle","");
 }),0);
 }
 var c=this._detail.context,m=this._detail.method;
-if(!c&&!m){
-return;
-}
+if(c||m){
 if(!m){
 m=c;
 c=null;
@@ -325,6 +326,8 @@ if(typeof (m)=="function"){
 m.apply(c,this._optArgs);
 }
 }
+}
+this._detail=this._optArgs=this._arguments=undefined;
 },isVisible:function(_50){
 var _51=function(_52){
 return _d.get(_52,"display")!=="none";

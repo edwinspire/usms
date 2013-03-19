@@ -1,8 +1,9 @@
 define(['dojo/_base/declare',
 'dijit/_Widget',
 'dijit/_Templated',
-'dojo/text!./waddress.html'
-],function(declare,_Widget,_Templated,templateString){
+'dojo/text!./waddress.html',
+"dojo/request", "jspire/request/Xml"
+],function(declare,_Widget,_Templated,templateString, request, RXml){
 
  return declare('usms.waddress',[ _Widget, _Templated], {
        widgetsInTemplate:true,
@@ -10,6 +11,7 @@ define(['dojo/_base/declare',
 reset: function(){
 this.resetForm();
 this.idaddress = 0;
+this.idlocation = 0;
 },   
 resetForm: function(){
 this.idform.reset();
@@ -17,100 +19,172 @@ this.idform.reset();
 idaddress: 0,
 ts: '1990-01-01',
 idlocation: '0',
-_setIdAddressAttr: function(id) {
-        // Using our avatarNode attach point, set its value
-this.idaddress = id;
-return this;
-},
-_getIdAddressAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.idaddress;
-},
-_settsAttr: function(ts) {
-        // Using our avatarNode attach point, set its value
-this.ts = ts;
-return this;
-},
-_gettsAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.ts;
-},
-_setMainstreetAttr: function(ms) {
-        // Using our avatarNode attach point, set its value
-this.idps.set('value', ms);
-return this;
-},
-_getMainstreetAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.idps.get('value');
-},
-_setSecundarystreetAttr: function(ss) {
-        // Using our avatarNode attach point, set its value
-this.idss.set('value', ss);
-return this;
-},
-_getSecundarystreetAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.idss.get('value');
-},
-_setOtherAttr: function(o) {
-        // Using our avatarNode attach point, set its value
-this.ido.set('value', o);
-return this;
-},
-_getOtherAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.ido.get('value');
-},
-_setNoteAttr: function(n) {
-        // Using our avatarNode attach point, set its value
-this.idn.set('value', n);
-return this;
-},
-_getNoteAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.idn.get('value');
-},
-_setGeoxAttr: function(x) {
-        // Using our avatarNode attach point, set its value
-this.idgeox.set('value', x);
-return this;
-},
-_getGeoxAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.idgeox.get('value');
-},
-_setGeoyAttr: function(y) {
-        // Using our avatarNode attach point, set its value
-this.idgeoy.set('value', y);
-this.emit('onok', {value: y});
-return this;
-},
-_getGeoyAttr: function() {
-        // Using our avatarNode attach point, get its value
-return this.idgeoy.get('value');
+_setLabels: function(l){
+var t = this;
+t.idf1.innerHTML = l.f1;
+t.idf2.innerHTML = l.f2;
+t.idf3.innerHTML = l.f3;
+t.idf4.innerHTML = l.f4;
+t.idf5.innerHTML = l.f5;
+t.idf6.innerHTML = l.f6;
+t.idf7.innerHTML = l.f7;
+t.idf8.innerHTML = l.f8;
+t.idf9.innerHTML = l.f9;
+t.idf10.innerHTML = l.f10;
 },
 postCreate: function(){
+this._setLabels({f1: 'Campo 1: ', f2: 'Campo 2:', f3: 'Campo 3:', f4: 'Campo 4:', f5: 'Campo 5:', f6: 'Campo 6:', f7: 'Campo 7:', f8: 'Campo 8:', f9: 'Campo 9:', f10: 'Campo 10:'});
+this.reset();
     // Get a DOM node reference for the root of our widget
  //   var domNode = this.domNode;
- 
 
-/*
-    // Run any parent postCreate processes - can be done at any point
-    this.inherited(arguments);
- 
-    // Set our DOM node's background color to white -
-    // smoothes out the mouseenter/leave event animations
-    dojo.style(domNode, "backgroundColor", this.baseBackgroundColor);
-    // Set up our mouseenter/leave events - using dijit._Widget's connect
-    // means that our callback will execute with `this` set to our widget
-    this.connect(domNode, "onmouseenter", function(e) {
-        this._changeBackground(this.mouseBackgroundColor);
-    });
-    this.connect(domNode, "onmouseleave", function(e) {
-        this._changeBackground(this.baseBackgroundColor);
-    });
-*/
+},
+values: function(){
+var t = this;
+return {
+idaddress: t.idaddress,
+geox: t.idgeox.get('value'),
+geoy: t.idgeoy.get('value'),
+f1: t.idf1.get('value'),
+f2: t.idf2.get('value'),
+f3: t.idf3.get('value'),
+f4: t.idf4.get('value'),
+f5: t.idf5.get('value'),
+f6: t.idf6.get('value'),
+f7: t.idf7.get('value'),
+f8: t.idf8.get('value'),
+f9: t.idf9.get('value'),
+f10: t.idf10.get('value'),
+ts: t.ts,
+idlocation: t.idlocation
+};
+},
+load: function(id){
+var t = this;
+t.idaddress = id;
+if(t.idaddress > 0){
+            // Request the text file
+            request.get("fun_view_address_byid_xml.usms", {
+            // Parse data from xml
+	query: {idaddress: t.idaddress},
+            handleAs: "xml"
+        }).then(
+                function(response){
+var d = new RXml.getFromXhr(response, 'row');
+
+numrows = d.length;
+var myData = {identifier: "unique_id", items: []};
+
+if(numrows > 0){
+i = 0;
+t.idaddress = d.getNumber(i, 'idaddress');
+
+_geox = d.getString(i, "geox");
+t.idgeox.set('value',  _geox);
+
+_geoy = d.getString(i, "geoy");
+if(isNaN(_geoy) || _geoy < 1){
+t.idgeoy.set('value',  '0');
+}else{
+t.idgeoy.set('value',  _geoy);
+}
+
+t.idf1.set('value', d.getStringFromB64(i, 'field1'));
+t.idf2.set('value', d.getStringFromB64(i, 'field2'));
+t.idf3.set('value',d.getStringFromB64(i, 'field3'));
+t.idf4.set('value',d.getStringFromB64(i, 'field4'));
+t.idf5.set('value',d.getStringFromB64(i, 'field5'));
+t.idf6.set('value', d.getStringFromB64(i, 'field6'));
+t.idf7.set('value', d.getStringFromB64(i, 'field7'));
+t.idf8.set('value', d.getStringFromB64(i, 'field8'));
+t.idf9.set('value', d.getStringFromB64(i, 'field9'));
+t.idf10.set('value', d.getStringFromB64(i, 'field10'));
+t.ts = d.getString(i, 'ts');
+t.idlocation = d.getInt(i, 'idlocation');
+}else{
+t.reset();
+}
+t.emit('onloaddata', t.values());
+                },
+                function(error){
+                    // Display the error returned
+t.reset();
+t.emit('onloaddata', t.values());
+alert(error);
+                }
+            );
+}else{
+t.reset();
+t.emit('onloaddata', t.values());
+}
+
+},
+save: function(){
+var t = this;
+            // Request the text file
+            request.post("fun_address_edit_xml.usms", {
+            // Parse data from xml
+	data: t.values(),
+            handleAs: "xml"
+        }).then(
+                function(response){
+var d = new RXml.getFromXhr(response, 'row');
+
+numrows = d.length;
+
+if(d.length > 0){
+t.idaddress = d.getInt(0, 'outreturn');
+t.load(t.idaddress);
+alert(d.getStringFromB64(0, 'outpgmsg'));
+}else{
+t.reset();
+}
+
+t.emit('onsavedata', t.values());
+                },
+                function(error){
+                    // Display the error returned
+t.reset();
+//t.emit('onloaddata', t.values());
+alert(error);
+                }
+            );
+
+},
+delete: function(){
+var t = this;
+if(t.idaddress > 0){
+            // Request the text file
+            request.post("fun_address_edit_xml.usms", {
+            // Parse data from xml
+	data: {idaddress: t.idaddress*-1},
+            handleAs: "xml"
+        }).then(
+                function(response){
+var d = new RXml.getFromXhr(response, 'row');
+
+numrows = d.length;
+
+if(d.length > 0){
+t.idaddress = d.getInt(0, 'outreturn');
+t.load(t.idaddress);
+alert(d.getStringFromB64(0, 'outpgmsg'));
+}else{
+t.reset();
+}
+
+//t.emit('onloaddata', t.values());
+                },
+                function(error){
+                    // Display the error returned
+t.reset();
+//t.emit('onloaddata', t.values());
+alert(error);
+                }
+            );
+}else{
+t.reset();
+}
 }
 
 

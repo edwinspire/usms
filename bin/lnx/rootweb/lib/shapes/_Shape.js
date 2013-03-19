@@ -59,6 +59,9 @@ this.adjustBBox_Widget(_8);
 var _9=this._bbox;
 var x=_8.x,y=_8.y,w=_8.width,h=_8.height;
 this._bbox=_8;
+if(!this._bboxStartup){
+this._bboxStartup=this._bbox;
+}
 var _a=dojo.style(this.domNode,"stroke-width");
 if(_a<1){
 _a=1;

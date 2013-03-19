@@ -1587,7 +1587,7 @@ this._exts[ext.name]=ext;
 });
 },"dojo/dnd/common":function(){
 define("dojo/dnd/common",["../_base/connect","../_base/kernel","../_base/lang","../dom"],function(_153,_154,lang,dom){
-var _155={};
+var _155=lang.getObject("dojo.dnd",true);
 _155.getCopyKeyState=_153.isCopyKey;
 _155._uniqueId=0;
 _155.getUniqueId=function(){
@@ -1605,7 +1605,6 @@ t=t.parentNode;
 }
 return " button textarea input select option ".indexOf(" "+t.tagName.toLowerCase()+" ")>=0;
 };
-lang.mixin(lang.getObject("dojo.dnd",true),_155);
 return _155;
 });
 },"gridx/core/Row":function(){

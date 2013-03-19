@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>uSMS - Configuración</title>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dijit/Toolbar",
+  "dijit/form/Button",
+  "dojo/data/ItemFileWriteStore",
+  "dojox/io/xhrScriptPlugin",
+  "gridx/Grid",
+  "gridx/core/model/cache/Async",
+  "dojox/data/CsvStore",
+  "dojo/data/ItemFileReadStore",
+  "dijit/layout/TabContainer",
+  "dijit/layout/ContentPane",
+  "dijit/form/TextBox",
+  "dijit/form/Textarea",
+  "dijit/form/NumberTextBox",
+  "dijit/form/CheckBox"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
+</style>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-comptype="desktop" id="myapp" data-maq-appstates="{}">
+ <div style="width: 100%; height: 100%;">
+<span data-dojo-type="dijit.layout.TabContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" controllerWidget="dijit.layout.TabController">
+ <div data-dojo-type="dijit.layout.ContentPane" title="SMS - Lista Blanca" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" closable="false" doLayout="false">
+  <div style="width: 100%; height: 100%;"></div>
+</div>
+ <div data-dojo-type="dijit.layout.ContentPane" title="SMS - Lista Negra" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false">
+  <div style="width: 100%; height: 100%;"></div>
+</div>
+ <div data-dojo-type="dijit.layout.ContentPane" title="PostgreSQL" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false">
+   <span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Obtener" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitNoIcon"></input>
+<input type="button" data-dojo-type="dijit.form.Button" label="Test"></input>
+</span><table border="0" style="border-collapse: collapse; table-layout: fixed; height: auto; width: 100%;">
+     <colgroup>
+       <col></col>
+       <col></col>
+       <col></col>
+       <col></col>
+     </colgroup>
+     <tbody>
+       <tr>
+         <td style="margin: 3px;">
+           <label style="margin: 3px; margin-right: 5px;">
+             Host:</label>
+         </td>
+         <td>
+           <input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+         </td>
+         <td>
+           <label style="margin-right: 5px;">
+             Puerto:</label>
+         </td>
+         <td>
+           <input type="text" data-dojo-type="dijit.form.NumberTextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
+         </td>
+       </tr>
+       <tr>
+         <td>
+           <label style="margin-right: 5px;">
+             Base de datos:</label>
+         </td>
+         <td>
+           <input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+         </td>
+         <td>
+           <label style="margin-right: 5px;">
+             Usuario:</label>
+         </td>
+         <td>
+           <input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+         </td>
+       </tr>
+       <tr>
+         <td>
+           <label style="margin-right: 5px;">
+             Password:</label>
+         </td>
+         <td>
+           <input type="text" data-dojo-type="dijit.form.TextBox" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
+         </td>
+         <td>
+           <label style="margin-right: 5px;">
+             SSL:</label>
+         </td>
+         <td>
+           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <label style="margin: 3px; display: block;">
+     Nota:</label>
+   <textarea type="text" data-dojo-type="dijit.form.Textarea" style="height: auto; width: 100%;"></textarea>
+</div>
+ <div data-dojo-type="dijit.layout.ContentPane" title="Proveedores" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+<span data-dojo-type="dojo.data.ItemFileWriteStore" id="IFWS_provider" jsId="IFWS_provider" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+<span data-dojo-type="dijit.Toolbar">
+<input type="button" data-dojo-type="dijit.form.Button" id="getdata" tabIndex="-1" intermediateChanges="false" label="Cargar tabla" iconClass="dijitIconTable"></input>
+<input type="button" data-dojo-type="dijit.form.Button" id="new" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitEditorIcon dijitEditorIconNewPage"></input>
+<input type="button" data-dojo-type="dijit.form.Button" id="delete" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitEditorIcon dijitEditorIconDelete"></input>
+</span><table data-dojo-type="gridx.Grid" id="gridxprovider" style="min-width: 1em; min-height: 1em; width: 100%; height: 90%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'s',field:'s'},{width:'auto',name:'IdNotif',field:'idnotif'},{width:'auto',name:'Descripcion',field:'descripcion'},{width:'auto',name:'Formato',field:'formato'}], modules:['gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget', 'gridx/modules/RowHeader', 'gridx/modules/select/Row', 'gridx/modules/extendedSelect/Row', 'gridx/modules/IndirectSelect'], store:IFWS_provider"></table>
+</div>
+ <div data-dojo-type="dijit.layout.ContentPane" title="Puertos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+  <div style="width: 100%; height: 100%;"></div>
+</div>
+ <div data-dojo-type="dijit.layout.ContentPane" title="SIM" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+  <div style="width: 100%; height: 100%;"></div>
+</div>
+ <div data-dojo-type="dijit.layout.ContentPane" title="uHTTP" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+  <div style="width: 100%; height: 100%;"></div>
+</div>
+</span></div>
+</body>
+</html>
+

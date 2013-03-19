@@ -159,9 +159,6 @@ return _41.apply(this,arguments);
 }
 if(_3("dom-addeventlistener")){
 _28={focusin:"focus",focusout:"blur"};
-if(_3("opera")){
-_28.keydown="keypress";
-}
 on.emit=function(_43,_44,_45){
 if(_43.dispatchEvent&&document.createEvent){
 var _46=_43.ownerDocument.createEvent("HTMLEvents");

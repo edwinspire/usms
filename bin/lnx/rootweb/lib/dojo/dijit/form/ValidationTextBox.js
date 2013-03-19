@@ -38,7 +38,7 @@ this._maskValidSubsetError=true;
 }
 var _14=this._isEmpty(this.textbox.value);
 var _15=!_13&&_11&&this._isValidSubset();
-this._set("state",_13?"":(((((!this._hasBeenBlurred||_11)&&_14)||_15)&&this._maskValidSubsetError)?"Incomplete":"Error"));
+this._set("state",_13?"":(((((!this._hasBeenBlurred||_11)&&_14)||_15)&&(this._maskValidSubsetError||(_15&&!this._hasBeenBlurred&&_11)))?"Incomplete":"Error"));
 this.focusNode.setAttribute("aria-invalid",_13?"false":"true");
 if(this.state=="Error"){
 this._maskValidSubsetError=_11&&_15;

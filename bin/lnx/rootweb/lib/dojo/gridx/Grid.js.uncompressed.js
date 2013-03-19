@@ -2980,10 +2980,14 @@ define("dojo/dnd/common", ["../_base/connect", "../_base/kernel", "../_base/lang
 // module:
 //		dojo/dnd/common
 
+var exports = lang.getObject("dojo.dnd", true);
+/*=====
+// TODO: for 2.0, replace line above with this code.
 var exports = {
 	// summary:
 	//		TODOC
 };
+=====*/
 
 exports.getCopyKeyState = connect.isCopyKey;
 
@@ -3009,9 +3013,6 @@ exports.isFormElement = function(/*Event*/ e){
 	}
 	return " button textarea input select option ".indexOf(" " + t.tagName.toLowerCase() + " ") >= 0;	// Boolean
 };
-
-// For back-compat, remove for 2.0.
-lang.mixin(lang.getObject("dojo.dnd", true), exports);
 
 return exports;
 });
@@ -4469,12 +4470,10 @@ var Selector = declare("dojo.dnd.Selector", Container, {
 		if(!this.singular && !dnd.getCopyKeyState(e) && !e.shiftKey && (this.current.id in this.selection)){
 			this.simpleSelection = true;
 			if(mouse.isLeft(e)){
-				// accept the left button and stop the event
-				// for IE we don't stop event when multiple buttons are pressed
-				// TODO: remove this if() completely for 2.0, because event.stop() is useless and dangerous:
-				// on mobile, it prevents a click event, and also prevents scroll (see #15838).   Of course,
-				// drag-scroll should be disabled while dragging, and that is handled by Source::onMouseMove(),
-				// but Selector.js itself shouldn't interfere with scroll.
+				// Accept the left button and stop the event.   Stopping the event prevents text selection while
+				// dragging.   However, don't stop the event on mobile because that prevents a click event,
+				// and also prevents scroll (see #15838).
+				// For IE we don't stop event when multiple buttons are pressed.
 				event.stop(e);
 			}
 			return;

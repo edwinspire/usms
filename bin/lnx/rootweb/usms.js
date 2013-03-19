@@ -20,6 +20,10 @@ dojo.connect(dojo.byId('menu_ports'), 'onclick', function(){
 ContentPage.url('usms_serialport.html');
 });
 
+dojo.connect(dojo.byId('menu_config'), 'onclick', function(){
+ContentPage.url('usms_configure.html');
+});
+
 dojo.connect(dojo.byId('menu_sms_out'), 'onclick', function(){
 ContentPage.url('usms_smsout.html');
 });

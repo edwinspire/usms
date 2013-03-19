@@ -15,7 +15,7 @@ var Loading = dojo.byId('edwinspire.contentpage.divloading');
 dojo.style(Loading, "display", "block");
 dojo.style(Contenedor, "display", "none");
 dojo.attr(Contenedor, "data", url_);
-dojo.style(Contenedor, {width: "1px", height:"1px", display:"block"});
+dojo.style(Contenedor, {width: "100%", height:"100%", display:"block"});
 },
 resize: function(){
 this.size(this.width, this.height);
