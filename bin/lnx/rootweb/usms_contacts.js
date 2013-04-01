@@ -36,6 +36,8 @@ var namesLabelsLocations = {L1: 'Nivel 1: ', L2: 'Nivel 2:', L3: 'Nivel 3:', L4:
 ///// BASIC /////
 // Account basic elements
 
+var NotifyMSG = dijit.byId('notify');
+
 dojo.connect(dijit.byId('usms.contact.new'), 'onClick', function(e){
 GlobalObject.IdContact = 0;
 FormContact.dojo.Form.reset();
@@ -88,7 +90,7 @@ GlobalObject.GridStore.clearOnClose = true;
 
 },
 onError: function(e){
-alert(e);
+NotifyMSG.setText(e);
 }
 });
 }
@@ -171,7 +173,7 @@ CP.LoadGrid();
 onError: function(e){
 GlobalObject.IdContact = 0;
 FormContact.dojo.Form.reset();
-alert(e);
+NotifyMSG.setText(e);
 }
 });
 }else{
@@ -193,7 +195,7 @@ var xmld = new RXml.getFromXhr(datass, 'row');
 if(xmld.length > 0){
 
 GlobalObject.IdContact = xmld.getInt(0, 'outreturn');
-alert(xmld.getStringFromB64(0, 'outpgmsg'));
+NotifyMSG.setText(xmld.getStringFromB64(0, 'outpgmsg'));
 
 }else{
 GlobalObject.IdContact = 0;
@@ -206,7 +208,7 @@ GlobalObject.LoadGrid();
     error: function(error)
 {
 GlobalObject.LoadGrid();
-alert(error);
+NotifyMSG.setText(error);
     }
   }
 
@@ -293,7 +295,7 @@ CP.GridxStore.clearOnClose = true;
 
 },
 onError: function(e){
-alert(e);
+NotifyMSG.setText(e);
 }
 });
 },
@@ -329,7 +331,7 @@ PAddress.AddressW.load(PAddress.AddressW.idaddress);
 
 },
 onError: function(e){
-alert(e);
+NotifyMSG.setText(e);
 }
 });
 },
@@ -355,7 +357,7 @@ CP.LoadGrid();
 
 if(xmld.length > 0){
 
-alert(xmld.getStringFromB64(0, 'outpgmsg'));
+NotifyMSG.setText(xmld.getStringFromB64(0, 'outpgmsg'));
 CP.IdPhone = xmld.getInt(0, 'outreturn');
 CP.LoadPhone();
 
@@ -366,7 +368,7 @@ CP.LoadPhone();
     error: function(error)
 {
 CP.LoadGrid();
-alert(error);
+NotifyMSG.setText(error);
     }
   }
 
@@ -381,7 +383,7 @@ return Objeto;
 	if (CP.Gridx) {
 // Captura el evento cuando se hace click en una fila
 dojo.connect(CP.Gridx, 'onRowClick', function(event){
-//alert(this.cell(event.rowId, 2, true).data());
+//NotifyMSG.setText(this.cell(event.rowId, 2, true).data());
 CP.IdPhone = this.cell(event.rowId, 2, true).data();
 CP.LoadPhone();
 });
@@ -427,7 +429,7 @@ numrows = d.length;
 if(d.length > 0){
 t.idaddress = d.getInt(0, 'outreturn');
 t.load(t.idaddress);
-alert(d.getStringFromB64(0, 'outpgmsg'));
+NotifyMSG.setText(d.getStringFromB64(0, 'outpgmsg'));
 }else{
 t.reset();
 }
@@ -437,7 +439,7 @@ t.reset();
                     // Display the error returned
 t.reset();
 //t.emit('onloaddata', t.values());
-alert(error);
+NotifyMSG.setText(error);
                 }
             );
 
@@ -480,7 +482,7 @@ numrows = d.length;
 if(d.length > 0){
 t.idaddress = d.getInt(0, 'outreturn');
 t.load(t.idaddress);
-alert(d.getStringFromB64(0, 'outpgmsg'));
+NotifyMSG.setText(d.getStringFromB64(0, 'outpgmsg'));
 }else{
 t.reset();
 }
@@ -490,7 +492,7 @@ t.reset();
                     // Display the error returned
 t.reset();
 //t.emit('onloaddata', t.values());
-alert(error);
+NotifyMSG.setText(error);
                 }
             );
 
@@ -534,6 +536,22 @@ PAddress.AddressW.delete();
 
 
 
+dojo.connect(dojo.byId('usms.save.contact.maptelf'), 'onclick', function(){
+//v = AA.AddressW.values();
+window.open(PAddress.AddressW.values().geolocation,'_blank');
+});
+
+dojo.connect(dojo.byId('usms.map.contact.address'), 'onclick', function(){
+//v = AA.AddressW.values();
+window.open(CAddress.AddressW.values().geolocation,'_blank');
+});
+
+/*
+dojo.connect(dojo.byId('usms.save.contact.maptelf'), 'onclick', function(){
+//v = AA.AddressW.values();
+window.open(PAddress.AddressW.values().geolocation,'_blank');
+});
+*/
 
 
 ////////////////// FUNCIONES CARGAN AL INICIO //////////////////////////

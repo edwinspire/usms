@@ -233,7 +233,7 @@ t.fsL1.Load();
                     // Display the error returned
 t._to_set_location= {idl1: '0', idl2: '0', idl3: '0', idl4: '0', idl5: '0', idl6: '0'};
 //t.emit('onloaddata', t.values());
-alert(error);
+console.log(error);
                 }
             );
 }

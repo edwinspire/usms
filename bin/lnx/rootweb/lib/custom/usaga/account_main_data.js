@@ -116,7 +116,8 @@ t.emit('onloadaccount', {idaccount: t.Id, idaddress: t._idaddress});
                 },
                 function(error){
                     // Display the error returned
-alert(error);
+console.log(error);
+t.emit('notify_message', {message: error}); 
                 }
             );
 
@@ -169,7 +170,8 @@ var d = new RXml.getFromXhr(response, 'row');
 
 if(d.length > 0){
 
-alert(d.getStringFromB64(0, 'outpgmsg'));
+//console.log(d.getStringFromB64(0, 'outpgmsg'));
+t.emit('notify_message', {message: d.getStringFromB64(0, 'outpgmsg')}); 
 
 t.account_select.Load();
 var id = d.getInt(0, "outreturn");
@@ -190,7 +192,8 @@ t._LoadAccountSelected();
                     // Display the error returned
 t._resetall();
 t._LoadAccountSelected();
-alert(errorx);
+//console.log(errorx);
+t.emit('notify_message', {message: errorx}); 
                 }
             );
 

@@ -56,8 +56,18 @@ f8: t.idf8.get('value'),
 f9: t.idf9.get('value'),
 f10: t.idf10.get('value'),
 ts: t.ts,
-idlocation: t.idlocation
+idlocation: t.idlocation,
+geolocation: 'http://www.openstreetmap.org/?lat='+t.idgeox.get('value')+'&amp;lon='+t.idgeoy.get('value')+'&amp;zoom=17&amp;layers=M&amp;mlat='+t.idgeox.get('value')+'&amp;mlon='+t.idgeoy.get('value')
 };
+
+/*
+Para Google-Maps
+geolocation: 'http://maps.google.es/maps?ll='+t.idgeox.get('value')+','+t.idgeoy.get('value')+'&z=10'
+
+Para OpenStreeMaps
+<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-79.006022,-2.899094,-79.002938,-2.895729&amp;layer=mapnik&amp;marker=-2.89783,-79.00502" style="border: 1px solid black"></iframe><br /><small><a href="http://www.openstreetmap.org/?lat=-2.8974115&amp;lon=-79.00448&amp;zoom=17&amp;layers=M&amp;mlat=-2.89783&amp;mlon=-79.00502">View Larger Map</a></small>
+*/
+
 },
 load: function(id){
 var t = this;
@@ -79,15 +89,9 @@ if(numrows > 0){
 i = 0;
 t.idaddress = d.getNumber(i, 'idaddress');
 
-_geox = d.getString(i, "geox");
-t.idgeox.set('value',  _geox);
-
-_geoy = d.getString(i, "geoy");
-if(isNaN(_geoy) || _geoy < 1){
-t.idgeoy.set('value',  '0');
-}else{
-t.idgeoy.set('value',  _geoy);
-}
+//_geox = d.getString(i, "geox");
+t.idgeox.set('value',  d.getString(i, "geox"));
+t.idgeoy.set('value',  d.getString(i, "geoy"));
 
 t.idf1.set('value', d.getStringFromB64(i, 'field1'));
 t.idf2.set('value', d.getStringFromB64(i, 'field2'));
@@ -110,7 +114,7 @@ t.emit('onloaddata', t.values());
                     // Display the error returned
 t.reset();
 t.emit('onloaddata', t.values());
-alert(error);
+console.log(error);
                 }
             );
 }else{
@@ -135,7 +139,7 @@ numrows = d.length;
 if(d.length > 0){
 t.idaddress = d.getInt(0, 'outreturn');
 t.load(t.idaddress);
-alert(d.getStringFromB64(0, 'outpgmsg'));
+console.log(d.getStringFromB64(0, 'outpgmsg'));
 }else{
 t.reset();
 }
@@ -146,7 +150,7 @@ t.emit('onsavedata', t.values());
                     // Display the error returned
 t.reset();
 //t.emit('onloaddata', t.values());
-alert(error);
+console.log(error);
                 }
             );
 
@@ -168,7 +172,7 @@ numrows = d.length;
 if(d.length > 0){
 t.idaddress = d.getInt(0, 'outreturn');
 t.load(t.idaddress);
-alert(d.getStringFromB64(0, 'outpgmsg'));
+console.log(d.getStringFromB64(0, 'outpgmsg'));
 }else{
 t.reset();
 }
@@ -179,7 +183,7 @@ t.reset();
                     // Display the error returned
 t.reset();
 //t.emit('onloaddata', t.values());
-alert(error);
+console.log(error);
                 }
             );
 }else{
