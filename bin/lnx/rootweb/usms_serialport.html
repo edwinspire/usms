@@ -29,7 +29,8 @@ require([
   "dijit/PopupMenuBarItem",
   "dijit/MenuItem",
   "dijit/Menu",
-  "dojox/xml/DomParser"
+  "dojox/xml/DomParser",
+  "widgets/usms/usms_header"
 ]);
 </script>
 <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
@@ -37,10 +38,11 @@ require([
 <script type="text/javascript" src="jsspire/functions.js"></script>
 <script type="text/javascript" src="usms_serialport.js"></script>
 </head>
-<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}">
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp" data-maq-comptype="desktop">
 <div id="idcontentgridx" style="height: 100%; width: auto;">
  <span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_1" jsId="ItemFileReadStore_1" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
-<table data-dojo-type="gridx.Grid" id="idtableserialport" style="min-width: 1em; min-height: 1em; position: fixed; left: 0px; top: 0px; right: 0px; bottom: 0px; display: inline-block;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_1"></table>
+<div data-dojo-type="usms.usms_header" style="background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, right top, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(to right,#f1f1f1 40%, #f8f8f8);"></div>
+<table data-dojo-type="gridx.Grid" id="idtableserialport" style="min-width: 1em; min-height: 1em;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],store:ItemFileReadStore_1"></table>
  </div>
 <div style="position: absolute; z-index: 900; left: 2px; right: 2px; bottom: 2px;"><span data-dojo-type="dijit.TitlePane" title="Editar registro" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="false" style="min-width: 1em; width: 100%; height: auto;">
  <div data-dojo-type="dijit.form.Form" id="idformrowsend" action="posttableserialport" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;" method="POST">

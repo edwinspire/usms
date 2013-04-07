@@ -12,50 +12,17 @@ require([
   "maqetta/AppStates",
   "dijit/MenuBar",
   "dijit/PopupMenuBarItem",
-  "dijit/MenuItem",
   "dijit/Menu",
-  "dijit/layout/ContentPane",
-  "dijit/Dialog",
-  "widgets/widgetspire/contentpage"
+  "dijit/MenuItem",
+  "widgets/usms/usms_header"
 ]);
 </script>
 <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";
 </style>
-<script type="text/javascript" src="usms.js"></script>
 </head>
 <body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-comptype="desktop" data-maq-appstates="{}" id="myapp">
-<div id = "idHeader"> 
-<div dvwidget="html.richtext" style="background-color: black; width: auto;" class="richText">
- <div style="text-align: center;">
-     <b><font color="#ffa500" size="6">
-              uSMS</font>
-     </b>
-   </div>
-   <div style="text-align: center;">
-     <font color="#6495ed">
-       <b><i>
-                Micro Servidor de Mensajes SMS</i>
-       </b>
-     </font>
-   </div>
- </div>
-</div>
-<span data-dojo-type="dijit.MenuBar" id="idmenubar" tabIndex="0"><span data-dojo-type="dijit.PopupMenuBarItem" label="Sistema" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Configuración" id="menu_config"></span><span data-dojo-type="dijit.MenuItem" label="PostgreSQL" onclick="dialog_postgres_cnx"></span><span data-dojo-type="dijit.MenuItem" label="Puertos" id="menu_ports"></span><span data-dojo-type="dijit.MenuItem" label="Status" id="menu_system_status"></span>
-</span>
-</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Contactos" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Editar" id="menu_contacts_edit"></span>
-</span>
-</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Llamadas" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Entrantes" id="menu_call_in"></span>
-</span>
-</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Localizaci&amp;oacute;n" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Editar" id="menu_locations"></span>
-</span>
-</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Proveedores" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Editar" id="menu_providers"></span>
-</span>
-</span><span data-dojo-type="dijit.PopupMenuBarItem" label="SMS" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Lista Blanca"></span><span data-dojo-type="dijit.MenuItem" label="Lista Negra"></span><span data-dojo-type="dijit.MenuItem" label="Entrantes" id="menu_sms_in"></span><span data-dojo-type="dijit.MenuItem" label="Salientes" id="menu_sms_out"></span><span data-dojo-type="dijit.MenuItem" label="Enviar"></span><span data-dojo-type="dijit.MenuItem" label="Enviar Masivo"></span>
-</span>
-</span><span data-dojo-type="dijit.PopupMenuBarItem" label="Ayuda" iconClass="dijitNoIcon"><span data-dojo-type="dijit.Menu"><span data-dojo-type="dijit.MenuItem" label="Acerca de"></span>
-</span>
-</span>
-</span><div data-dojo-type="widgetspire.contentpage" id="idContentPageMaster"></div>
+ <div data-dojo-type="usms.usms_header" style="background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, right top, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(to right,#f1f1f1 40%, #f8f8f8);"></div>
+ <div style="height: 161px; width: 100%; background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, left bottom, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(#f1f1f1 40%, #f8f8f8);"></div>
 </body>
 </html>
 

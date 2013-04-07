@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>Untitled</title>
+<title>uSMS - Status</title>
 <script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
 <script type="text/javascript">
 require([
@@ -11,13 +11,19 @@ require([
   "maqetta/space",
   "maqetta/AppStates",
   "dijit/layout/AccordionContainer",
-  "dijit/layout/ContentPane"
+  "dijit/layout/ContentPane",
+  "dijit/MenuBar",
+  "dijit/PopupMenuBarItem",
+  "dijit/Menu",
+  "dijit/MenuItem",
+  "widgets/usms/usms_header"
 ]);
 </script>
 <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";
 </style>
 </head>
-<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp" data-maq-comptype="desktop">
+<div data-dojo-type="usms.usms_header" style="background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, right top, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(to right,#f1f1f1 40%, #f8f8f8);"></div>
 <span data-dojo-type="dijit.layout.AccordionContainer" duration="200" persist="false" style="min-width: 1em; min-height: 1em; height: 100%; width: 100%;"><div data-dojo-type="dijit.layout.ContentPane" title="Status Modems" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false"></div>
  <div data-dojo-type="dijit.layout.ContentPane" title="SMS: Bandeja de entrada" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="selected" closable="false"></div>
  <div data-dojo-type="dijit.layout.ContentPane" title="SMS: Bandeja de salida" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false"></div>

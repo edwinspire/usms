@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>Untitled</title>
+<title>uSMS - Llamadas Entrantes</title>
 <script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[], mblLoadCompatPattern: /\/opensaga\/themes\/.*\.css$/"></script>
 <script type="text/javascript">
 require([
@@ -18,7 +18,12 @@ require([
   "gridx/core/model/cache/Async",
   "dojox/data/CsvStore",
   "dijit/form/DateTextBox",
-  "dijit/form/Button"
+  "dijit/form/Button",
+  'dijit/MenuBar',
+  'dijit/PopupMenuBarItem',
+  'dijit/Menu',
+  'dijit/MenuItem',
+  "widgets/usms/usms_header"
 ]);
 </script>
 <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
@@ -28,6 +33,7 @@ require([
 </head>
 <body class="claro" data-maq-flow-layout="true" data-maq-comptype="desktop" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
  <div style="width: 100%; height: 100%;">
+ <div data-dojo-type="usms.usms_header" style="background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, right top, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(to right,#f1f1f1 40%, #f8f8f8);"></div>
 <span data-dojo-type="dijit.TitlePane" id="titlepanecallin" title="Llamadas Entrantes" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" duration="200" open="true" style="min-width: 1em; width: 100%; height: auto;">
 <label>
 Desde:</label>
