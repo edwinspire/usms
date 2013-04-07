@@ -538,18 +538,18 @@ PAddress.AddressW.delete();
 
 dojo.connect(dojo.byId('usms.save.contact.maptelf'), 'onclick', function(){
 //v = AA.AddressW.values();
-window.open(PAddress.AddressW.values().geolocation,'_blank');
+window.open(PAddress.AddressW.values().geourl,'_blank');
 });
 
 dojo.connect(dojo.byId('usms.map.contact.address'), 'onclick', function(){
 //v = AA.AddressW.values();
-window.open(CAddress.AddressW.values().geolocation,'_blank');
+window.open(CAddress.AddressW.values().geourl,'_blank');
 });
 
 /*
 dojo.connect(dojo.byId('usms.save.contact.maptelf'), 'onclick', function(){
 //v = AA.AddressW.values();
-window.open(PAddress.AddressW.values().geolocation,'_blank');
+window.open(PAddress.AddressW.values().geourl,'_blank');
 });
 */
 

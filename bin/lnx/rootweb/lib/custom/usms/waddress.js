@@ -8,6 +8,7 @@ define(['dojo/_base/declare',
  return declare('usms.waddress',[ _Widget, _Templated], {
        widgetsInTemplate:true,
        templateString:templateString,
+geourl: 'http://edwinspire.com',
 reset: function(){
 this.resetForm();
 this.idaddress = 0;
@@ -57,16 +58,8 @@ f9: t.idf9.get('value'),
 f10: t.idf10.get('value'),
 ts: t.ts,
 idlocation: t.idlocation,
-geolocation: 'http://www.openstreetmap.org/?lat='+t.idgeox.get('value')+'&amp;lon='+t.idgeoy.get('value')+'&amp;zoom=17&amp;layers=M&amp;mlat='+t.idgeox.get('value')+'&amp;mlon='+t.idgeoy.get('value')
+geourl: t.geourl
 };
-
-/*
-Para Google-Maps
-geolocation: 'http://maps.google.es/maps?ll='+t.idgeox.get('value')+','+t.idgeoy.get('value')+'&z=10'
-
-Para OpenStreeMaps
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-79.006022,-2.899094,-79.002938,-2.895729&amp;layer=mapnik&amp;marker=-2.89783,-79.00502" style="border: 1px solid black"></iframe><br /><small><a href="http://www.openstreetmap.org/?lat=-2.8974115&amp;lon=-79.00448&amp;zoom=17&amp;layers=M&amp;mlat=-2.89783&amp;mlon=-79.00502">View Larger Map</a></small>
-*/
 
 },
 load: function(id){
@@ -103,6 +96,7 @@ t.idf7.set('value', d.getStringFromB64(i, 'field7'));
 t.idf8.set('value', d.getStringFromB64(i, 'field8'));
 t.idf9.set('value', d.getStringFromB64(i, 'field9'));
 t.idf10.set('value', d.getStringFromB64(i, 'field10'));
+t.geourl = d.getStringFromB64(i, 'geourl');
 t.ts = d.getString(i, 'ts');
 t.idlocation = d.getInt(i, 'idlocation');
 }else{
