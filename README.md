@@ -40,7 +40,8 @@ uSMS depende de las siguientes librerias:
 ### Soporte o Contacto
 Puede reportar algún bug en el sistema a:
 * edwinspire@gmail.com
-* admin@edwinspire.com
+* software@edwinspire.com
+* usms@edwinspire.com
 * o de preferencia a [Issues](https://github.com/edwinspire/usms/issues) para poder hacer un seguimiento y solucionarlo.
 
 

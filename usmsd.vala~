@@ -35,7 +35,7 @@ public class RunuSMS: GLib.Object {
 	public static int main (string[] args) {
 
 Crypto sec = new Crypto();
-sec.Encryp("hola", "llave");
+print("%s\n", sec.Encryp("hola", "llave"));
 
 
 		stdout.printf ("run usmsd!\n");
