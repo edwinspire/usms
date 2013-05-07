@@ -18,6 +18,8 @@ Entre las principales caracteristicas están:
 * Desarrollado totalmente en Vala.
 * Es software libre.
 
+***
+_uSMS_ se lo puede usar fácilemnte como base para implementar sistemas de servicios SMS mucho más complejos, como sistemas de encuestas, concursos, registro y consulta de datos, sistemas sms para radio y televisión, etc.
 
 ***
 El proyecto requiere de ayuda, ya sea económica, con ideas, aportes de codigo, depuración, lo que sea es bienvenido.
