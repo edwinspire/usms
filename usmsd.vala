@@ -38,7 +38,7 @@ public class RunuSMS: GLib.Object {
 //print("%s\n", sec.Encryp("hola", "llave"));
 
 
-		stdout.printf ("run usmsd!\n");
+		stdout.printf ("run usmsd v0.01!\n");
 
 uSMSServer smsServer = new uSMSServer();
 //smsServer.ResetAndLoadDevices();
