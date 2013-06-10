@@ -1,1 +1,0 @@
-{"id":"widgetspire.notify_messages","name":"widgetspire.notify_messages","spec":"1.0","version":"1.0","require":[{"type":"javascript","src":"dojo/dojo.js","$library":"dojo"},{"$library":"dojo","format":"amd","src":"widgets/widgetspire/notify_messages","type":"javascript-module"}],"library":{"dojo":{"src":"../../../../dojo/dojo.js"}},"content":"<div></div>"}
