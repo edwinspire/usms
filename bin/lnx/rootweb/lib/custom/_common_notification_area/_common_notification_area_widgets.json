@@ -1,0 +1,28 @@
+{
+	"version": "1.0",
+	"localPath": true,
+	"customWidgetSpec": 1,
+	"categories": {
+		"custom": {
+			"name": "Custom widget",
+			"description": "Custom widget",
+			"widgetClass": "dijit"
+		}
+	},
+	"widgets": [
+		{
+			"name": "_common_notification_area",
+			"description": "_common_notification_area",
+			"type": "_common_notification_area/_common_notification_area",
+			"category": "custom",
+			"iconLocal": true,
+			"icon": "app/davinci/img/maqetta.png",
+			"properties": {
+				"id": "container",
+				"style": "border: none; border-radius: 6px; -moz-border-radius: 6px; background-color: transparent; height: auto;"
+			}
+		}
+	],
+	"name": "_common_notification_area",
+	"longName": "_common_notification_area"
+}

@@ -23,7 +23,7 @@
 
 using GLib;
 using edwinspire.uSMS;
-using edwinspire.Security;
+//using edwinspire.Security;
 
 //using Gee;
 
@@ -34,8 +34,8 @@ public class RunuSMS: GLib.Object {
 
 	public static int main (string[] args) {
 
-Crypto sec = new Crypto();
-print("%s\n", sec.Encryp("hola", "llave"));
+//Crypto sec = new Crypto();
+//print("%s\n", sec.Encryp("hola", "llave"));
 
 
 		stdout.printf ("run usmsd!\n");

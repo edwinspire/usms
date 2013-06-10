@@ -7,8 +7,9 @@
 
 require(["dojo/ready",  
 "dojo/on",
-'dojo/store/Memory',
-"dojo/Evented",
+'dojo/request', 
+'jspire/request/Xml',
+'jspire/form/DateTextBox',
 "dojo/data/ItemFileReadStore",
   "gridx/Grid",
   "gridx/core/model/cache/Async",
@@ -17,20 +18,19 @@ require(["dojo/ready",
 	'gridx/modules/Edit',
   "dijit/form/NumberTextBox",
 "gridx/modules/VirtualVScroller",
-"dojox/grid/cells/dijit",
-"dojox/data/XmlStore"
-], function(ready, on, Memory, Evented, ItemFileReadStore, Grid, Async, Focus, CellWidget, Edit, NumberTextBox, VirtualVScroller){
+"dojox/grid/cells/dijit"
+], function(ready, on, request, RXml, jsDTb, ItemFileReadStore, Grid, Async, Focus, CellWidget, Edit, NumberTextBox, VirtualVScroller){
      ready(function(){
          // logic that requires that Dojo is fully initialized should go here
 
 dojo.connect(dojo.byId('send'), 'onclick', function(){
-LoadGrid();
+myGridX.Load();
 });
 
+jsDTb.addGetDateFunction(dijit.byId('fstart'));
+jsDTb.addGetDateFunction(dijit.byId('fend'));
 
-var ObjectTable = {
-RowSeleted: 0 
-} 
+
 
 
 	var myGridX = dijit.byId("idgridxtable");
@@ -62,10 +62,64 @@ myGridX.startup();
 
 }
 
+myGridX.Load= function(){
+            // Request the text file
+            request.get("view_smsin_datefilter.usms", {
+	query: {fstart: dijit.byId('fstart')._getDate(), fend: dijit.byId('fend')._getDate(), nrows: dijit.byId('nrows').get('value')},
+            handleAs: "xml"
+        }).then(
+                function(response){
+var d = new RXml.getFromXhr(response, 'row');
+var myData = {identifier: "unique_id", items: []};
+var i = 0;
+numrows = d.length;
+if(numrows > 0){
+while(i<numrows){
+myData.items[i] = {
+unique_id:i+1,
+idsmsin: d.getNumber(i, "idsmsin"), 
+dateload: d.getString(i, "dateload"),
+idprovider: d.getNumber(i, "idprovider"),
+idphone: d.getNumber(i, "idphone"),
+phone: d.getStringFromB64(i, "phone"),
+datesms: d.getString(i, "datesms"),
+message: d.getStringFromB64(i, "message"),
+idport: d.getNumber(i, "idport"),
+status: d.getNumber(i, "status"),
+flag1: d.getNumber(i, "flag1"),
+flag2: d.getNumber(i, "flag2"),
+flag3: d.getNumber(i, "flag3"),
+flag4: d.getNumber(i, "flag4"),
+flag5: d.getNumber(i, "flag5"),
+note: d.getStringFromB64(i, "note")
+};
+i++;
+}
+}
+	ItemFileReadStore_1.clearOnClose = true;
+	ItemFileReadStore_1.data = myData;
+	ItemFileReadStore_1.close();
+
+		myGridX.store = null;
+		myGridX.setStore(ItemFileReadStore_1);
+
+//myGridX.emit('onnotify', {msg: 'Se han cargado los datos'});
+
+                },
+                function(error){
+                    // Display the error returned
+myGridX.emit('onnotify', {msg: error});
+                }
+            );
+
+
+}
+
+
 
 function LoadGrid(){
 
-var store = new dojox.data.XmlStore({url: "usms_smsinviewtablefilter", sendQuery: true, rootItem: 'row'});
+var store = new dojox.data.XmlStore({url: "view_smsin_datefilter.usms", sendQuery: true, rootItem: 'row'});
 
 var request = store.fetch({query: {fstart: getdate('fstart'), fend: getdate('fend'), nrows: dijit.byId('nrows').get('value')}, onComplete: function(itemsrow, r){
 
@@ -118,11 +172,6 @@ alert(e);
 // Se hace este timeout porque la pagina demora en crearse y al cargar no muestra nada.
 //setTimeout(LoadGrid, 5000);
 
-
-
-function getdate(iddijit){
-return dojo.date.locale.format(dijit.byId(iddijit).get('value'), {datePattern: "yyyy-MM-dd", selector: "date"});
-}
 
 
 

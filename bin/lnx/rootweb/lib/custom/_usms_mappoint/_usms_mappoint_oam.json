@@ -1,0 +1,25 @@
+{
+	"id": "_usms_mappoint",
+	"name": "_usms_mappoint",
+	"spec": "1.0",
+	"version": "1.0",
+	"require": [
+		{
+			"type": "javascript",
+			"src": "dojo/dojo.js",
+			"$library": "dojo"
+		},
+		{
+			"$library": "dojo",
+			"format": "amd",
+			"src": "_usms_mappoint/_usms_mappoint",
+			"type": "javascript-module"
+		}
+	],
+	"library": {
+		"dojo": {
+			"src": "../../dojo/dojo/dojo.js"
+		}
+	},
+	"content": "<div></div>"
+}

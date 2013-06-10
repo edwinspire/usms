@@ -41,7 +41,7 @@ filteringselect.emit('onloaddata', {});
                 },
                 function(error){
                     // Display the error returned
-alert(error);
+filteringselect.emit('onnotify', {msg: error});
                 }
             );
 

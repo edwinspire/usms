@@ -17,6 +17,37 @@
                     "query": "" 
                 } 
             } 
+        },
+         "button": {
+            "displayName": "Button" ,
+            "states": {
+                "Normal": {
+                	"elements":{ 
+                     	"$root": [ 
+							"$std_10"
+                 		]
+                    },
+                    "selectors": {
+                        ".claro button": [
+                            "$std_10" 
+                        ] 
+                    },
+                    "query": "" 
+                },
+                "Hover": {
+                	"elements":{ 
+                     	"$root": [ 
+							"$std_10"
+                 		]
+                    },
+                    "selectors": {
+                        ".claro button:hover": [
+                            "$std_10" 
+                        ] 
+                    },
+                    "query": "button"
+                }  
+            } 
         } 
     },
     "dijit": {
@@ -161,7 +192,7 @@
 				},
 				"Hover": {
 					"selectors": {
-						".claro .dijitCalendarHover" : [
+						".claro .dijitCalendarHover, .claro .dijitCalendarActive, .claro .dijitCalendar:hover" : [
                             "background-color",
 							"border-color"
                         ],
@@ -813,6 +844,13 @@
                     }
                 },
 				"Hover": {
+					"selectors": {
+						".claro .dijitCalendarHover, .claro .dijitCalendarActive, .claro .dijitCalendar:hover" : [
+	                            "background-color",
+								"border-color"
+	                        ]
+                    },
+                    "simulate": "dijitCalendarHover"
 				}
             },
             "subwidgets": {

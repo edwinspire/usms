@@ -1,0 +1,67 @@
+{
+	"id": "_usaga_account_user",
+	"name": "_usaga_account_user",
+	"spec": "1.0",
+	"version": "1.0",
+	"require": [
+		{
+			"type": "javascript",
+			"src": "dojo/dojo.js",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/Form",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/FilteringSelect",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/CheckBox",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/NumberSpinner",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/ComboBox",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/ValidationTextBox",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/Textarea",
+			"$library": "dojo"
+		},
+		{
+			"$library": "dojo",
+			"format": "amd",
+			"src": "_usaga_account_user/_usaga_account_user",
+			"type": "javascript-module"
+		}
+	],
+	"library": {
+		"dojo": {
+			"src": "../../dojo/dojo/dojo.js"
+		}
+	},
+	"content": "<div></div>"
+}

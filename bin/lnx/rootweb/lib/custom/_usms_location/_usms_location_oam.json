@@ -1,0 +1,31 @@
+{
+	"id": "_usms_location",
+	"name": "_usms_location",
+	"spec": "1.0",
+	"version": "1.0",
+	"require": [
+		{
+			"type": "javascript",
+			"src": "dojo/dojo.js",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/FilteringSelect",
+			"$library": "dojo"
+		},
+		{
+			"$library": "dojo",
+			"format": "amd",
+			"src": "_usms_location/_usms_location",
+			"type": "javascript-module"
+		}
+	],
+	"library": {
+		"dojo": {
+			"src": "../../dojo/dojo/dojo.js"
+		}
+	},
+	"content": "<div></div>"
+}

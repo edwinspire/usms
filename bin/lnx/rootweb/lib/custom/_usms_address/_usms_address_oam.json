@@ -1,0 +1,37 @@
+{
+	"id": "_usms_address",
+	"name": "_usms_address",
+	"spec": "1.0",
+	"version": "1.0",
+	"require": [
+		{
+			"type": "javascript",
+			"src": "dojo/dojo.js",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/Textarea",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/form/TextBox",
+			"$library": "dojo"
+		},
+		{
+			"$library": "dojo",
+			"format": "amd",
+			"src": "_usms_address/_usms_address",
+			"type": "javascript-module"
+		}
+	],
+	"library": {
+		"dojo": {
+			"src": "../../dojo/dojo/dojo.js"
+		}
+	},
+	"content": "<div></div>"
+}

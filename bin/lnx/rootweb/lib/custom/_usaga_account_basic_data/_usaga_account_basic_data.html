@@ -1,0 +1,59 @@
+<div>
+<div data-dojo-type="_common_basic_menubar/_common_basic_menubar" data-dojo-attach-point="idmenu"></div>
+<div data-dojo-type="dijit/form/Form" data-dojo-attach-point="form_data" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+    <div>
+            <input type="checkbox" data-dojo-type="dijit/form/CheckBox" data-dojo-attach-point="enable" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+      <div style="margin: 5px; display: inline-block; width: 75%;">
+        <label style="margin-right: 5px;">
+      Nombre:</label>
+        <select data-dojo-type="dijit/form/FilteringSelect" data-dojo-attach-point="account_select" value="0" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="required" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" style="width: 75%;" required="required" placeHolder="Seleccione un abonado de la lista o cree uno nuevo">
+          <option value="0">
+            Ninguno seleccionado</option>
+        </select>
+      </div>
+      <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 5px;">
+      Abonado:</label>
+        <input type="text" data-dojo-type="dijit/form/ValidationTextBox" data-dojo-attach-point="account" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" placeHolder="0000" value="0000" required="required"></input>
+      </div>
+      <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 5px;">
+        Grupo:</label>
+<select data-dojo-type="dijit/form/FilteringSelect" data-dojo-attach-point="idgroup" title="Grupo" value="0" name="idgroup" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="required" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" required="required">
+  <option value="0" selected="selected">
+    
+           Ninguno</option>
+</select>
+      </div>
+      <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 5px;">
+        Partición:</label>
+        <input type="text" data-dojo-type="dijit/form/NumberSpinner" data-dojo-attach-point="partition" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 40px;" value="0"></input>
+      </div>
+      <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 5px;">
+        Tipo de abonado:</label>
+        <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="idtype" value="0" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" >
+          <option value="0" selected="selected">
+            No definido</option>
+          <option value="1">
+            Domicilio</option>
+          <option value="2">
+            Local Comercial</option>
+          <option value="3">
+            Institución Educativa</option>
+          <option value="4">
+            Institución Pública</option>
+        </select>
+      </div>
+      <div>
+        <div style="margin: 3px;">
+          <label>
+          Nota:</label>
+          <textarea type="text" data-dojo-type="dijit/form/Textarea" data-dojo-attach-point="note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 

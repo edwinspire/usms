@@ -7,6 +7,9 @@
 
 require(["dojo/ready",  
 "dojo/on",
+'dojo/request', 
+'jspire/request/Xml',
+'jspire/form/DateTextBox',
 "dojox/xml/DomParser",
 'dojo/store/Memory',
 "dojo/Evented",
@@ -21,19 +24,21 @@ require(["dojo/ready",
 "gridx/modules/VirtualVScroller",
 "dojox/grid/cells/dijit",
 "dojox/data/XmlStore"
-], function(ready, on, DomParser, Memory, Evented, ItemFileReadStore, ItemFileWriteStore, Grid, Async, Focus, CellWidget, Edit, NumberTextBox, VirtualVScroller){
+], function(ready, on, request, RXml, jsDTb, DomParser, Memory, Evented, ItemFileReadStore, ItemFileWriteStore, Grid, Async, Focus, CellWidget, Edit, NumberTextBox, VirtualVScroller){
      ready(function(){
          // logic that requires that Dojo is fully initialized should go here
 
 /////////////////
 ///// BASIC /////
 // Account basic elements
-
-dojo.connect(dijit.byId('buttonsend'), 'onClick', function(e){
-LoadGrid();
-});
+jsDTb.addGetDateFunction(dijit.byId('datestart'));
+jsDTb.addGetDateFunction(dijit.byId('dateend'));
 
 var GridCalls = dijit.byId('gridxcallin');
+
+dojo.connect(dijit.byId('buttonsend'), 'onClick', function(e){
+GridCalls.Load();
+});
 
 	if (GridCalls) {
 /*
@@ -63,41 +68,41 @@ GridCalls.startup();
 }
 
 
-function getdate(iddijit){
-return dojo.date.locale.format(dijit.byId(iddijit).get('value'), {datePattern: "yyyy-MM-dd", selector: "date"});
-}
 
-function LoadGrid(){
 
-var store = new dojox.data.XmlStore({url: "usms_gettableincomingcalls_xml", sendQuery: true, rootItem: 'row'});
-
-var request = store.fetch({query: {datestart: getdate('datestart'), dateend: getdate('dateend')}, onComplete: function(itemsrow, r){
-
-var dataxml = new jspireTableXmlStore(store, itemsrow);
-
-numrows = itemsrow.length;
-
+GridCalls.Load= function(){
+//GridCalls.selected = [];
+            // Request the text file
+            request.get("view_incomingcalls_xml.usms", {
+	query: {datestart: dijit.byId('datestart')._getDate(), dateend: dijit.byId('dateend')._getDate()},
+            handleAs: "xml"
+        }).then(
+                function(response){
+var d = new RXml.getFromXhr(response, 'row');
 var myData = {identifier: "unique_id", items: []};
-
 var i = 0;
+numrows = d.length;
+if(numrows > 0){
 while(i<numrows){
 myData.items[i] = {
-unique_id:i,
-idincall: dataxml.getNumber(i, "idincall"),
-datecall: dataxml.getString(i, "datecall"),
-idport: dataxml.getNumber(i, "idport"),
-idphone: dataxml.getNumber(i, "idphone"),
-idmodem: dataxml.getNumber(i, "idmodem"),
-callaction: dataxml.getNumber(i, "callaction"),
-phone: dataxml.getStringB64(i, "phone"),
-flag1: dataxml.getNumber(i, "flag1"),
-flag2: dataxml.getNumber(i, "flag2"),
-flag3: dataxml.getNumber(i, "flag3"),
-flag4: dataxml.getNumber(i, "flag4"),
-flag5: dataxml.getNumber(i, "flag5"),
-note: dataxml.getStringB64(i, "note"),
+unique_id:i+1,
+idincall: d.getNumber(i, "idincall"),
+datecall: d.getString(i, "datecall"),
+idport: d.getNumber(i, "idport"),
+idphone: d.getNumber(i, "idphone"),
+idmodem: d.getNumber(i, "idmodem"),
+callaction: d.getNumber(i, "callaction"),
+phone: d.getStringFromB64(i, "phone"),
+flag1: d.getNumber(i, "flag1"),
+flag2: d.getNumber(i, "flag2"),
+flag3: d.getNumber(i, "flag3"),
+flag4: d.getNumber(i, "flag4"),
+flag5: d.getNumber(i, "flag5"),
+note: d.getStringFromB64(i, "note")
+
 };
 i++;
+}
 }
 
 ItemFileReadStore_1.clearOnClose = true;
@@ -107,13 +112,19 @@ ItemFileReadStore_1.clearOnClose = true;
 		GridCalls.store = null;
 		GridCalls.setStore(ItemFileReadStore_1);
 
-},
-onError: function(e){
-alert(e);
-}
-});
+//GridCalls.emit('onnotify', {msg: 'Se han cargado los datos'});
+
+                },
+                function(error){
+                    // Display the error returned
+GridCalls.emit('onnotify', {msg: error});
+                }
+            );
+
 
 }
+
+
 
      });
 });

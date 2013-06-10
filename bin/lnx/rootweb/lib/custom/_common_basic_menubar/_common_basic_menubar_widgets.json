@@ -1,0 +1,24 @@
+{
+	"version": "1.0",
+	"localPath": true,
+	"customWidgetSpec": 1,
+	"categories": {
+		"custom": {
+			"name": "Custom widget",
+			"description": "Custom widget",
+			"widgetClass": "dijit"
+		}
+	},
+	"widgets": [
+		{
+			"name": "_common_basic_menubar",
+			"description": "_common_basic_menubar",
+			"type": "_common_basic_menubar/_common_basic_menubar",
+			"category": "custom",
+			"iconLocal": true,
+			"icon": "app/davinci/img/maqetta.png"
+		}
+	],
+	"name": "_common_basic_menubar",
+	"longName": "_common_basic_menubar"
+}

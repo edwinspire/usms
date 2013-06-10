@@ -28,17 +28,29 @@ _6++;
 }
 return id;
 },startup:function(){
-if(this.domNode){
+var _7=function(_8){
+var _9=this.domNode&&this.domNode.ownerDocument&&this.domNode.ownerDocument.styleSheets;
+if(!_9){
+_9=[];
+}
+var _a=false;
+for(var ss=0;ss<_9.length;ss++){
+var _b=_9[ss];
+if(_b.href.indexOf("shapes.css")>=0&&_b.cssRules&&_b.cssRules.length>0){
+_a=true;
 this.resize();
 this._bboxStartup=this._bbox;
+break;
 }
-var _7=this;
-setTimeout(function(){
-if(_7.domNode&&_7.domNode.ownerDocument){
-_7.resize();
-_7._bboxStartup=_7._bbox;
 }
-},1000);
+if(!_a&&_8<10){
+setTimeout(function(_c){
+_7(++_c);
+}.bind(this,_8),1000);
+}
+}.bind(this);
+var _d=0;
+_7(_d);
 },resize:function(){
 this._resize();
 },_resize:function(){
@@ -52,44 +64,44 @@ this.createGraphics();
 if(!this._isDisplayed(this._g)){
 return;
 }
-var _8=this._g.getBBox();
+var _e=this._g.getBBox();
 if(this.adjustBBox_Widget){
-this.adjustBBox_Widget(_8);
+this.adjustBBox_Widget(_e);
 }
-var _9=this._bbox;
-var x=_8.x,y=_8.y,w=_8.width,h=_8.height;
-this._bbox=_8;
+var _f=this._bbox;
+var x=_e.x,y=_e.y,w=_e.width,h=_e.height;
+this._bbox=_e;
 if(!this._bboxStartup){
 this._bboxStartup=this._bbox;
 }
-var _a=dojo.style(this.domNode,"stroke-width");
-if(_a<1){
-_a=1;
+var _10=dojo.style(this.domNode,"strokeWidth");
+if(_10<1){
+_10=1;
 }
-this._xoffset=this._yoffset=_a;
-var _b=_a*2;
+this._xoffset=this._yoffset=_10;
+var _11=_10*2;
 x-=this._xoffset;
-w+=_b;
+w+=_11;
 y-=this._yoffset;
-h+=_b;
+h+=_11;
 this._svgroot.setAttribute("viewBox",x+" "+y+" "+w+" "+h);
 this._svgroot.style.width=w+"px";
 this._svgroot.style.height=h+"px";
 this.domNode.style.width=w+"px";
 this.domNode.style.height=h+"px";
-var _c=dojo.style(this.domNode,"display");
-if(_c!="none"&&_c!="block"&&_c!="inline-block"){
+var _12=dojo.style(this.domNode,"display");
+if(_12!="none"&&_12!="block"&&_12!="inline-block"){
 this.domNode.style.display="inline-block";
 }
-},_isDisplayed:function(_d){
-if(!_d||!_d.ownerDocument||!_d.ownerDocument.defaultView){
+},_isDisplayed:function(_13){
+if(!_13||!_13.ownerDocument||!_13.ownerDocument.defaultView){
 return false;
 }
-var _e=_d.ownerDocument.defaultView;
-var n=_d;
+var win=_13.ownerDocument.defaultView;
+var n=_13;
 while(n&&n.tagName!="BODY"){
-var _f=_e.getComputedStyle(n,"");
-if(_f.display=="none"){
+var _14=win.getComputedStyle(n,"");
+if(_14.display=="none"){
 return false;
 }
 n=n.parentNode;

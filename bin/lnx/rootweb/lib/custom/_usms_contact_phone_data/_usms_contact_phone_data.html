@@ -1,0 +1,52 @@
+<div>
+<div data-dojo-type="_common_basic_menubar/_common_basic_menubar" data-dojo-attach-point="menubar"></div>
+<div data-dojo-type="dijit/form/Form" data-dojo-attach-point="Formulario" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+  <div style="margin: 2px;">
+    <span style="margin: 5px;"><label data-dojo-attach-point="label_12" style="margin: 2px;">
+      Habilitado:</label>
+    <input type="checkbox" data-dojo-type="dijit/form/CheckBox" data-dojo-attach-point="Enable" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+    </span><span style="margin: 2px;"><label style="margin: 2px;">
+      Teléfono:</label>
+    <input type="text" data-dojo-type="dijit/form/ValidationTextBox" data-dojo-attach-point="Phone" title="N&amp;uacute;mero telef&amp;oacute;nico" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="true" invalidMessage="$_unset_$" state="Incomplete"></input>
+    </span><span style="margin: 2px;"><label style="margin: 2px;">
+      Extensión:</label>
+    <input type="text" data-dojo-type="dijit/form/ValidationTextBox" data-dojo-attach-point="PhoneExt" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" state="Incomplete"></input>
+    </span><span style="margin: 2px;"><label style="margin: 2px;">
+      Tipo de teléfono:</label>
+    <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="TypePhone" value="0" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
+      <option value="0">
+        No definido</option>
+      <option value="1">
+        Fijo</option>
+      <option value="2">
+        Móvil</option>
+    </select>
+    </span><span style="margin: 2px;"><label style="margin: 2px;">
+      Ubicación:</label>
+    <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="UbiPhone" value="0" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
+      <option value="0">
+        No definido</option>
+      <option value="1">
+        Domicilio</option>
+      <option value="2">
+        Trabajo</option>
+      <option value="3">
+        Oficina</option>
+      <option value="4">
+        Móvil</option>
+    </select>
+    </span><span style="margin: 2px;"><label style="margin: 2px;">
+Proveedor:</label>
+<select data-dojo-type="dijit/form/FilteringSelect" data-dojo-attach-point="Provider" value="0" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
+  <option value="0">
+    Ninguno</option>
+</select>
+</span>
+    <div style="padding: 3px;">
+      <label>
+        Nota:</label>
+      <textarea type="text" data-dojo-type="dijit/form/Textarea" data-dojo-attach-point="Note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%; display: block;"></textarea>
+    </div>
+  </div>
+</div>
+</div>

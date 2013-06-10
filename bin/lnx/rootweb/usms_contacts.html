@@ -1,331 +1,120 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="utf-8"/>
 <title>uSMS - Contactos (Personas)</title>
-<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'},{'name':'_usaga_account_user_times','location':'../../custom/_usaga_account_user_times'},{'name':'_usms_contact_phone_data','location':'../../custom/_usms_contact_phone_data'},{'name':'_usms_location_address','location':'../../custom/_usms_location_address'},{'name':'_common_basic_menubar','location':'../../custom/_common_basic_menubar'},{'name':'_usaga_account_contact','location':'../../custom/_usaga_account_contact'},{'name':'_usaga_menu_header','location':'../../custom/_usaga_menu_header'},{'name':'_usms_menu_header','location':'../../custom/_usms_menu_header'},{'name':'_usaga_account_times','location':'../../custom/_usaga_account_times'},{'name':'_usms_handshake','location':'../../custom/_usms_handshake'},{'name':'_usaga_account_user_time_day','location':'../../custom/_usaga_account_user_time_day'},{'name':'_usms_address','location':'../../custom/_usms_address'},{'name':'_common_notification_area','location':'../../custom/_common_notification_area'},{'name':'_usms_contact_data','location':'../../custom/_usms_contact_data'},{'name':'_common_tooltipdialogconfirmation','location':'../../custom/_common_tooltipdialogconfirmation'},{'name':'_usms_parity','location':'../../custom/_usms_parity'},{'name':'_usms_location','location':'../../custom/_usms_location'},{'name':'_common_titlebar','location':'../../custom/_common_titlebar'},{'name':'_usms_mappoint','location':'../../custom/_usms_mappoint'},{'name':'_usms_locations_toolbar_edit','location':'../../custom/_usms_locations_toolbar_edit'},{'name':'_usaga_account_basic_data','location':'../../custom/_usaga_account_basic_data'},{'name':'_usaga_account_user','location':'../../custom/_usaga_account_user'},{'name':'_usms_stopbits','location':'../../custom/_usms_stopbits'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[],'mblLoadCompatPattern':''"></script>
 <script type="text/javascript">
 require([
   "dijit/dijit",
   "dojo/parser",
   "maqetta/space",
   "maqetta/AppStates",
-  "dijit/layout/BorderContainer",
+  "_usms_menu_header/_usms_menu_header",
+  "dijit/MenuBar",
+  "dijit/Menu",
+  "dijit/MenuItem",
+  "dijit/PopupMenuBarItem",
+  "dijit/layout/TabContainer",
   "dijit/layout/ContentPane",
   "dijit/Toolbar",
   "dijit/form/Button",
+  "_common_titlebar/_common_titlebar",
+  "_common_basic_menubar/_common_basic_menubar",
+  "dijit/form/FilteringSelect",
+  "_usaga_account_basic_data/_usaga_account_basic_data",
+  "dijit/form/Form",
+  "dijit/form/CheckBox",
+  "dijit/form/ValidationTextBox",
+  "dijit/form/NumberSpinner",
+  "dijit/form/ComboBox",
+  "dijit/form/Textarea",
+  "_common_tooltipdialogconfirmation/_common_tooltipdialogconfirmation",
+  "_usms_location/_usms_location",
+  "_usms_address/_usms_address",
+  "_usaga_account_times/_usaga_account_times",
+  "dijit/layout/BorderContainer",
   "dojox/io/xhrScriptPlugin",
-  "dojo/data/ItemFileReadStore",
+  "dojo/data/ItemFileWriteStore",
+  "dojo/data/ItemFileWriteStore",
   "gridx/Grid",
   "gridx/core/model/cache/Async",
   "dojox/data/CsvStore",
-  "dijit/layout/TabContainer",
+  "gridx/modules/Focus",
+  "gridx/modules/CellWidget",
+  "gridx/modules/Edit",
+  "gridx/modules/RowHeader",
+  "gridx/modules/select/Row",
+  "gridx/modules/IndirectSelect",
+  "gridx/modules/extendedSelect/Row",
+  "gridx/modules/VirtualVScroller",
+  "_usaga_account_contact/_usaga_account_contact",
   "dijit/form/TextBox",
-  "dijit/form/CheckBox",
+  "_usms_location_address/_usms_location_address",
+  "dijit/form/TimeTextBox",
   "dijit/form/Select",
-  "dijit/form/ValidationTextBox",
-  "dijit/form/SimpleTextarea",
-  "dijit/form/Textarea",
-  "dijit/form/ComboBox",
-  "dojo/data/ItemFileWriteStore",
-  "dijit/form/DateTextBox",
   "dijit/form/NumberTextBox",
-  "dijit/form/FilteringSelect",
-  "dijit/MenuBar",
-  "dijit/PopupMenuBarItem",
-  "dijit/Menu",
-  "dijit/MenuItem",
-  "widgets/usms/wlocation",
-  "widgets/usms/waddress",
-  "widgets/widgetspire/tooltipdialogconfirmation",
-"dojo/request",
-'dojo/store/Memory',
-  "widgets/widgetspire/notify_messages",
-  "widgets/usms/usms_header"
+  "_common_notification_area/_common_notification_area",
+  "_usaga_account_user/_usaga_account_user",
+  "_usaga_account_user_times/_usaga_account_user_times",
+  "_usaga_account_user_time_day/_usaga_account_user_time_day",
+  "dijit/form/DateTextBox",
+  "dijit/TooltipDialog",
+  "dijit/MenuSeparator",
+  "dojo/data/ItemFileReadStore",
+  "dijit/Dialog",
+  "_usms_contact_data/_usms_contact_data",
+  "_usms_contact_phone_data/_usms_contact_phone_data"
 ]);
 </script>
 <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";@import "app.css";
 </style>
 <script type="text/javascript" src="usms_contacts.js"></script>
 </head>
-<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-comptype="desktop" data-maq-appstates="{}" id="myapp">
+<body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-comptype="desktop" id="myapp" data-maq-appstates="{}">
 
  <div style="width: 100%; height: 100%;">
 
- <div data-dojo-type="usms.usms_header" style="background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, right top, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(to right,#f1f1f1 40%, #f8f8f8);"></div>
-
-<div class="dijitTitlePaneTitle">
-   <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
-     CONTACTOS</label>
- </div>
-  <div style="width: 100%; height: 90%;">
-   <div data-dojo-type="dijit.layout.BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
-     <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" doLayout="false" style="width:147px;">
+ <div data-dojo-type="_usms_menu_header/_usms_menu_header"></div>
+<div data-dojo-type="_common_titlebar/_common_titlebar" id="id_titlebar_master"></div>
+<div style="width: 100%; height: 90%;">
+   <div data-dojo-type="dijit/layout/BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+     <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" doLayout="false" style="width:147px;">
       <div style="width: 100%; height: 100%;">
-       <div class="dijitTitlePaneTitle">
-      <label style="position: relative; top: 2px; bottom: 2px; display: inline-block; left: 2px;">
-          Lista</label>
-      </div>
-       <div style="width: 100%; height: 90%;"><span data-dojo-type="dojo.data.ItemFileWriteStore" id="ItemFileReadStore_2" jsId="usms_contacts_ItemFileReadStore" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span><table data-dojo-type="gridx.Grid" id="usms.contacts.gridx" title="Lista de todos los contactos registrados" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'enable',field:'enable'},{width:'auto',name:'title',field:'title'},{width:'auto',name:'name',field:'name'},{width:'auto',name:'note',field:'note'}], modules:['gridx/modules/Edit', 'gridx/modules/CellWidget'], store:usms_contacts_ItemFileReadStore"></table>
+       <div style="width: 100%; height: 90%;"><span data-dojo-type="dojo/data/ItemFileWriteStore" id="ItemFileReadStore_2" jsId="usms_contacts_ItemFileReadStore" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+<div data-dojo-type="_common_titlebar/_common_titlebar" id="id_titlebar_gridx_contacts"></div>
+<table data-dojo-type="gridx.Grid" id="usms.contacts.gridx" title="Lista de todos los contactos registrados" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'enable',field:'enable'},{width:'auto',name:'title',field:'title'},{width:'auto',name:'name',field:'name'},{width:'auto',name:'note',field:'note'}], modules:['gridx/modules/Edit', 'gridx/modules/CellWidget'], store:usms_contacts_ItemFileReadStore"></table>
 </div>
      </div>
     </div>
-     <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
-      <div style="width: 100%; height: 100%;"><div style="width: 100%; height: 98%;"><span data-dojo-type="dijit.layout.TabContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" controllerWidget="dijit.layout.TabController">
-<div data-dojo-type="dijit.layout.ContentPane" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false">
-   <div style="width: 100%; height: 100%;">
-     <span data-dojo-type="dijit.Toolbar"><input type="button" data-dojo-type="dijit.form.Button" id="usms.contact.new" title="Limpia todos los campos para agregar nuevo contacto" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitIconNewTask"></input>
-     <input type="button" data-dojo-type="dijit.form.Button" id="usms.contact.save" title="Guardar datos del contacto" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
-     <input type="button" data-dojo-type="dijit.form.Button" id="usms.contact.del" title="Eliminar contact actual" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
-   </span>
-     <form id="usms.contact.form">
-       <div style="min-height: 150px;">
-         <div style="width: auto; height: auto; display: inline-block;">
-           <input type="checkbox" data-dojo-type="dijit.form.CheckBox" id="usms.contact.enable" intermediateChanges="false" iconClass="dijitNoIcon"></input>
-           <label>
-             Habilitado</label>
-         </div>
-         <div style="width: auto; height: auto; display: inline-block;">
-           <div style="width: auto; height: auto; display: inline-block;">
-             <label>
-               Título:</label>
-             <select data-dojo-type="dijit.form.ComboBox" id="usms.contact.title" value="Sr." intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
-               <option value="Sr.">
-                 Sr.</option>
-               <option value="Sra.">
-                 Sra.</option>
-               <option value="Ing.">
-                 Ing.</option>
-               <option value="Dr.">
-                 Dr.</option>
-               <option value="Dra.">
-                 Dra.</option>
-             </select>
-           </div>
-           <label>
-             Nombre:</label>
-           <input type="text" data-dojo-type="dijit.form.TextBox" id="usms.contact.firstname" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
-         </div>
-         <div style="width: auto; height: auto; display: block;">
-           <label>
-             Apellido:</label>
-           <input type="text" data-dojo-type="dijit.form.TextBox" id="usms.contact.lastname" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
-           <div>
-             <label>
-               Fecha Nacimiento:</label>
-             <input type="text" data-dojo-type="dijit.form.DateTextBox" id="usms.contact.birthday" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo."></input>
-           </div>
-         </div>
-         <div style="width: auto; height: auto; display: inline-block;">
-           <label>
-             Género:</label>
-           <select data-dojo-type="dijit.form.Select" id="usms.contact.gender" type="text" value="0" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
-             <option value="0" selected="true">
-               
-               
-              
-             
-             
-             
-            No Establecido</option>
-             <option value="1">
-               
-               
-              
-             
-             
-             
-            Hombre</option>
-             <option value="2">
-               
-               
-              
-             
-             
-             
-            Mujer</option>
-           </select>
-         </div>
-         <div style="width: auto; height: auto; display: inline-block;">
-           <label>
-             Tipo de identificación:</label>
-           <select data-dojo-type="dijit.form.Select" id="usms.contact.typeidentification" type="text" value="0" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
-             <option value="0" selected="true">
-               
-               
-              
-             
-             
-             
-            No definido</option>
-             <option value="1">
-               
-               
-              
-             
-             
-             
-            Cédula de identidad</option>
-             <option value="2">
-               
-               
-              
-             
-             
-             
-            Pasaporte</option>
- <option value="3">
-               
-               
-              
-             
-             
-             
-            RUT</option>
-           </select>
-         </div>
-         <div style="width: auto; height: auto; display: inline-block;">
-           <label>
-             Identificación:</label>
-           <input type="text" data-dojo-type="dijit.form.TextBox" id="usms.contact.identification" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
-         </div>
-         <div style="width: auto; height: auto; display: inline-block;">
-           <label>
-             web:</label>
-           <input type="text" data-dojo-type="dijit.form.ValidationTextBox" id="usms.contact.web" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$"></input>
-         </div>
-         <div style="width: auto; height: auto; display: inline-block;">
-           <label>
-             email-1:</label>
-           <input type="text" data-dojo-type="dijit.form.ValidationTextBox" id="usms.contact.email1" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$"></input>
-         </div>
-         <div style="width: auto; height: auto; display: inline-block;">
-           <label>
-             email-2:</label>
-           <input type="text" data-dojo-type="dijit.form.ValidationTextBox" id="usms.contact.email2" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$"></input>
-         </div>
-         <div style="height: auto; display: inline-block; width: 100%;">
-           <label>
-             Nota:</label>
-           <br></br>
-           <textarea type="text" data-dojo-type="dijit.form.Textarea" id="usms.contact.note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
-         </div>
-       </div>
-     </form>
-   </div>
+     <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
+      <div style="width: 100%; height: 100%;"><div style="width: 100%; height: 98%;"><span data-dojo-type="dijit/layout/TabContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" controllerWidget="dijit.layout.TabController">
+<div data-dojo-type="dijit/layout/ContentPane" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false">
+   <div data-dojo-type="_usms_contact_data/_usms_contact_data" id="ContactData"></div>
  </div>
- <div data-dojo-type="dijit.layout.ContentPane" title="Direccion" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" closable="false">
-   <div style="width: 100%; height: 100%;">
-     <span data-dojo-type="dijit.Toolbar">
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.address" title="Guarda la direccion del contacto" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.delete.contact.address" title="Elimina la dirección del contact" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.map.contact.address" tabIndex="-1" intermediateChanges="false" label="Mapa" iconClass="dijitNoIcon"></input>
-</span>
-<div data-dojo-type="usms.wlocation" id="idwlocationcontact"></div>
-<div data-dojo-type="usms.waddress" id="idwaddresscontact"></div>
+ <div data-dojo-type="dijit/layout/ContentPane" title="Direccion" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" closable="false">
+            <div style="width: 100%; height: 100%"><div data-dojo-type="_usms_location_address/_usms_location_address" id="idwlocationcontact"></div></div>
 </div>
- </div>
- <div data-dojo-type="dijit.layout.ContentPane" title="Tel&amp;eacute;fonos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false">
+ <div data-dojo-type="dijit/layout/ContentPane" title="Tel&amp;eacute;fonos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false">
    <div style="width: 100%; height: 100%;">
-     <div data-dojo-type="dijit.layout.BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
-       <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 178px;">
+     <div data-dojo-type="dijit/layout/BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+       <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 178px;">
          <div style="width: 100%; height: 100%;">
            <span data-dojo-type="dojo.data.ItemFileReadStore" id="ItemFileReadStore_3" jsId="ItemFileReadStore_contactphones" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
            <table data-dojo-type="gridx.Grid" id="usms.contact.phone.grid" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'}], modules:['gridx/modules/Edit', 'gridx/modules/CellWidget'],store:ItemFileReadStore_contactphones"></table>
          </div>
        </div>
-       <div data-dojo-type="dijit.layout.ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity">
+       <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity">
          <div style="width: 100%; height: 100%;">
-           <span data-dojo-type="dijit.layout.TabContainer" tabStrip="false" persist="false" controllerWidget="dijit.layout.TabController" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;">
-<div data-dojo-type="dijit.layout.ContentPane" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false">
-<span data-dojo-type="dijit.Toolbar">
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.newtelf" title="Limpia todos los campos para agregar nuevo contacto" tabIndex="-1" intermediateChanges="false" label="Nuevo" iconClass="dijitIconNewTask"></input>
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.savetelf" title="Guardar datos del contacto" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.deltelf" title="Eliminar contact actual" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
-</span><div style="width: 100%; height: 100%;">
-    <form id="usms.phones.formdata" style="min-height: 150px; width: 100%; height: auto;">
-      <div style="display: inline-block;">
-        <label>
-          Habilitado:</label>
-        <input type="checkbox" data-dojo-type="dijit.form.CheckBox" id="usms.phones.enable" name="usms_phones_enable" intermediateChanges="false" iconClass="dijitNoIcon"></input>
-      </div>
-      <div style="display: inline-block;">
-        <label>
-          Teléfono:</label>
-        <input type="text" data-dojo-type="dijit.form.TextBox" id="usms.phones.phone" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
-      </div>
-      <div style="display: inline-block;">
-        <label>
-          Extensión:</label>
-        <input type="text" data-dojo-type="dijit.form.TextBox" id="usms.phones.ext" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" selectOnClick="false"></input>
-      </div>
-      <div style="display: inline-block;">
-        <label>
-          Tipo:</label>
-        <select data-dojo-type="dijit.form.Select" id="usms.phones.typephone" type="text" value="0" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
-          <option value="0" selected="true">
-            
-                       
-                     No especificado</option>
-          <option value="1">
-            
-                       
-                     Movil</option>
-          <option value="2">
-            
-                       
-                     Fijo</option>
-        </select>
-      </div>
-      <div>
-        <label>
-          Ubicación:</label>
-        <select data-dojo-type="dijit.form.Select" id="usms.phones.ubiphone" type="text" value="0" intermediateChanges="false" iconClass="dijitNoIcon" emptyLabel="&amp;#160;" scrollOnFocus="true" autoWidth="true">
-          <option value="0" selected="true">
-            
-                       
-                     Domicilio</option>
-          <option value="1">
-            
-                       
-                     Trabajo</option>
-          <option value="2">
-            
-                       
-                     Oficina</option>
-          <option value="2">
-            
-                       
-                     Movil</option>
-        </select>
-      </div>
-      <div style="display: inline-block;">
-        <label>
-          Proveedor:</label>
-        <select data-dojo-type="dijit.form.FilteringSelect" id="usms.phones.provider" value="Item 1" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="true" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
-          <option value="Item 1">
-            Item 1</option>
-        </select>
-      </div>
-      <div>
-        <label style="width: 100%; display: block;">
-          Nota:</label>
-        <textarea type="text" data-dojo-type="dijit.form.Textarea" id="usms.phones.note" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
-      </div>
-    </form>
-  </div>
-</div>
-<div data-dojo-type="dijit.layout.ContentPane" title="Direcci&amp;oacute;n" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false">
-  <span data-dojo-type="dijit.Toolbar">
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.saveaddresstelf" title="Guardar" tabIndex="-1" intermediateChanges="false" label="Guardar" iconClass="dijitIconSave"></input>
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.deladdresstelf" title="Eliminar" tabIndex="-1" intermediateChanges="false" label="Eliminar" iconClass="dijitIconDelete"></input>
-<input type="button" data-dojo-type="dijit.form.Button" id="usms.save.contact.maptelf" title="Mostrar en Google-Maps" tabIndex="-1" intermediateChanges="false" label="Mapa"></input>
-</span><div style="width: 100%; height: 100%;">
-    <div data-dojo-type="usms.wlocation" id="idwlocationtelf"></div>
-    <div data-dojo-type="usms.waddress" id="idwaddresstelf"></div>
-  </div>
-</div>
-</span>
+           <span data-dojo-type="dijit/layout/TabContainer" tabStrip="false" persist="false" controllerWidget="dijit.layout.TabController" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;">
+<div data-dojo-type="dijit/layout/ContentPane" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false">
+             <div data-dojo-type="_usms_contact_phone_data/_usms_contact_phone_data" id="PhoneData"></div>
+           </div>
+           <div data-dojo-type="dijit/layout/ContentPane" title="Direcci&amp;oacute;n" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false">
+            <div data-dojo-type="_usms_location_address/_usms_location_address" id="idwlocationtelf" style="width: 100%; height: 100%;"></div>
+          </div>
+           </span>
          </div>
        </div>
      </div>
@@ -337,13 +126,14 @@ require([
    </div>
  </div>
 </div>
- <div id="dialogconfirmdeletecontact" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
- <div id="dialogconfirmdeletecontactaddress" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
- <div id="dialogconfirmdeletecontactphone" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
- <div id="dialogconfirmdeletecontactaddressphone" data-dojo-type="widgetspire.tooltipdialogconfirmation" style="display: none !important;"></div>
- <div id="notify" data-dojo-type="widgetspire.notify_messages" style="display: block !important;"></div>
+
+ <div id="dialogconfirmdeletecontactaddress" data-dojo-type="_common_tooltipdialogconfirmation/_common_tooltipdialogconfirmation" style="display: none !important;"></div>
+ <div id="dialogconfirmdeletecontactaddressphone" data-dojo-type="_common_tooltipdialogconfirmation/_common_tooltipdialogconfirmation" style="display: none !important;"></div>
+ <div id="notify" data-dojo-type="_common_notification_area/_common_notification_area" style="display: block !important;"></div>
 </body>
 </html>
+
+
 
 
 

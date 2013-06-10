@@ -248,6 +248,10 @@ Aes.Ctr.encrypt = function(plaintext, password, nBits) {
   return ciphertext;
 }
 
+Aes.encrypt = function(plaintext, password, nBits) {
+return Aes.Ctr.encrypt(plaintext, password, nBits);
+}
+
 /** 
  * Decrypt a text encrypted by AES in counter mode of operation
  *
@@ -311,6 +315,10 @@ Aes.Ctr.decrypt = function(ciphertext, password, nBits) {
   
   //alert((new Date()) - t);
   return plaintext;
+}
+
+Aes.Ctr.decrypt = function(ciphertext, password, nBits) {
+return Aes.Ctr.decrypt(ciphertext, password, nBits);
 }
 
 

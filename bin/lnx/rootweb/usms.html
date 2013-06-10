@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>uSMS WebAdmin</title>
-<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}]"></script>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'},{'name':'_usms_address','location':'../../custom/_usms_address'},{'name':'_common_tooltipdialogconfirmation','location':'../../custom/_common_tooltipdialogconfirmation'},{'name':'_usms_location','location':'../../custom/_usms_location'},{'name':'_common_notification_area','location':'../../custom/_common_notification_area'},{'name':'_usms_menu_header','location':'../../custom/_usms_menu_header'},{'name':'_usaga_account_user_times','location':'../../custom/_usaga_account_user_times'},{'name':'_usaga_menu_header','location':'../../custom/_usaga_menu_header'},{'name':'_usaga_account_times','location':'../../custom/_usaga_account_times'},{'name':'_usaga_account_basic_data','location':'../../custom/_usaga_account_basic_data'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[],'mblLoadCompatPattern':''"></script>
 <script type="text/javascript">
 require([
   "dijit/dijit",
@@ -11,18 +11,17 @@ require([
   "maqetta/space",
   "maqetta/AppStates",
   "dijit/MenuBar",
-  "dijit/PopupMenuBarItem",
   "dijit/Menu",
   "dijit/MenuItem",
-  "widgets/usms/usms_header"
+  "dijit/PopupMenuBarItem",
+  "_usms_menu_header/_usms_menu_header"
 ]);
 </script>
 <style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";
 </style>
 </head>
 <body class="claro" data-maq-flow-layout="true" data-maq-ws="collapse" data-maq-comptype="desktop" data-maq-appstates="{}" id="myapp">
- <div data-dojo-type="usms.usms_header" style="background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, right top, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(to right,#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(to right,#f1f1f1 40%, #f8f8f8);"></div>
- <div style="height: 161px; width: 100%; background-color: #f1f1f1; background-image: -webkit-gradient(linear, left top, left bottom, to(#f8f8f8), color-stop(40%, #f1f1f1)); background-image: -o-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: -ms-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: -moz-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: -webkit-linear-gradient(#f1f1f1 40%, #f8f8f8); background-image: linear-gradient(#f1f1f1 40%, #f8f8f8);"></div>
+ <div data-dojo-type="_usms_menu_header/_usms_menu_header"></div>
 </body>
 </html>
 

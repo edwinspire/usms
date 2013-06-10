@@ -1,0 +1,24 @@
+{
+	"version": "1.0",
+	"localPath": true,
+	"customWidgetSpec": 1,
+	"categories": {
+		"custom": {
+			"name": "Custom widget",
+			"description": "Custom widget",
+			"widgetClass": "dijit"
+		}
+	},
+	"widgets": [
+		{
+			"name": "_usms_location",
+			"description": "_usms_location",
+			"type": "_usms_location/_usms_location",
+			"category": "custom",
+			"iconLocal": true,
+			"icon": "app/davinci/img/maqetta.png"
+		}
+	],
+	"name": "_usms_location",
+	"longName": "_usms_location"
+}

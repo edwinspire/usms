@@ -1,0 +1,45 @@
+<div>
+  <div data-dojo-type="dijit/form/Form" data-dojo-attach-point="Formulario" style="min-width: 1em; min-height: 1em; width: 100%; height: auto;">
+    <div style="width: 100%; height: 300px;">
+ <div style="text-align: center;" data-dojo-attach-point="divname">
+  <label style="font-size: 1.5em; font-weight: bold;" data-dojo-attach-point="name">
+    Ningún contacto seleccionado</label>
+</div>
+      <select data-dojo-type="dijit/form/FilteringSelect" data-dojo-attach-point="listcontactsnew" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" required="required" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200" style="width: 100%; display: none;">
+      </select>
+      <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+          Habilitado:</label>
+        <input type="checkbox" data-dojo-type="dijit/form/CheckBox" data-dojo-attach-point="enable" intermediateChanges="false" iconClass="dijitNoIcon"></input>
+      </div>
+      <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+          Prioridad:</label>
+        <input type="text" data-dojo-type="dijit/form/NumberSpinner" data-dojo-attach-point="priority" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." style="width: 40px;" value="1"></input>
+      </div>
+      <div style="margin: 3px; display: inline-block;">
+        <label style="margin-right: 3px;">
+          Designación:</label>
+        <select data-dojo-type="dijit/form/ComboBox" data-dojo-attach-point="appointment" value="Propietario" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" pageSize="Infinity" searchDelay="200">
+              <option value="Propietario">
+                         Propietario</option>
+                       <option value="Administrador">
+                         Administrador</option>
+                       <option value="Empleado">
+                         Empleado</option>
+                       <option value="Vecino">
+                         Vecino</option>
+                       <option value="Guardia">
+                         Guardia</option>
+                       <option value="Gerente">
+                         Gerente</option>
+        </select>
+      </div>
+      <div>
+        <label>
+          Nota:</label>
+      </div>
+      <textarea type="text"  data-dojo-attach-point="note" data-dojo-type="dijit/form/Textarea" intermediateChanges="false" rows="3" trim="false" uppercase="false" lowercase="false" propercase="false" style="height: auto; width: 100%;"></textarea>
+    </div>
+  </div>
+</div>

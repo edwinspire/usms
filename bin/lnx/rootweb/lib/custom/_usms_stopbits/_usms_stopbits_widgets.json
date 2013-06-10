@@ -1,0 +1,24 @@
+{
+	"version": "1.0",
+	"localPath": true,
+	"customWidgetSpec": 1,
+	"categories": {
+		"custom": {
+			"name": "Custom widget",
+			"description": "Custom widget",
+			"widgetClass": "dijit"
+		}
+	},
+	"widgets": [
+		{
+			"name": "_usms_stopbits",
+			"description": "_usms_stopbits",
+			"type": "_usms_stopbits/_usms_stopbits",
+			"category": "custom",
+			"iconLocal": true,
+			"icon": "app/davinci/img/maqetta.png"
+		}
+	],
+	"name": "_usms_stopbits",
+	"longName": "_usms_stopbits"
+}

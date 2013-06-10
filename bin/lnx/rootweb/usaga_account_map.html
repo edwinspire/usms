@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>uSAGA - Account - Map</title>
+<script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'},{'name':'_usms_address','location':'../../custom/_usms_address'},{'name':'_usaga_account_user_time_day','location':'../../custom/_usaga_account_user_time_day'},{'name':'_usms_location_address','location':'../../custom/_usms_location_address'},{'name':'_common_tooltipdialogconfirmation','location':'../../custom/_common_tooltipdialogconfirmation'},{'name':'_common_basic_menubar','location':'../../custom/_common_basic_menubar'},{'name':'_usaga_account_contact','location':'../../custom/_usaga_account_contact'},{'name':'_usms_location','location':'../../custom/_usms_location'},{'name':'_common_notification_area','location':'../../custom/_common_notification_area'},{'name':'_usms_menu_header','location':'../../custom/_usms_menu_header'},{'name':'_common_titlebar','location':'../../custom/_common_titlebar'},{'name':'_usaga_account_user_times','location':'../../custom/_usaga_account_user_times'},{'name':'_usms_mappoint','location':'../../custom/_usms_mappoint'},{'name':'_usaga_menu_header','location':'../../custom/_usaga_menu_header'},{'name':'_usaga_account_times','location':'../../custom/_usaga_account_times'},{'name':'_usaga_account_basic_data','location':'../../custom/_usaga_account_basic_data'},{'name':'_usaga_account_user','location':'../../custom/_usaga_account_user'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[],'mblLoadCompatPattern':''"></script>
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "dojox/geo/openlayers/widget/Map",
+  "_usms_mappoint/_usms_mappoint",
+  "dijit/form/VerticalSlider",
+  "dijit/form/VerticalRule",
+  "dijit/form/VerticalRuleLabels"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "app.css";
+</style>
+<script type="text/javascript" src="usaga_account_map.js"></script>
+</head>
+<body data-maq-flow-layout="true" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" id="myapp" data-maq-appstates="{}">
+<div id="map" data-usaga-idaccount="0" style="background-color: #b5d0d0; width: 100%;  height: 100%; overflow: hidden;">
+<span>
+ <div data-dojo-type="dijit/form/VerticalSlider" id="id_zoom" intermediateChanges="false" discreteValues="Infinity" style="width: auto; height: 200px; position: absolute; z-index: 900; right: 0px; top: 0px; background-color: white; opacity: 0.85;" title="Zoom">
+   <div data-dojo-type="dijit/form/VerticalRule" container="rightDecoration" style="width: 5px;"></div>
+   <ol data-dojo-type="dijit/form/VerticalRuleLabels" container="rightDecoration" labels="0%,50%,100%" style="width: 3em;"></ol>
+ </div>
+</span></div>
+</body>
+</html>
+
+

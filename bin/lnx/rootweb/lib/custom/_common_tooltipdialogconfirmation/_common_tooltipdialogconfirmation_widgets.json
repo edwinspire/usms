@@ -1,0 +1,27 @@
+{
+	"version": "1.0",
+	"localPath": true,
+	"customWidgetSpec": 1,
+	"categories": {
+		"custom": {
+			"name": "Custom widget",
+			"description": "Custom widget",
+			"widgetClass": "dijit"
+		}
+	},
+	"widgets": [
+		{
+			"name": "_common_tooltipdialogconfirmation",
+			"description": "_common_tooltipdialogconfirmation",
+			"type": "_common_tooltipdialogconfirmation/_common_tooltipdialogconfirmation",
+			"category": "custom",
+			"iconLocal": true,
+			"icon": "app/davinci/img/maqetta.png",
+			"properties": {
+				"style": "display: none;"
+			}
+		}
+	],
+	"name": "_common_tooltipdialogconfirmation",
+	"longName": "_common_tooltipdialogconfirmation"
+}

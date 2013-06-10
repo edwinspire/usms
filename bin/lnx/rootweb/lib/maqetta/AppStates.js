@@ -919,6 +919,21 @@ States.prototype = {
 	},
 	
 	/**
+	 * Call JSON stringify on an object, make sure
+	 * all single quotes are escaped and replace double-quotes with single quotes
+	 */
+	stringifyWithQuotes: function(o){
+		str = JSON.stringify(o);
+		// Escape single quotes that aren't already escaped
+		str = str.replace(/(\\)?'/g, function($0, $1){ 
+			return $1 ? $0 : "\\'";
+		});
+		// Replace double quotes with single quotes
+		str = str.replace(/"/g, "'");
+		return str;
+	},
+	
+	/**
 	 * Convert the _maqAppStates and _maqDeltas properties on the given node into JSON-encoded strings.
 	 * @param {Element} node
 	 * @returns {object}  Object of form {maqAppStates:<string>,maqDeltas:<string>} 
@@ -927,23 +942,17 @@ States.prototype = {
 	 */
 	serialize: function(node) {
 		var that = this;
-		function munge(propval){
+		var munge = function(propval){
 			var str = null;
 			if(node[propval]){
 				var o = require("dojo/_base/lang").clone(node[propval]);
 				delete o["undefined"];
 				if (!that._isEmpty(o)) {
-					str = JSON.stringify(o);
-					// Escape single quotes that aren't already escaped
-					str = str.replace(/(\\)?'/g, function($0, $1){ 
-						return $1 ? $0 : "\\'";
-					});
-					// Replace double quotes with single quotes
-					str = str.replace(/"/g, "'");
+					str = this.stringifyWithQuotes(o);
 				}
 			}
 			return str;
-		}
+		}.bind(this);
 		var obj = {};
 		if (!node){
 			return obj;
@@ -1160,12 +1169,16 @@ States.prototype = {
 		return document;
 	},
 	
-	_shouldInitialize: function() {
-		var windowFrameElement = window.frameElement;
-		var isDavinciEditor = top.davinci && top.davinci.Runtime && (!windowFrameElement || windowFrameElement.dvContext);
-		return !isDavinciEditor;
+	/**
+	 * Returns true if AppStates.js should run its initialization logic.
+	 * If an editor that embeds this routine (e.g., the Maqetta page editor)
+	 * provides its own alternate initialization logic, then the editor
+	 * needs to set davinci.AppStatesDontInitialize to true before
+	 * AppStates.js is loaded and initialized.
+	 */
+	shouldInitialize: function() {
+		return !davinci.AppStatesDontInitialize;
 	},
-
 
 	/**
 	 * Returns all child elements for given Element
@@ -1215,7 +1228,7 @@ var singleton = davinci.states = new States();
 
 	singleton.initialize();
 	
-	if (singleton._shouldInitialize()) {
+	if (singleton.shouldInitialize()) {
 	
 		// Patch the dojo parse method to preserve states data
 		if (typeof require != "undefined") {

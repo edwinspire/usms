@@ -34,9 +34,11 @@ html,body {
 	width: 100%;
 }
 
-.objetoembed {
-	width: 600px;
-	max-width: 100%;
+.BorderContainerFullSize {
+    width: 100%;
+    height: 100%;
 }
 
- 
+.FullSize{
+width: 100%; height: 100%;
+}

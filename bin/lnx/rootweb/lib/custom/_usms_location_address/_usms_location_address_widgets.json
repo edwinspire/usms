@@ -1,0 +1,27 @@
+{
+	"version": "1.0",
+	"localPath": true,
+	"customWidgetSpec": 1,
+	"categories": {
+		"custom": {
+			"name": "Custom widget",
+			"description": "Custom widget",
+			"widgetClass": "dijit"
+		}
+	},
+	"widgets": [
+		{
+			"name": "_usms_location_address",
+			"description": "_usms_location_address",
+			"type": "_usms_location_address/_usms_location_address",
+			"category": "custom",
+			"iconLocal": true,
+			"icon": "app/davinci/img/maqetta.png",
+			"properties": {
+				"style": "width: 100%; height: 100%;"
+			}
+		}
+	],
+	"name": "_usms_location_address",
+	"longName": "_usms_location_address"
+}

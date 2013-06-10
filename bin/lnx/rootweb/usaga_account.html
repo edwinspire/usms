@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Micro Sistema Automatico de Gestion de Alarmas</title>
+<script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'},{'name':'_usms_address','location':'../../custom/_usms_address'},{'name':'_usaga_account_user_time_day','location':'../../custom/_usaga_account_user_time_day'},{'name':'_usms_location_address','location':'../../custom/_usms_location_address'},{'name':'_common_tooltipdialogconfirmation','location':'../../custom/_common_tooltipdialogconfirmation'},{'name':'_common_basic_menubar','location':'../../custom/_common_basic_menubar'},{'name':'_usaga_account_contact','location':'../../custom/_usaga_account_contact'},{'name':'_usms_location','location':'../../custom/_usms_location'},{'name':'_common_notification_area','location':'../../custom/_common_notification_area'},{'name':'_usms_menu_header','location':'../../custom/_usms_menu_header'},{'name':'_common_titlebar','location':'../../custom/_common_titlebar'},{'name':'_usaga_account_user_times','location':'../../custom/_usaga_account_user_times'},{'name':'_usms_mappoint','location':'../../custom/_usms_mappoint'},{'name':'_usaga_menu_header','location':'../../custom/_usaga_menu_header'},{'name':'_usaga_account_times','location':'../../custom/_usaga_account_times'},{'name':'_usaga_account_basic_data','location':'../../custom/_usaga_account_basic_data'},{'name':'_usaga_account_user','location':'../../custom/_usaga_account_user'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[],'mblLoadCompatPattern':''"></script>
+
+<script type="text/javascript">
+require([
+  "dijit/dijit",
+  "dojo/parser",
+  "maqetta/space",
+  "maqetta/AppStates",
+  "_usaga_menu_header/_usaga_menu_header",
+  "dijit/MenuBar",
+  "dijit/Menu",
+  "dijit/MenuItem",
+  "dijit/PopupMenuBarItem",
+  "dijit/layout/TabContainer",
+  "dijit/layout/ContentPane",
+  "dijit/Toolbar",
+  "dijit/form/Button",
+  "_common_titlebar/_common_titlebar",
+  "_common_basic_menubar/_common_basic_menubar",
+  "dijit/form/FilteringSelect",
+  "_usaga_account_basic_data/_usaga_account_basic_data",
+  "dijit/form/Form",
+  "dijit/form/CheckBox",
+  "dijit/form/ValidationTextBox",
+  "dijit/form/NumberSpinner",
+  "dijit/form/ComboBox",
+  "dijit/form/Textarea",
+  "_common_tooltipdialogconfirmation/_common_tooltipdialogconfirmation",
+  "_usms_location/_usms_location",
+  "_usms_address/_usms_address",
+  "_usaga_account_times/_usaga_account_times",
+  "dijit/layout/BorderContainer",
+  "dojox/io/xhrScriptPlugin",
+  "dojo/data/ItemFileWriteStore",
+  "dojo/data/ItemFileWriteStore",
+  "gridx/Grid",
+  "gridx/core/model/cache/Async",
+  "dojox/data/CsvStore",
+  "_usaga_account_contact/_usaga_account_contact",
+  "dijit/form/TextBox",
+  "_usms_location_address/_usms_location_address",
+  "dijit/form/TimeTextBox",
+  "dijit/form/Select",
+  "dijit/form/NumberTextBox",
+  "_common_notification_area/_common_notification_area",
+  "_usaga_account_user/_usaga_account_user",
+  "_usaga_account_user_times/_usaga_account_user_times",
+  "_usaga_account_user_time_day/_usaga_account_user_time_day",
+  "dijit/form/DateTextBox",
+  "dijit/TooltipDialog"
+]);
+</script>
+<style>@import "themes/claro/document.css";@import "themes/claro/claro.css";@import "lib/dojo/gridx/resources/claro/Gridx.css";@import "lib/dojo/gridx/resources/claro/Gridx_rtl.css";
+</style>
+<script type="text/javascript" src="usaga_account.js"></script>
+</head>
+<body class="claro" data-maq-flow-layout="true" data-maq-comptype="desktop" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+ <div id="divmaster" style="height: 100%; width: 100%;">
+   <div data-dojo-type="_usaga_menu_header/_usaga_menu_header" id="id_usaga_menu_header"></div>
+   <div data-dojo-type="_common_titlebar/_common_titlebar" id="id_account_titlebar"></div>
+<div id="id_usaga_account" style="height: 100%; width: 100%;">
+   <span data-dojo-type="dijit/layout/TabContainer" id="id_tagcontainer" tabStrip="false" persist="false" controllerWidget="dijit.layout.TabController" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;"><div data-dojo-type="dijit/layout/ContentPane" title="Principal" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false">
+     <div data-dojo-type="_usaga_account_basic_data/_usaga_account_basic_data" id="id_account_basic_data" style="width: 100%;"></div>
+   </div>
+   <div data-dojo-type="dijit/layout/ContentPane" id="ContentPaneLocaliz" title="Localizaci&amp;oacute;n" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false" style="width: 100%; overflow: hidden;">
+     <div data-dojo-type="_common_basic_menubar/_common_basic_menubar" id="id_account_location_menubar"></div>
+     <div data-dojo-type="_usms_location_address/_usms_location_address" id="id_account_location_widget" style="width: 100%;"></div>
+   </div>
+  <div data-dojo-type="dijit/layout/ContentPane" id="ContentPaneMapa" title="Mapa" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false" style="width: 100%; height: 100%; overflow: hidden;">
+<object id="id_locationmap" data="usaga_account_map.usaga?idaccount=0" style="background-color: #b5d0d0; width: 100%; height: 100%; overflow: hidden;">
+   </object>
+</div>
+   <div data-dojo-type="dijit/layout/ContentPane" id="ContentPaneTiempos" title="Tiempos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false" style="width: 100%; height: 100%; overflow: hidden;">
+     <div data-dojo-type="_common_basic_menubar/_common_basic_menubar" id="id_account_times_menubar"></div>
+     <div data-dojo-type="_usaga_account_times/_usaga_account_times" id="id_account_times_widget" style="width: 100%;"></div>
+   </div>
+   <div data-dojo-type="dijit/layout/ContentPane" id="ContentPaneContactos" title="Contactos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" selected="true" closable="false" style="width: 100%; height: 100%;">
+     <div style="width: 100%; height: 100%;">
+       <div data-dojo-type="dijit/layout/BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+         <div data-dojo-type="dijit/layout/ContentPane"  extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" region="left" splitter="true" maxSize="Infinity" style="width: 25%;">
+           <div data-dojo-type="_common_titlebar/_common_titlebar" id="id_account_contact_titlebar_grid"></div>
+           <span data-dojo-type="dijit/Toolbar">
+            <input type="button" data-dojo-type="dijit/form/Button" id="id_account_contact_notifygridx_popup" tabIndex="-1" intermediateChanges="false" label="Notificaciones" iconClass="dijitEditorIcon dijitEditorIconSelectAll"></input>
+           </span><span data-dojo-type="dojo/data/ItemFileWriteStore" jsId="id_account_contact_store" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[]}"></span>
+           <table data-dojo-type="gridx/Grid" id="id_account_contact_gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 90%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],  modules:['gridx/modules/VirtualVScroller', 'gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget',  'gridx/modules/RowHeader', 'gridx/modules/select/Row', 'gridx/modules/extendedSelect/Row', 'gridx/modules/IndirectSelect'], store:id_account_contact_store"></table>
+         </div>
+         <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" region="center" splitter="false" maxSize="Infinity">
+           <div style="width: 100%; height: 100%;">
+             <div data-dojo-type="_common_basic_menubar/_common_basic_menubar" id="id_account_contact_phonenotify_menubar"></div>
+            <span data-dojo-type="dijit/layout/TabContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 90%;" controllerWidget="dijit.layout.TabController">
+<div data-dojo-type="dijit/layout/ContentPane" id="id_account_contact_widget" title="Datos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false" doLayout="false" style="width: 100%;">
+               <div data-dojo-type="_usaga_account_contact/_usaga_account_contact" id="id_account_contact_widgetx" style="width: 100%;"></div>
+             </div>
+             <div data-dojo-type="dijit/layout/ContentPane" title="Tel&amp;eacute;fonos Notificaciones" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false" doLayout="false">
+               <div style="width: 100%; height: 100%;">
+  <span data-dojo-type="dijit/Toolbar">
+<input type="button" data-dojo-type="dijit/form/Button" id="id_account_contact_phonenotify_notifycations_popup" tabIndex="-1" intermediateChanges="false" label="Notificaciones" iconClass="dijitEditorIcon dijitEditorIconSelectAll"></input>
+                 <input type="button" data-dojo-type="dijit/form/Button" id="id_account_contact_phonenotify_eventtypes_popup" title="Selecciona los eventos para los cuales se enviar&amp;aacute;n notificaciones. " tabIndex="-1" intermediateChanges="false" label="En Eventos Determinados" iconClass="dijitNoIcon"></input>
+                 </span><span data-dojo-type="dojo/data/ItemFileWriteStore" jsId="ItemFileWriteStore_B" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+                 <table data-dojo-type="gridx/Grid" id="id_account_contact_phonenotify_gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 75%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}], modules:['gridx/modules/VirtualVScroller', 'gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget',  'gridx/modules/RowHeader', 'gridx/modules/select/Row', 'gridx/modules/extendedSelect/Row', 'gridx/modules/IndirectSelect'], store:ItemFileWriteStore_B"></table>
+               </div>
+             </div>
+             </span>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div data-dojo-type="dijit/layout/ContentPane" id="ContentPaneUsers" title="Usuarios" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false" style="width: 100%; height: 100%;">
+     <div style="width: 100%; height: 100%;">
+       <div data-dojo-type="dijit/layout/BorderContainer" design="sidebar" persist="false" gutters="true" style="min-width: 1em; min-height: 1px; z-index: 0; width: 100%; height: 100%;">
+         <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="left" splitter="true" maxSize="Infinity" style="width: 25%;" doLayout="false">
+           <div style="width: 100%; height: 100%;">
+             <div data-dojo-type="_common_titlebar/_common_titlebar" id="id_account_user_gridx_titlebar"></div>
+       <span data-dojo-type="dojo/data/ItemFileWriteStore" id="ItemFileWriteStore_3" jsId="ItemFileWriteStore_3" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+             <table data-dojo-type="gridx/Grid" id="id_account_user_gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 75%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}], modules:['gridx/modules/VirtualVScroller', 'gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget',  'gridx/modules/RowHeader', 'gridx/modules/select/Row', 'gridx/modules/extendedSelect/Row', 'gridx/modules/IndirectSelect'], store:ItemFileWriteStore_3"></table>
+           </div>
+         </div>
+         <div data-dojo-type="dijit/layout/ContentPane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" region="center" splitter="false" maxSize="Infinity" doLayout="false">
+           <div style="width: 100%; height: 100%;">
+       <span data-dojo-type="dijit/layout/TabContainer" style="min-width: 1em; min-height: 1em; width: 100%; height: 90%;" controllerWidget="dijit.layout.TabController">
+<div data-dojo-type="dijit/layout/ContentPane" title="Usuario" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false" doLayout="false">
+             <div data-dojo-type="_common_basic_menubar/_common_basic_menubar" id="id_account_user_menubar"></div>
+               <div data-dojo-type="_usaga_account_user/_usaga_account_user" id="id_account_user_widget"></div>
+             </div>
+             <div data-dojo-type="dijit/layout/ContentPane" title="Control Alarma" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" selected="true" closable="false" doLayout="false">
+              <div style="width: 100%; height: 100%;"><span data-dojo-type="dojo/data/ItemFileWriteStore" id="ItemFileWriteStore_4" jsId="ItemFileWriteStore_4" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+<table data-dojo-type="gridx/Grid" id="id_account_ctrl_alarma_gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 100%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}], modules:['gridx/modules/VirtualVScroller', 'gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget'], store:ItemFileWriteStore_4"></table>
+</div>
+            </div>
+             <div data-dojo-type="dijit/layout/ContentPane" title="Horario" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false">
+              <div style="width: 100%; height: 100%;">
+               <div data-dojo-type="_usaga_account_user_times/_usaga_account_user_times"></div>
+             </div>
+            </div>
+             </span>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div data-dojo-type="dijit/layout/ContentPane" id="ContentPaneEventos" title="Eventos" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false" style="width: 100%; height: 100%;">
+    <div style="width: 100%; height: 100%;">
+     <div data-dojo-type="_common_titlebar/_common_titlebar" id="id_account_event_titlebar"></div>
+     <div>
+      <div style="margin: 2px; display: inline-block;">
+       <label style="margin-right: 5px;">
+     Desde:</label>
+       <input type="text" data-dojo-type="dijit/form/DateTextBox" id="id_account_event_ini" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." value="2001-01-01"></input>
+     </div>
+      <div style="margin: 2px; display: inline-block;">
+    <label style="margin-right: 5px;">
+          Hasta:</label>
+        <input type="text" data-dojo-type="dijit/form/DateTextBox" id="id_account_event_fin" intermediateChanges="false" trim="false" uppercase="false" lowercase="false" propercase="false" invalidMessage="$_unset_$" rangeMessage="Este valor est&amp;aacute; fuera del intervalo." value="2001-01-01"></input>
+      </div>
+      <input type="button" data-dojo-type="dijit/form/Button" id="id_account_event_show" intermediateChanges="false" label="Mostrar" iconClass="dijitNoIcon"></input>
+    </div>
+   <span data-dojo-type="dojo/data/ItemFileWriteStore" id="ItemFileWriteStore_5" jsId="ItemFileWriteStore_5" data="{&quot;identifier&quot;:&quot;unique_id&quot;,&quot;items&quot;:[{&quot;unique_id&quot;:1,&quot;id&quot;:&quot;1&quot;,&quot;label&quot;:&quot;Label 1&quot;},{&quot;unique_id&quot;:2,&quot;id&quot;:&quot;2&quot;,&quot;label&quot;:&quot;Label 2&quot;}]}"></span>
+   <table data-dojo-type="gridx/Grid" id="id_account_event_gridx" style="min-width: 1em; min-height: 1em; width: 100%; height: 95%;" data-dojo-props="cacheClass: 'gridx/core/model/cache/Async',structure:[{width:'auto',name:'ID',field:'id'},{width:'auto',name:'Label',field:'label'}],  modules:['gridx/modules/VirtualVScroller', 'gridx/modules/Focus', 'gridx/modules/Edit', 'gridx/modules/CellWidget'], store:ItemFileWriteStore_5"></table>
+ </div>
+  </div>
+   </span>
+</div>
+   <div data-dojo-type="_common_notification_area/_common_notification_area" id="id_notify_area"></div>
+ </div>
+
+<div data-dojo-type="_common_tooltipdialogconfirmation/_common_tooltipdialogconfirmation" style="display: none;" id="id_contact_NotifyContactdialog"></div>
+<div data-dojo-type="_common_tooltipdialogconfirmation/_common_tooltipdialogconfirmation" style="display: none;" id="id_contact_NotifyContactPhonesdialog"></div>
+
+</body>
+</html>

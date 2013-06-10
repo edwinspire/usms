@@ -10,6 +10,7 @@ this.rows = this.xml.getElementsByTagName(this.ElementsByTagName),
 this.length = this.rows.length,
 this.getValue = function(i, field){
 var r = '';
+if(this.xml){
 // Esto lo hacemos asi para evitar problemas cuando los datos no existen, si ese es el caso devuelve una cadena vacia en lugar de null
 var _a = this.rows[i].getElementsByTagName(field);
 if(_a){
@@ -26,6 +27,9 @@ console.log('No existe el item(0) del TagName '+field+' en el elemento '+1);
 }
 }else{
 console.log('No existe el TagName '+field+' en el elemento '+1);
+}
+}else{
+console.log('getFromXhr(xmldoc, getElementsByTagName): xmldoc No está definido');
 }
 return r;
 },

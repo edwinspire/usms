@@ -1,0 +1,331 @@
+<html>
+<head>
+<title>Open Icon Library - Icon Gallery</title>
+<meta name="description" content="Open Icon Library. Free and Open to use and modify as needed. Over 10,000 icons in svg, png, xpm, ico, and icns formats. " />
+<meta name="keywords" content="Icons, Open Icons, Free Icons, Open Source, SourceForge, English, Image Galleries, Desktop Environment, Developers, Public Domain, GNU General Public License (GPL), Creative Commons, Open Icon Library,openiconlibrary" />
+
+<script type="text/javascript">
+	function selectGallery(gal)
+	{
+		location = '?'+gal;
+	}
+
+    var origScale = -1;
+    function niceScale(img)
+    {
+        if (origScale == -1)
+        {
+            document.getElementById('imageTitle').innerHTML = document.getElementById('imageTitle').innerHTML + ' (' + img.width + ' x ' + img.height + ')';
+            origScale = img.width;
+        }
+
+        if (img.width > document.body.clientWidth)
+        {
+            img.width = (document.body.clientWidth / 100) * 90;
+            img.style.cursor = 'pointer';
+        }
+        else
+            img.width = origScale;
+    }
+</script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://{$PIWIK_URL}" : "http://{$PIWIK_URL}");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", {$IDSITE});
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script>
+<!-- End Piwik Tag -->
+<style type="text/css">
+  <!--
+	body {
+		font-family: "Verdana";
+		font-size: 10pt;
+		margin: 0px;
+        margin-bottom: 10px;
+	}
+
+    form {
+        margin: 0px;
+        padding: 0px;
+    }
+
+	.top {
+		border: solid #5f5f5f;
+		border-width: 1px;
+		background-color: #bbb;
+        padding: 10px;
+	}
+
+    .image {
+        text-align: center;
+        margin: 20px;
+    }
+
+    .image img {
+        border-top: 0px;
+    }
+
+    .imageTitle {
+		font-weight: bold;
+		background-color: #eee;
+		color: black;
+		padding: 5px;
+		border: 1px solid #5f5f5f;
+        width: 100%;
+	}
+
+	.imageBox {
+		font-weight: bold;
+		background-color: #fff;
+		color: black;
+		padding: 5px;
+		border: 1px solid #5f5f5f;
+		width: 100%;
+		height: 160px;		
+	}
+	.imageBoxBox {
+		border: 1px solid #5f5f5f;
+		width: 48%;
+		height: 150px;
+		padding: 5px;
+		float: left;
+	}
+	.imageBoxBox img {
+		margin-top: 25px;
+		
+		vertical-align: center;
+	}
+
+	.imageBoxText {
+		border: 1px solid #5f5f5f;
+		text-align: left;
+		padding: 5px;
+		width: 48%;
+		height: 150px;
+		float: left;
+	}
+	.imageBoxTextBox {
+		width: 50px;
+		height: 150px;
+		float: left;
+	}
+	.imageBoxTitle {
+		font-weight: bold;
+		color: black;
+	}
+	.imageBoxContent {
+		font-weight: normal;
+		color: black;
+	}
+	.imageBoxSource {
+		font-weight: normal;
+		vertical-align: baseline;
+		padding-top: 45px;
+	}
+	.back_button {
+		float: left;
+		font-weight: bold;
+		font-size: 16px;
+		padding-left: 10px;
+	}
+
+	.pages {
+		text-align: center;
+		margin-left: auto; 
+		margin-right: auto;
+		padding: 5px;
+	}
+	.gallery_init {
+    	margin-left: auto;
+		margin-right: auto;
+		width: 500px;
+	}	
+	.gallery {
+        margin: 5%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.gallery ul {
+		padding: 0;
+		margin: 0;
+	}
+
+	.gallery ul:after {
+		content: "";
+		display: block;
+		clear: left;
+		height: 0;
+	}
+
+	.gallery li {
+		display: inline;
+		float: left;
+	}
+
+	.gallery li div {
+		display: inline;
+		float: left;
+		border: solid #5f5f5f;
+		border-width: 1px;
+		background-color: #eee;
+		padding: 7px;
+		margin: 5px 5px 0 0;
+		text-align: center;
+		position: relative;
+		width: 200px;
+		height: 200px;
+	}
+
+	.gallery img {
+		border: none;
+		padding-top: 25px;
+		vertical-align: center;
+		/*height: 100%;*/
+	}
+
+	.gallery-dir img {
+		padding-top: 0px;
+	}
+
+	.gallery a {
+		text-decoration: none;
+	}
+
+	.gallery ul a:visited {
+		padding: 0;
+		background-image: none;
+	}
+
+/*	.gallery a span {
+		position: absolute;
+		left: -9999px;
+		margin: 0;
+		padding: 0;
+	}*/
+
+	.gallery a span, .gallery-dir a span {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		font-weight: bold;
+		background-color: #eee;
+		color: black;
+		padding: 5px 0 5px 0;
+		font-size: 80%;
+		border-bottom: 1px solid #5f5f5f;
+		/*
+        text-transform: uppercase;
+		-moz-opacity: .80;
+		opacity: .80;*/
+	}
+
+	.box-title img {
+		padding-top: 45px;
+	}
+
+	.box-title span {
+		height: 30px;
+}
+	small {margin: .5em 0 0 5%; font-size: 80%; position: relative; display: block;}
+
+	#ft	{
+		clear: both;
+		display: block;
+		padding: 1em;
+		font-size: 80%;
+		text-align: center;
+	}
+	.heading {
+		font-size: 24px;
+	}
+	
+  -->
+</style>
+</head>
+<body>
+
+<div align="left"><small><a href="http://openiconlibrary.sourceforge.net/">Open Icon Library</a></small></div>
+<div align="center" class="heading">Icon Gallery</div><br />
+<div class="top">
+<br /><b>Gallery: <a href="?./">Home</a> / <a href="?./Icons/">Icons</a> / <a href="?./Icons/actions/">actions</a> / </b></div>
+<div style="clear:both"></div></div>
+<div class="image"><div class="imageTitle" id="imageTitle"><div class="imageTitleMargin">bookmark-2.png</div></div><div class="imageBox"><div class="imageBoxBox"><img style="vertical-align: middle" src="./open_icon_library-full/icons/png/48x48/actions/bookmark-2.png" /><div class="imageBoxSource">Source: <a href="http://openiconlibrary.sourceforge.net/sources.html">crystal</a>
+, License: LGPL-2.1
+</div></div>
+<div class="imageBoxText">
+<div class="imageBoxTextBox"><div class="imageBoxTitle">PNG</div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/16x16/actions/bookmark-2.png">16x16</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/22x22/actions/bookmark-2.png">22x22</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/24x24/actions/bookmark-2.png">24x24</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/32x32/actions/bookmark-2.png">32x32</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/48x48/actions/bookmark-2.png">48x48</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/64x64/actions/bookmark-2.png">64x64</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/128x128/actions/bookmark-2.png">128x128</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/png/256x256/actions/bookmark-2.png">256x256</a></div>
+</div>
+<div class="imageBoxTextBox"><div class="imageBoxTitle">XPM</div
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/xpm/16x16/actions/bookmark-2.xpm">16x16</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/xpm/22x22/actions/bookmark-2.xpm">22x22</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/xpm/24x24/actions/bookmark-2.xpm">24x24</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/xpm/32x32/actions/bookmark-2.xpm">32x32</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/xpm/48x48/actions/bookmark-2.xpm">48x48</a></div>
+</div>
+<div class="imageBoxTextBox"><div class="imageBoxTitle">ICO</div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/ico/16x16/actions/bookmark-2.ico">16x16</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/ico/22x22/actions/bookmark-2.ico">22x22</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/ico/24x24/actions/bookmark-2.ico">24x24</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/ico/32x32/actions/bookmark-2.ico">32x32</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/ico/48x48/actions/bookmark-2.ico">48x48</a></div>
+</div>
+<div class="imageBoxTextBox"><div class="imageBoxTitle">ICNS</div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/icns/16x16/actions/bookmark-2.icns">16x16</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/icns/32x32/actions/bookmark-2.icns">32x32</a></div>
+<div class="imageBoxContent"><a href="./open_icon_library-full/icons/icns/48x48/actions/bookmark-2.icns">48x48</a></div>
+</div>
+<div class="imageBoxTextBox"><div class="imageBoxTitle">SVG</div>
+</div>
+</div></div></div>
+<div align="right" class="top"><small>(modified) Nice Image Browser - <img src="_nib_shrimpworks.png" border="0" align="absmiddle"/> <a href="http://shrimpworks.za.net/">by ShrimpWorks</a>, download <a href="modified_nice_image_browser.zip">source</a></small></div>
+
+<div id="ft">
+All icons are under free/open licenses,  however the licenses vary from image to image.  Some are Creative Commons, some are GPL, some are Public Domain.  Licenses for sources <a href="http://openiconlibrary.sourceforge.net/docs/AUTHORS_app-install.html">app-install</a>, <a href="http://openiconlibrary.sourceforge.net/docs/AUTHORS_wiki_commons-BSD.html">wiki_commons-BSD</a>, <a href="http://openiconlibrary.sourceforge.net/docs/AUTHORS_wiki_commons-CC.html">wiki_commons-CC</a>, <a href="http://openiconlibrary.sourceforge.net/docs/AUTHORS_wiki_commons-GPL.html">wiki_commons-GPL</a>, , <a href="http://openiconlibrary.sourceforge.net/docs/AUTHORS_wiki_commons-MIT.html">wiki_commons-MIT</a>, and <a href="http://openiconlibrary.sourceforge.net/docs/AUTHORS_wiki_commons-PD.html">wiki_commons-PD</a> 
+
+
+
+
+	<!-- Piwik -->
+	<script type="text/javascript">
+	var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/openiconlibrary/" : "http://sourceforge.net/apps/piwik/openiconlibrary/");
+	document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+	</script><script type="text/javascript">
+	piwik_action_name = '';
+	piwik_idsite = 1;
+	piwik_url = pkBaseURL + "piwik.php";
+	piwik_log(piwik_action_name, piwik_idsite, piwik_url);
+	</script>
+	<object><noscript><p><img src="http://sourceforge.net/apps/piwik/openiconlibrary/piwik.php?idsite=1" alt="piwik"/></p></noscript></object>
+	<!-- End Piwik Tag -->		
+	<p>
+		<a href="http://sourceforge.net/"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=287622&amp;type=3" alt="SourceForge.net" width="88" height="31" /></a>
+	</p><p>
+		<a href="../README.html">About</a>
+		-
+		<a href="../LICENSES.html">Legal</a>
+		-
+		<a href="http://sourceforge.net/projects/openiconlibrary/forums/forum/1039680">Help</a>
+		-
+		<a href="../contact.html">Contact</a>
+	</p>
+</div>
+</body>
+</html>

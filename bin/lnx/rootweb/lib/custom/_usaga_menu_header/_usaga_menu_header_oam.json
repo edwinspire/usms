@@ -1,0 +1,49 @@
+{
+	"id": "_usaga_menu_header",
+	"name": "_usaga_menu_header",
+	"spec": "1.0",
+	"version": "1.0",
+	"require": [
+		{
+			"type": "javascript",
+			"src": "dojo/dojo.js",
+			"$library": "dojo"
+		},
+		{
+			"$library": "dojo",
+			"format": "amd",
+			"src": "_usaga_menu_header/_usaga_menu_header",
+			"type": "javascript-module"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/MenuBar",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/Menu",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/MenuItem",
+			"$library": "dojo"
+		},
+		{
+			"type": "javascript-module",
+			"format": "amd",
+			"src": "dijit/PopupMenuBarItem",
+			"$library": "dojo"
+		}
+	],
+	"library": {
+		"dojo": {
+			"src": "../../dojo/dojo/dojo.js"
+		}
+	},
+	"content": "<div></div>"
+}

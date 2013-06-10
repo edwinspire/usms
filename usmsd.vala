@@ -42,7 +42,7 @@ public class RunuSMS: GLib.Object {
 
 uSMSServer smsServer = new uSMSServer();
 //smsServer.ResetAndLoadDevices();
-smsServer.Run();
+smsServer.runuSMS();
 
 print("El servidor muere...");
 		return 0;
